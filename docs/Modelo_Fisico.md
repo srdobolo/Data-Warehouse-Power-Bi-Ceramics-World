@@ -2,7 +2,7 @@
 
 ## Especificações Técnicas
 
-- SGBD-alvo: SQL Server (pode ser adaptado a PostgreSQL facilmente).
+- SGBD: SQL Server.
 - Padrão de nomenclatura:
     - DIM_ → tabelas dimensionais
     - FACT_ → tabelas fato
