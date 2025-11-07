@@ -74,6 +74,8 @@ O objetivo principal é utilizar análises de dados e visualizações em Power B
 
 > https://www.trademap.org/Country_SelService_TS.aspx
 
+> https://tradingeconomics.com/country-list/construction-output ?????????????
+
 ## licença
 
 Este projeto é apenas para fins educativos e não contém dados confidenciais.

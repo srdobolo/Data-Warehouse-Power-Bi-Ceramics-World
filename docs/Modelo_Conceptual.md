@@ -10,39 +10,41 @@ Modelar a informação proveniente das fontes Trade Map e World Bank, com foco e
 
 ## Entidades Principais e Significado
 
-| Entidade               | Origem dos Dados                             | Descrição                                                         | Exemplos de Atributos                                        |
-| ---------------------- | -------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------ |
-| **País**               | Todas as fontes                              | Unidade geográfica e económica usada como chave comum.            | ID_País, Nome_País, Continente, Região, Código_ISO           |
-| **Produto_Cerâmico**   | Trade Map (HS 6907, 6908, 6910)              | Representa a categoria de produto cerâmico exportado/importado.   | ID_Produto, Código_HS, Descrição_Produto                     |
-| **Serviço_Construção** | Trade Map (Serviços Exportados – Construção) | Representa serviços de construção relacionados ao setor cerâmico. | ID_Serviço, Tipo_Serviço, Ano, Valor_Exportado               |
-| **Exportação**         | Trade Map                                    | Representa as exportações de Portugal por produto e país.         | ID_Exp, País_Destino, Produto, Ano, Valor_Exportado, Unidade |
-| **Importação**         | Trade Map                                    | Representa importações por país e produto.                        | ID_Imp, País_Origem, Produto, Ano, Valor_Importado, Unidade  |
-| **PIB_per_Capita**     | World Bank                                   | Indicador económico que mede o poder de compra e classe média.    | ID_PIB, País, Ano, PIB_Valor                                 |
-| **População_Urbana**   | World Bank                                   | Indicador de urbanização e crescimento populacional.              | ID_Urbano, País, Ano, Percentagem_Urbana                     |
-| **Data**               | Derivada de todos                            | Dimensão temporal comum a todas as séries.                        | ID_Data, Ano, Trimestre, Mês                                |
+| Entidade               | Descrição                                                      | Principais Atributos                                                                                                     |
+| ---------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **PAIS**               | Unidade geográfica e económica base.                           | ID_Pais *(int)*, Nome_Pais *(string)*, Continente *(string)*, Regiao *(string)*, Codigo_ISO *(string)*                   |
+| **PRODUTO_CERAMICO**   | Categoria de produto cerâmico analisado (HS 6907, 6908, 6910). | ID_Produto *(int)*, Codigo_HS *(string)*, Descricao_Produto *(string)*                                                   |
+| **EXPORTACAO**         | Exportações portuguesas de produtos cerâmicos.                 | ID_Exp *(int)*, Pais_Destino *(string)*, Valor_Exportado *(float)*, Unidade *(string)*, Ano *(int)*                      |
+| **IMPORTACAO**         | Importações de produtos cerâmicos por país.                    | ID_Imp *(int)*, Pais_Origem *(string)*, Valor_Importado *(float)*, Unidade *(string)*, Ano *(int)*                       |
+| **SERVICO_CONSTRUCAO** | Serviços de construção exportados por Portugal.                | ID_Servico *(int)*, Tipo_Servico *(string)*, Pais *(string)*, Valor_Exportado *(float)*, Unidade *(string)*, Ano *(int)* |
+| **PIB_PER_CAPITA**     | Indicador económico (World Bank).                              | ID_PIB *(int)*, Pais *(string)*, PIB_Valor *(float)*, Ano *(int)*                                                        |
+| **POPULACAO_URBANA**   | Indicador de urbanização (World Bank).                         | ID_Urbano *(int)*, Pais *(string)*, Total_Populacao *(float)*, Ano *(int)*                                               |
+| **DATA**               | Dimensão temporal comum.                                       | ID_Data *(int)*, Ano *(int)*, Trimestre *(string)*, Decada *(string)*, Period_Label *(string)*                           |
 
 ## Relações entre Entidades
 
-- País 1—N Exportação → Um país exporta para vários mercados.
-- País 1—N Importação → Um país importa de vários outros.
-- Produto_Cerâmico 1—N Exportação / Importação → Cada produto é comercializado por vários países.
-- País 1—N PIB_per_Capita / População_Urbana → Um país tem indicadores económicos e sociais anuais.
-- Serviço_Construção 1—N País → Cada serviço é associado a um mercado exportador.
-- Data 1—N todas as relações → Permite análise temporal transversal.
+- País 1—N Exportação
+- País 1—N Importação
+- País 1—N Serviço_Construção (exportações de Portugal para vários países)    ?????????????????????
+- País 1—N PIB_per_Capita
+- País 1—N População_Urbana
+- Produto_Cerâmico 1—N Exportação / Importação
+- Data 1—N todas as entidades com série temporal
 
 ## Diagrama Conceptual (Mermaid.js)
 
 ```mermaid
 erDiagram
-    PAIS ||--o{ EXPORTACAO : realiza
-    PAIS ||--o{ IMPORTACAO : recebe
+    PAIS ||--o{ EXPORTACAO : exporta
+    PAIS ||--o{ IMPORTACAO : importa
+    PAIS ||--o{ SERVICO_CONSTRUCAO : exporta
     PAIS ||--o{ PIB_PER_CAPITA : possui
     PAIS ||--o{ POPULACAO_URBANA : apresenta
     PRODUTO_CERAMICO ||--o{ EXPORTACAO : inclui
     PRODUTO_CERAMICO ||--o{ IMPORTACAO : inclui
-    SERVICO_CONSTRUCAO ||--o{ PAIS : atua_em
     DATA ||--o{ EXPORTACAO : ocorre_em
     DATA ||--o{ IMPORTACAO : ocorre_em
+    DATA ||--o{ SERVICO_CONSTRUCAO : ocorre_em
 
     PAIS {
         int ID_Pais
@@ -60,6 +62,7 @@ erDiagram
 
     EXPORTACAO {
         int ID_Exp
+        string Pais_Destino
         float Valor_Exportado
         string Unidade
         int Ano
@@ -67,6 +70,7 @@ erDiagram
 
     IMPORTACAO {
         int ID_Imp
+        string Pais_Origem
         float Valor_Importado
         string Unidade
         int Ano
@@ -75,39 +79,43 @@ erDiagram
     SERVICO_CONSTRUCAO {
         int ID_Servico
         string Tipo_Servico
+        string Pais
         float Valor_Exportado
+        string Unidade
         int Ano
     }
 
     PIB_PER_CAPITA {
         int ID_PIB
+        string Pais
         float PIB_Valor
         int Ano
     }
 
     POPULACAO_URBANA {
         int ID_Urbano
-        float Percentagem_Urbana
+        string Pais
+        float Total_Populacao
         int Ano
     }
 
     DATA {
-        int DATA
+        int ID_Data
         int Ano
         string Trimestre
-        string Mes
+        string Decada
+        string Period_Label
     }
 ```
 
 ## Resumo das Relações-Chave
 
-| Entidade A         | Relação   | Entidade B            | Tipo |
-| ------------------ | --------- | --------------------- | ---- |
-| País               | realiza   | Exportação            | 1:N  |
-| País               | recebe    | Importação            | 1:N  |
-| País               | possui    | PIB_per_Capita        | 1:N  |
-| País               | apresenta | População_Urbana      | 1:N  |
-| Produto_Cerâmico   | inclui    | Exportação            | 1:N  |
-| Produto_Cerâmico   | inclui    | Importação            | 1:N  |
-| Serviço_Construção | atua_em   | País                  | 1:N  |
-| Data               | ocorre_em | Exportação/Importação | 1:N  |
+| Entidade A       | Relação    | Entidade B                 | Tipo |
+| ---------------- | ---------- | -------------------------- | ---- |
+| País             | realiza    | Exportação                 | 1:N  |
+| País             | realiza    | Serviço_Construção         | 1:N  |
+| País             | recebe     | Importação                 | 1:N  |
+| País             | possui     | PIB_per_Capita             | 1:N  |
+| País             | possui     | População_Urbana           | 1:N  |
+| Produto_Cerâmico | compõe     | Exportação / Importação    | 1:N  |
+| Data             | referencia | todas as tabelas temporais | 1:N  |
