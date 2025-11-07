@@ -1,0 +1,967 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title></title><META http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><table align="center"><tr><td colspan="6"><center><b>List of importers for the selected product </b></center></td></tr><tr><td colspan="6"><center>   Product: 69 Ceramic products</center></td></tr></table><table><tr><td> </td></tr></table><table id="ctl00_PageContent_GridLegendTable" class="table_legend" border="0">
+	<tr>
+		<td>Sources: ITC calculations based on UN COMTRADE and ITC statistics.</td>
+	</tr><tr>
+		<td>The world aggregation represents the sum of reporting and non reporting countries  </td>
+	</tr><tr>
+		<td>Data based on the partner reported data (Mirror data) are shown in orange </td>
+	</tr><tr>
+		<td></td>
+	</tr><tr>
+		<td></td>
+	</tr><tr>
+		<td></td>
+	</tr><tr>
+		<td></td>
+	</tr>
+</table><table><tr><td> </td></tr></table><table id="ctl00_PageContent_GridLabelUnitTable" border="0">
+	<tr>
+		<td><span id="ctl00_PageContent_Label_Unit" class="Comment">Unit : US Dollar thousand</span></td>
+	</tr>
+</table><table><tr><td> </td></tr></table><div>
+	<table cellspacing="0" cellpadding="4" rules="all" border="1" id="ctl00_PageContent_MyGridView1" style="color:#002B54;border-color:#002B54;width:100%;border-collapse:collapse;">
+		<tr style="color:White;background-color:#5D7B9D;font-size:80%;font-weight:bold;">
+			<th scope="col">Importers</th><th scope="col">Imported value in 2005</th><th scope="col">Imported value in 2006</th><th scope="col">Imported value in 2007</th><th scope="col">Imported value in 2008</th><th scope="col">Imported value in 2009</th><th scope="col">Imported value in 2010</th><th scope="col">Imported value in 2011</th><th scope="col">Imported value in 2012</th><th scope="col">Imported value in 2013</th><th scope="col">Imported value in 2014</th><th scope="col">Imported value in 2015</th><th scope="col">Imported value in 2016</th><th scope="col">Imported value in 2017</th><th scope="col">Imported value in 2018</th><th scope="col">Imported value in 2019</th><th scope="col">Imported value in 2020</th><th scope="col">Imported value in 2021</th><th scope="col">Imported value in 2022</th><th scope="col">Imported value in 2023</th><th scope="col">Imported value in 2024</th>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td title="The world aggregation represents the sum of reporting and non reporting countries  " align="left" style="width:30%;">
+                            World
+                                </td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">30997049</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">34480561</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">39668825</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">43054962</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">34347917</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">39812266</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">43823808</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">43924318</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">45110739</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">47089112</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">44072570</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">43304123</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">45811515</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">49980027</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">48946777</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">45870834</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">58119302</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">62365497</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">55194703</td><td title="The data aggregated are mirror and direct data" style="color:BlueViolet;border-color:#002B54;">55266410</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            United States of America
+                                </td><td>5909710</td><td>6326328</td><td>5934193</td><td>5417767</td><td>3962698</td><td>5059830</td><td>5653017</td><td>5713728</td><td>5954835</td><td>6357267</td><td>6442258</td><td>6275329</td><td>6655290</td><td>7183400</td><td>6987087</td><td>6327767</td><td>8353953</td><td>9637024</td><td>7959000</td><td>8137117</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Germany
+                                </td><td>2027892</td><td>2204911</td><td>2381953</td><td>3076865</td><td>2501497</td><td>2757634</td><td>3141186</td><td>2908306</td><td>2923442</td><td>3177658</td><td>2911036</td><td>3064303</td><td>3145486</td><td>3393563</td><td>3225544</td><td>3109562</td><td>3924584</td><td>3832351</td><td>3235428</td><td>3199036</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            France
+                                </td><td>2084446</td><td>2168167</td><td>2565757</td><td>2804189</td><td>2336821</td><td>2367905</td><td>2511579</td><td>2242532</td><td>2181585</td><td>2235445</td><td>1885938</td><td>1961901</td><td>2145822</td><td>2236703</td><td>2159015</td><td>2089106</td><td>2572147</td><td>2688252</td><td>2530141</td><td>2363480</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            United Kingdom
+                                </td><td>1724500</td><td>1870191</td><td>2191288</td><td>2104922</td><td>1614720</td><td>1707678</td><td>1831303</td><td>1459664</td><td>1601944</td><td>2027197</td><td>1963141</td><td>1777252</td><td>1750864</td><td>1823538</td><td>1931280</td><td>1639232</td><td>2231792</td><td>2597940</td><td>2010276</td><td>2165544</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Korea, Republic of
+                                </td><td>647281</td><td>779978</td><td>971828</td><td>1026183</td><td>855658</td><td>1016106</td><td>1147515</td><td>1203176</td><td>1205853</td><td>1424768</td><td>1489751</td><td>1515271</td><td>1597455</td><td>1712538</td><td>1637124</td><td>1512558</td><td>1817823</td><td>1906668</td><td>1613297</td><td>1578662</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            China
+                                </td><td>301071</td><td>339097</td><td>438089</td><td>446978</td><td>416452</td><td>586089</td><td>743134</td><td>656557</td><td>688539</td><td>778195</td><td>703539</td><td>787883</td><td>1022606</td><td>1226916</td><td>1279141</td><td>1346461</td><td>1900046</td><td>1616352</td><td>1414703</td><td>1319239</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Italy
+                                </td><td>888879</td><td>969967</td><td>1118927</td><td>1141365</td><td>904731</td><td>983795</td><td>1012586</td><td>841740</td><td>781366</td><td>883056</td><td>753576</td><td>853717</td><td>954878</td><td>1069889</td><td>1058010</td><td>853389</td><td>1173954</td><td>1401840</td><td>1317993</td><td>1316420</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Canada
+                                </td><td>819774</td><td>878958</td><td>982396</td><td>1025183</td><td>855961</td><td>1034024</td><td>1006782</td><td>1090984</td><td>1150653</td><td>1158577</td><td>1092139</td><td>1011911</td><td>1077333</td><td>1094270</td><td>1046556</td><td>979539</td><td>1268178</td><td>1370038</td><td>1192652</td><td>1194601</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Poland
+                                </td><td>355912</td><td>383691</td><td>580068</td><td>743787</td><td>519955</td><td>490125</td><td>555733</td><td>465570</td><td>488646</td><td>532755</td><td>511846</td><td>579649</td><td>624651</td><td>872941</td><td>647990</td><td>891317</td><td>1208432</td><td>1296718</td><td>1031800</td><td>1147050</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Mexico
+                                </td><td>402038</td><td>506683</td><td>628748</td><td>611459</td><td>414704</td><td>587832</td><td>740893</td><td>793047</td><td>730185</td><td>868482</td><td>779045</td><td>740649</td><td>835092</td><td>910415</td><td>888985</td><td>683683</td><td>976951</td><td>1120105</td><td>1066095</td><td>1138102</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Japan
+                                </td><td>965820</td><td>1041498</td><td>1060901</td><td>1180678</td><td>1003039</td><td>1195943</td><td>1345096</td><td>1318205</td><td>1342177</td><td>1312522</td><td>1194473</td><td>1125915</td><td>1179873</td><td>1244099</td><td>1220261</td><td>1126433</td><td>1305870</td><td>1271888</td><td>1157737</td><td>1098491</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Belgium
+                                </td><td>794079</td><td>832028</td><td>1087345</td><td>1151220</td><td>907654</td><td>941395</td><td>957734</td><td>875729</td><td>903867</td><td>954921</td><td>817741</td><td>832033</td><td>869697</td><td>984554</td><td>963367</td><td>938019</td><td>1217020</td><td>1305526</td><td>1121654</td><td>1070878</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Russian Federation
+                                </td><td>443090</td><td>587236</td><td>818319</td><td>964446</td><td>623374</td><td>921251</td><td>1208466</td><td>1447618</td><td>1521445</td><td>1339599</td><td>767201</td><td>698971</td><td>868467</td><td>973453</td><td>933037</td><td>932231</td><td>1155330</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">923756</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1045258</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1021954</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            India
+                                </td><td>232815</td><td>303310</td><td>397413</td><td>523868</td><td>394275</td><td>535303</td><td>770444</td><td>734906</td><td>637264</td><td>705033</td><td>797525</td><td>476226</td><td>564963</td><td>602104</td><td>616396</td><td>505341</td><td>682974</td><td>900592</td><td>939324</td><td>962010</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Netherlands
+                                </td><td>506179</td><td>605712</td><td>741070</td><td>813189</td><td>625256</td><td>631567</td><td>754142</td><td>676025</td><td>637550</td><td>700986</td><td>676880</td><td>691445</td><td>767253</td><td>938756</td><td>947033</td><td>1028754</td><td>1341417</td><td>1186110</td><td>906185</td><td>933603</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            United Arab Emirates
+                                </td><td>335421</td><td></td><td>471766</td><td>604176</td><td></td><td></td><td></td><td>517172</td><td>469021</td><td>511611</td><td>552645</td><td>690721</td><td>567712</td><td>512924</td><td>551600</td><td>486019</td><td>588061</td><td>655091</td><td>694204</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">890600</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Australia
+                                </td><td>545670</td><td>559218</td><td>639151</td><td>690826</td><td>569007</td><td>662774</td><td>650717</td><td>644444</td><td>669232</td><td>771568</td><td>755334</td><td>769870</td><td>787954</td><td>823405</td><td>744654</td><td>726266</td><td>868523</td><td>907679</td><td>752895</td><td>849430</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Philippines
+                                </td><td>66591</td><td>81128</td><td>81345</td><td>95281</td><td>99025</td><td>132502</td><td>155773</td><td>219278</td><td>263142</td><td>330425</td><td>411889</td><td>423000</td><td>512251</td><td>730484</td><td>795652</td><td>652148</td><td>1015321</td><td>1001254</td><td>884308</td><td>811617</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Spain
+                                </td><td>780527</td><td>860329</td><td>1001864</td><td>915320</td><td>630838</td><td>672971</td><td>597611</td><td>494035</td><td>505532</td><td>579457</td><td>501283</td><td>540607</td><td>599776</td><td>696655</td><td>647379</td><td>580983</td><td>807866</td><td>877356</td><td>737630</td><td>786333</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Taipei, Chinese
+                                </td><td>335950</td><td>337421</td><td>392676</td><td>395107</td><td>309193</td><td>451731</td><td>492523</td><td>493118</td><td>541854</td><td>605893</td><td>576642</td><td>562118</td><td>617435</td><td>652424</td><td>622397</td><td>668591</td><td>725428</td><td>792981</td><td>711779</td><td>772929</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Saudi Arabia
+                                </td><td>490518</td><td>493313</td><td>533424</td><td>584748</td><td>652600</td><td>662075</td><td>782596</td><td>968625</td><td>1034433</td><td>996614</td><td>1086021</td><td>870727</td><td>890211</td><td>886364</td><td>925738</td><td>1079482</td><td>937773</td><td>968566</td><td>733308</td><td>757630</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Thailand
+                                </td><td>234964</td><td>249512</td><td>313989</td><td>412227</td><td>360196</td><td>564349</td><td>627080</td><td>696399</td><td>831210</td><td>744194</td><td>723097</td><td>733276</td><td>713017</td><td>720743</td><td>680455</td><td>638723</td><td>781130</td><td>768619</td><td>759850</td><td>746312</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Malaysia
+                                </td><td>136742</td><td>154518</td><td>190250</td><td>200480</td><td>147800</td><td>239668</td><td>273181</td><td>268807</td><td>273991</td><td>331978</td><td>346413</td><td>365309</td><td>325289</td><td>441796</td><td>370970</td><td>381972</td><td>417892</td><td>508903</td><td>531935</td><td>726315</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Indonesia
+                                </td><td>110768</td><td>124148</td><td>112850</td><td>212049</td><td>155658</td><td>214438</td><td>269581</td><td>425437</td><td>320663</td><td>368341</td><td>325471</td><td>377575</td><td>422722</td><td>638066</td><td>524829</td><td>491463</td><td>697636</td><td>897867</td><td>701122</td><td>705303</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Austria
+                                </td><td>489723</td><td>495614</td><td>563252</td><td>608231</td><td>534119</td><td>545175</td><td>617094</td><td>603580</td><td>618728</td><td>631414</td><td>527061</td><td>565218</td><td>590985</td><td>644299</td><td>648264</td><td>641254</td><td>783276</td><td>769386</td><td>742238</td><td>690891</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Switzerland
+                                </td><td>470839</td><td>481725</td><td>536128</td><td>596392</td><td>512709</td><td>551471</td><td>619488</td><td>564151</td><td>589603</td><td>615834</td><td>553992</td><td>573545</td><td>608983</td><td>642791</td><td>627944</td><td>656448</td><td>763447</td><td>747756</td><td>699586</td><td>647792</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Türkiye
+                                </td><td>234135</td><td>370453</td><td>388867</td><td>407172</td><td>274524</td><td>390251</td><td>451906</td><td>445860</td><td>485769</td><td>571685</td><td>508565</td><td>374053</td><td>339826</td><td>342634</td><td>301718</td><td>342184</td><td>393000</td><td>585200</td><td>599206</td><td>614142</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Israel
+                                </td><td>194720</td><td>209489</td><td>247363</td><td>289737</td><td>276501</td><td>315182</td><td>330389</td><td>332090</td><td>361483</td><td>382901</td><td>371877</td><td>381103</td><td>425013</td><td>443891</td><td>427552</td><td>457121</td><td>628419</td><td>773981</td><td>556552</td><td>531423</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Romania
+                                </td><td>306516</td><td>347487</td><td>484081</td><td>602025</td><td>273246</td><td>266535</td><td>293584</td><td>268282</td><td>275139</td><td>299271</td><td>275448</td><td>292134</td><td>347828</td><td>394111</td><td>393968</td><td>405751</td><td>491588</td><td>507809</td><td>482369</td><td>508751</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Iraq
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>79087</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">660727</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">562126</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">583852</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">585320</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">644691</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">725625</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">761368</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">990426</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">846748</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">494791</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Singapore
+                                </td><td>155887</td><td>158330</td><td>197308</td><td>256919</td><td>243866</td><td>306298</td><td>363066</td><td>358810</td><td>355545</td><td>361487</td><td>344747</td><td>312213</td><td>312734</td><td>329426</td><td>279198</td><td>209731</td><td>313624</td><td>387085</td><td>357058</td><td>467645</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Czech Republic
+                                </td><td>288883</td><td>308691</td><td>434311</td><td>481916</td><td>331257</td><td>350259</td><td>431471</td><td>388318</td><td>375747</td><td>411286</td><td>331284</td><td>375459</td><td>383989</td><td>444454</td><td>431660</td><td>389095</td><td>522371</td><td>556677</td><td>460491</td><td>465193</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Macedonia, North
+                                </td><td>25888</td><td>32731</td><td>37409</td><td>47401</td><td>39116</td><td>59859</td><td>83776</td><td>90115</td><td>110829</td><td>167759</td><td>209457</td><td>282613</td><td>340338</td><td>433565</td><td>473080</td><td>421965</td><td>485213</td><td>455905</td><td>477579</td><td>433524</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Kazakhstan
+                                </td><td>142445</td><td>220006</td><td>286881</td><td>288526</td><td>211008</td><td>208324</td><td>296767</td><td>380035</td><td>368682</td><td>359791</td><td>256031</td><td>224897</td><td>274995</td><td>324606</td><td>334087</td><td>319567</td><td>389037</td><td>429663</td><td>438201</td><td>430262</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Viet Nam
+                                </td><td>45825</td><td>54105</td><td>68276</td><td>109798</td><td>118524</td><td>143548</td><td>176950</td><td>189197</td><td>204117</td><td>265454</td><td>310089</td><td>340837</td><td>331208</td><td>452052</td><td>451130</td><td>399292</td><td>442020</td><td>467665</td><td>395626</td><td>425421</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Sweden
+                                </td><td>344253</td><td>354607</td><td>428716</td><td>434710</td><td>318049</td><td>354690</td><td>396394</td><td>369734</td><td>376813</td><td>389346</td><td>360371</td><td>358102</td><td>398024</td><td>405351</td><td>393385</td><td>382466</td><td>498778</td><td>502619</td><td>407362</td><td>384674</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            South Africa
+                                </td><td>349911</td><td>433820</td><td>630078</td><td>583105</td><td>417983</td><td>554277</td><td>624230</td><td>528977</td><td>493412</td><td>494236</td><td>492670</td><td>452770</td><td>450320</td><td>578656</td><td>529630</td><td>359812</td><td>473844</td><td>456136</td><td>390084</td><td>370757</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Morocco
+                                </td><td>63757</td><td>75721</td><td>101549</td><td>133446</td><td>172313</td><td>143766</td><td>178067</td><td>211912</td><td>214199</td><td>260845</td><td>223734</td><td>231955</td><td>254729</td><td>269458</td><td>296939</td><td>256401</td><td>330115</td><td>308959</td><td>316462</td><td>368327</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Denmark
+                                </td><td>298803</td><td>323009</td><td>373025</td><td>379906</td><td>248962</td><td>274100</td><td>290662</td><td>283716</td><td>299746</td><td>340915</td><td>297934</td><td>281323</td><td>278681</td><td>311064</td><td>305685</td><td>317587</td><td>410572</td><td>378255</td><td>321006</td><td>357869</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Brazil
+                                </td><td>115533</td><td>120294</td><td>185678</td><td>275537</td><td>238801</td><td>437162</td><td>643765</td><td>646185</td><td>664628</td><td>503001</td><td>361785</td><td>196985</td><td>215980</td><td>259848</td><td>253053</td><td>218076</td><td>296979</td><td>296132</td><td>322541</td><td>355979</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Greece
+                                </td><td>426986</td><td>454917</td><td>590989</td><td>645574</td><td>411309</td><td>338609</td><td>274462</td><td>164453</td><td>153072</td><td>174127</td><td>144349</td><td>159710</td><td>165866</td><td>200936</td><td>201067</td><td>174964</td><td>242083</td><td>315841</td><td>309288</td><td>339522</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Portugal
+                                </td><td>232352</td><td>258938</td><td>285853</td><td>286225</td><td>219583</td><td>203728</td><td>170261</td><td>129930</td><td>129727</td><td>142431</td><td>130019</td><td>153014</td><td>181844</td><td>218242</td><td>226298</td><td>224041</td><td>268419</td><td>314374</td><td>328656</td><td>323272</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Chile
+                                </td><td>116141</td><td>150005</td><td>162548</td><td>251164</td><td>165695</td><td>295507</td><td>295066</td><td>336524</td><td>334627</td><td>311723</td><td>335904</td><td>327164</td><td>311798</td><td>351262</td><td>330038</td><td>264558</td><td>530592</td><td>501438</td><td>308899</td><td>308834</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Hungary
+                                </td><td>229977</td><td>232232</td><td>254548</td><td>271611</td><td>185705</td><td>180732</td><td>194221</td><td>165729</td><td>169677</td><td>185968</td><td>168259</td><td>183507</td><td>207310</td><td>255119</td><td>261261</td><td>257018</td><td>301059</td><td>325758</td><td>264828</td><td>306522</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Dominican Republic
+                                </td><td>58515</td><td>113598</td><td>107053</td><td>102931</td><td>86578</td><td>84132</td><td>97595</td><td>75683</td><td>85064</td><td>113288</td><td>137377</td><td>132829</td><td>137592</td><td>168604</td><td>187153</td><td>152784</td><td>313808</td><td>389165</td><td>255845</td><td>276524</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Peru
+                                </td><td>45152</td><td>54896</td><td>69556</td><td>112742</td><td>87931</td><td>265430</td><td>138246</td><td>337035</td><td>385371</td><td>225329</td><td>220614</td><td>197709</td><td>212550</td><td>244471</td><td>240544</td><td>208661</td><td>373323</td><td>358078</td><td>267738</td><td>272786</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Norway
+                                </td><td>289476</td><td>310024</td><td>366128</td><td>365959</td><td>297559</td><td>315905</td><td>335935</td><td>323206</td><td>335414</td><td>316355</td><td>285495</td><td>272271</td><td>275734</td><td>275116</td><td>262464</td><td>259559</td><td>310223</td><td>304001</td><td>255736</td><td>262237</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Cambodia
+                                </td><td>22124</td><td>25500</td><td>30689</td><td>34734</td><td>28715</td><td>32405</td><td>34058</td><td>39450</td><td>52389</td><td>80598</td><td>81062</td><td>100730</td><td>131425</td><td>149011</td><td>199002</td><td>179960</td><td>179460</td><td>200233</td><td>229733</td><td>242020</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Croatia
+                                </td><td>143242</td><td>180830</td><td>214997</td><td>233206</td><td>159160</td><td>141126</td><td>150829</td><td>117095</td><td>116292</td><td>125031</td><td>114251</td><td>123658</td><td>138889</td><td>162918</td><td>157397</td><td>150045</td><td>184474</td><td>216411</td><td>219627</td><td>234855</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Libya, State of
+                                </td><td></td><td></td><td>61833</td><td>47025</td><td>123289</td><td>222033</td><td></td><td></td><td></td><td></td><td>203625</td><td>125026</td><td>98512</td><td>147202</td><td>273485</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">174651</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">282991</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">258704</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">318099</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">231861</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Hong Kong, China
+                                </td><td>326032</td><td>300237</td><td>314678</td><td>282746</td><td>252917</td><td>310050</td><td>308368</td><td>298434</td><td>292238</td><td>282558</td><td>283055</td><td>276824</td><td>305956</td><td>324425</td><td>280149</td><td>225182</td><td>264179</td><td>237609</td><td>234921</td><td>229266</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Colombia
+                                </td><td>78073</td><td>114432</td><td>130222</td><td>150388</td><td>118867</td><td>174997</td><td>235156</td><td>257903</td><td>266262</td><td>294370</td><td>228219</td><td>204344</td><td>191641</td><td>216306</td><td>189304</td><td>140016</td><td>273456</td><td>301938</td><td>182005</td><td>227094</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Slovakia
+                                </td><td>116546</td><td>136393</td><td>185615</td><td>246221</td><td>188837</td><td>196208</td><td>221326</td><td>182332</td><td>179640</td><td>183941</td><td>164239</td><td>172158</td><td>165683</td><td>195065</td><td>236991</td><td>195252</td><td>210916</td><td>246682</td><td>320663</td><td>224122</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Ireland
+                                </td><td>235891</td><td>251898</td><td>287561</td><td>248488</td><td>137129</td><td>118812</td><td>114780</td><td>98680</td><td>112466</td><td>132679</td><td>127797</td><td>123980</td><td>126427</td><td>145921</td><td>137728</td><td>136226</td><td>187917</td><td>221241</td><td>200417</td><td>218559</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Bulgaria
+                                </td><td>122251</td><td>141033</td><td>205143</td><td>243184</td><td>137876</td><td>118273</td><td>127737</td><td>131858</td><td>142890</td><td>118331</td><td>109835</td><td>113853</td><td>127298</td><td>155378</td><td>160196</td><td>152726</td><td>204865</td><td>244636</td><td>234215</td><td>208285</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Ukraine
+                                </td><td>220617</td><td>266785</td><td>382717</td><td>480633</td><td>215847</td><td>330229</td><td>395645</td><td>370191</td><td>362632</td><td>232659</td><td>140653</td><td>173056</td><td>177959</td><td>215025</td><td>238846</td><td>220149</td><td>257183</td><td>254620</td><td>225954</td><td>206077</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Kuwait
+                                </td><td></td><td>146012</td><td>162495</td><td>174482</td><td>125895</td><td>129915</td><td>159047</td><td>154361</td><td>154553</td><td>165791</td><td>164093</td><td>167897</td><td>165428</td><td>176622</td><td>169856</td><td>162438</td><td>221256</td><td>220438</td><td>217749</td><td>203403</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Finland
+                                </td><td>176942</td><td>188739</td><td>207633</td><td>235645</td><td>173445</td><td>200492</td><td>213436</td><td>202779</td><td>205432</td><td>202543</td><td>166357</td><td>166163</td><td>194144</td><td>193736</td><td>176845</td><td>185100</td><td>218315</td><td>247235</td><td>191871</td><td>193346</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Egypt
+                                </td><td>65081</td><td>60205</td><td>71801</td><td>126208</td><td>173210</td><td>123294</td><td>154356</td><td>178226</td><td>185168</td><td>182808</td><td>199874</td><td>138244</td><td>169458</td><td>218101</td><td>180918</td><td>154569</td><td>166896</td><td>185909</td><td>173930</td><td>182643</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Oman
+                                </td><td>50622</td><td>58351</td><td>106066</td><td>114293</td><td>98641</td><td>97613</td><td>118901</td><td>168522</td><td>146694</td><td>386982</td><td>154936</td><td>172524</td><td>182085</td><td>176634</td><td>157443</td><td>161095</td><td>153228</td><td>175808</td><td>173795</td><td>181851</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Uzbekistan
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>43339</td><td>55360</td><td>115847</td><td>75555</td><td>83764</td><td>97729</td><td>120865</td><td>179716</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Ghana
+                                </td><td>31861</td><td>41964</td><td>55099</td><td>46850</td><td>49982</td><td>57626</td><td>129366</td><td>129485</td><td>160666</td><td>148007</td><td>150003</td><td>127676</td><td>103702</td><td>94779</td><td>88815</td><td></td><td>112131</td><td>95040</td><td>71946</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">178748</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Guatemala
+                                </td><td>37640</td><td>45566</td><td>51305</td><td>44506</td><td>34623</td><td>39214</td><td>46322</td><td>61380</td><td>55326</td><td>56650</td><td>66165</td><td>69496</td><td>76829</td><td>79476</td><td>89043</td><td>84215</td><td>150887</td><td>173572</td><td>152231</td><td>173491</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Algeria
+                                </td><td>88768</td><td>93572</td><td>117491</td><td>149109</td><td>157205</td><td>184280</td><td>248485</td><td>274058</td><td>327848</td><td>428024</td><td>347871</td><td>381885</td><td>287949</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">295758</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">249300</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">231193</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">197320</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">131107</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">145304</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">168068</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Jordan
+                                </td><td>65945</td><td>86536</td><td>95788</td><td>120512</td><td>113447</td><td>119080</td><td>145685</td><td>169915</td><td>186933</td><td>219314</td><td>212575</td><td>209192</td><td>188066</td><td>206626</td><td>156194</td><td>147318</td><td>188724</td><td>190749</td><td>174107</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">166446</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Serbia
+                                </td><td></td><td>62658</td><td>99274</td><td>112983</td><td>59751</td><td>51654</td><td>72692</td><td>74730</td><td>68235</td><td>69259</td><td>70565</td><td>68626</td><td>83224</td><td>94694</td><td>96492</td><td>109326</td><td>151704</td><td>155828</td><td>138545</td><td>152674</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Argentina
+                                </td><td>88062</td><td>116972</td><td>134264</td><td>176594</td><td>98659</td><td>151022</td><td>177621</td><td>142417</td><td>142434</td><td>134430</td><td>151711</td><td>152491</td><td>172204</td><td>194072</td><td>134425</td><td>107505</td><td>177101</td><td>184004</td><td>183272</td><td>148405</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Qatar
+                                </td><td>96528</td><td>129027</td><td>145088</td><td>210875</td><td>249718</td><td>174376</td><td>164955</td><td>198475</td><td>219657</td><td>239511</td><td>242621</td><td></td><td>187530</td><td>192416</td><td>170194</td><td>161809</td><td>178878</td><td>208468</td><td>143595</td><td>141745</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Slovenia
+                                </td><td>98483</td><td>110167</td><td>136646</td><td>154607</td><td>119390</td><td>105104</td><td>108311</td><td>92690</td><td>107084</td><td>97092</td><td>83120</td><td>88448</td><td>96333</td><td>115251</td><td>117343</td><td>118495</td><td>138556</td><td>149587</td><td>152587</td><td>140447</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Lithuania
+                                </td><td>70405</td><td>92280</td><td>123445</td><td>128442</td><td>64205</td><td>66188</td><td>92497</td><td>89849</td><td>106160</td><td>135039</td><td>103620</td><td>110970</td><td>131579</td><td>125544</td><td>128110</td><td>125201</td><td>161812</td><td>160965</td><td>155447</td><td>137623</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            New Zealand
+                                </td><td>119572</td><td>111002</td><td>128193</td><td>116816</td><td>87132</td><td>104206</td><td>113355</td><td>116072</td><td>118981</td><td>138893</td><td>128804</td><td>141590</td><td>144926</td><td>147351</td><td>150527</td><td>144328</td><td>212542</td><td>206182</td><td>147052</td><td>134817</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Côte d'Ivoire
+                                </td><td>15412</td><td>16158</td><td>27888</td><td>24700</td><td>28587</td><td>30551</td><td>20611</td><td>40199</td><td>41836</td><td>49252</td><td>47017</td><td>49370</td><td>55490</td><td>60068</td><td>73719</td><td>88600</td><td>109698</td><td>128856</td><td>140278</td><td>123004</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Bosnia and Herzegovina
+                                </td><td>107925</td><td>101013</td><td>134801</td><td>139357</td><td>88388</td><td>90088</td><td>97252</td><td>83172</td><td>82163</td><td>93814</td><td>77472</td><td>82127</td><td>82509</td><td>89069</td><td>88860</td><td>79809</td><td>99941</td><td>109381</td><td>115418</td><td>122717</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Ecuador
+                                </td><td>52429</td><td>67171</td><td>83184</td><td>96459</td><td>49363</td><td>87695</td><td>101496</td><td>118721</td><td>120647</td><td>97431</td><td>96181</td><td>53429</td><td>88575</td><td>113698</td><td>119038</td><td>73904</td><td>122936</td><td>151166</td><td>128311</td><td>120731</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Nigeria
+                                </td><td></td><td>184733</td><td>245912</td><td>313594</td><td>455969</td><td>838736</td><td>295703</td><td>441776</td><td>415967</td><td>410333</td><td>277602</td><td>138755</td><td>74983</td><td>79051</td><td>124970</td><td>154351</td><td>108897</td><td>152739</td><td>179921</td><td>119574</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Georgia
+                                </td><td>21322</td><td>34576</td><td>51215</td><td>63075</td><td>39948</td><td>56753</td><td>74822</td><td>77385</td><td>80211</td><td>91066</td><td>70168</td><td>69040</td><td>80032</td><td>87101</td><td>83562</td><td>70881</td><td>83003</td><td>114983</td><td>126896</td><td>119413</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Lebanon
+                                </td><td>71628</td><td>64941</td><td>80960</td><td>123909</td><td>144480</td><td>181535</td><td>193725</td><td>191779</td><td>223904</td><td>225633</td><td>205901</td><td>224714</td><td>243240</td><td>226380</td><td>145589</td><td>54108</td><td>92594</td><td>136206</td><td>124606</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">118901</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Azerbaijan
+                                </td><td>31292</td><td>24187</td><td>31321</td><td>34660</td><td>33988</td><td>27809</td><td>36393</td><td>39514</td><td>49869</td><td>56118</td><td>48565</td><td>63821</td><td>61057</td><td>89268</td><td>91921</td><td>86233</td><td>110445</td><td>121777</td><td>132678</td><td>117671</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Costa Rica
+                                </td><td>43206</td><td>58018</td><td>73252</td><td>80701</td><td>45109</td><td>55739</td><td>73861</td><td>83836</td><td>91242</td><td>89244</td><td>97628</td><td>90466</td><td>85182</td><td>84639</td><td>75215</td><td>71056</td><td>102094</td><td>115110</td><td>114932</td><td>117589</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Cyprus
+                                </td><td>92953</td><td>97799</td><td>116659</td><td>132346</td><td>88984</td><td>85210</td><td>78778</td><td>53750</td><td>41194</td><td>40166</td><td>36812</td><td>41904</td><td>53588</td><td>63492</td><td>65152</td><td>66104</td><td>85095</td><td>101126</td><td>102075</td><td>108065</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Albania
+                                </td><td>69955</td><td>74874</td><td>92747</td><td>106655</td><td>90000</td><td>86455</td><td>86564</td><td>67930</td><td>69257</td><td>69827</td><td>55336</td><td>59610</td><td>66193</td><td>69481</td><td>72685</td><td>73785</td><td>103429</td><td>95209</td><td>98943</td><td>104617</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Paraguay
+                                </td><td>12054</td><td>13352</td><td>18404</td><td>39234</td><td>32003</td><td>53239</td><td>75798</td><td>64328</td><td>76002</td><td>76940</td><td>69330</td><td>66397</td><td>83099</td><td>84768</td><td>75573</td><td>66608</td><td>97842</td><td>104247</td><td>90256</td><td>104560</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Djibouti
+                                </td><td></td><td></td><td></td><td></td><td>3210</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>18903</td><td>49737</td><td>15972</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">104093</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            El Salvador
+                                </td><td>31660</td><td>39177</td><td>40837</td><td>37296</td><td>25137</td><td>28563</td><td>36131</td><td>38336</td><td>39745</td><td>41642</td><td>41001</td><td>48231</td><td>48754</td><td>52980</td><td>62007</td><td>50897</td><td>89139</td><td>119714</td><td>100970</td><td>99724</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Kenya
+                                </td><td>19869</td><td>25178</td><td>30378</td><td>40436</td><td>34498</td><td>52318</td><td>56224</td><td>68565</td><td>74417</td><td>88362</td><td>88147</td><td>94558</td><td>82298</td><td>85857</td><td>87948</td><td>82759</td><td>101799</td><td>113818</td><td>95208</td><td>98247</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Congo, Democratic Republic of the
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>46541</td><td>32817</td><td>28862</td><td>35665</td><td>44615</td><td>36934</td><td>39533</td><td>59828</td><td>56676</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">96293</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Cameroon
+                                </td><td>18849</td><td>20978</td><td>31288</td><td>31086</td><td>40554</td><td>38441</td><td>49544</td><td>53845</td><td>57861</td><td>57488</td><td>63636</td><td>60320</td><td>80762</td><td>70229</td><td>124206</td><td>98304</td><td>104628</td><td>106042</td><td>96566</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">95072</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Luxembourg
+                                </td><td>66234</td><td>69809</td><td>78573</td><td>111313</td><td>85607</td><td>75393</td><td>87493</td><td>88644</td><td>98202</td><td>99915</td><td>90483</td><td>90965</td><td>91316</td><td>104296</td><td>98361</td><td>94512</td><td>106838</td><td>128330</td><td>117551</td><td>94136</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Bangladesh
+                                </td><td>16371</td><td>19552</td><td>24104</td><td>28791</td><td>27897</td><td>39122</td><td>53288</td><td>53389</td><td>55030</td><td></td><td>67751</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">146299</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">116643</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">104678</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">100654</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">87665</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">133122</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">173850</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">136797</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">92870</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Guinea
+                                </td><td>5399</td><td>4667</td><td>4001</td><td>7559</td><td>9511</td><td>11180</td><td>11867</td><td>15180</td><td>17702</td><td>20935</td><td>22753</td><td>25643</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">64506</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">48526</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">59112</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">68483</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">94045</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">111316</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">125221</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">92103</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Panama
+                                </td><td>35167</td><td>64345</td><td>77312</td><td>90747</td><td>71248</td><td>98116</td><td>118059</td><td>111859</td><td>121968</td><td>107992</td><td>119021</td><td>96312</td><td>100679</td><td>94595</td><td>95081</td><td>50635</td><td>97685</td><td>124459</td><td>95461</td><td>86961</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Mongolia
+                                </td><td>4644</td><td>6433</td><td>11765</td><td></td><td></td><td>14601</td><td>24548</td><td>28178</td><td>36046</td><td>35181</td><td>25964</td><td>17768</td><td>15730</td><td>26345</td><td>33674</td><td>30307</td><td>41458</td><td>67959</td><td>73617</td><td>84495</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Lao People's Democratic Republic
+                                </td><td></td><td></td><td></td><td></td><td></td><td>11510</td><td>17498</td><td>19347</td><td>33554</td><td>24555</td><td>26105</td><td>38171</td><td>47455</td><td>41301</td><td>46639</td><td>46716</td><td>42345</td><td>54975</td><td>49895</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">81279</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Senegal
+                                </td><td>29198</td><td>34021</td><td>36409</td><td>44680</td><td>36602</td><td>34096</td><td>38644</td><td>38715</td><td>44205</td><td>44612</td><td>33409</td><td>41151</td><td>51526</td><td>67462</td><td>70334</td><td>63895</td><td>76156</td><td>76679</td><td>71758</td><td>81127</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Bahrain
+                                </td><td>63746</td><td>55415</td><td>65974</td><td>87235</td><td>70744</td><td>78545</td><td>82673</td><td>82985</td><td>84561</td><td>93265</td><td>97789</td><td>100554</td><td>111115</td><td>103235</td><td>80931</td><td>85196</td><td>95605</td><td>105227</td><td>85449</td><td>80459</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Venezuela, Bolivarian Republic of
+                                </td><td>91823</td><td>120783</td><td>287816</td><td>317407</td><td>247952</td><td>148591</td><td>220948</td><td>358289</td><td>271262</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">127044</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">102947</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">43950</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">40426</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">19699</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">28073</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">32043</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">50624</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">64344</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">71830</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">75926</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Myanmar
+                                </td><td></td><td></td><td></td><td></td><td></td><td>13497</td><td>37035</td><td>55114</td><td>67164</td><td>87132</td><td>112628</td><td>121881</td><td>128042</td><td>112620</td><td>122232</td><td>92542</td><td>58010</td><td>97257</td><td>93627</td><td>75183</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Iran, Islamic Republic of
+                                </td><td>79050</td><td>20728</td><td>99270</td><td>123372</td><td>123508</td><td>157564</td><td>189621</td><td>142478</td><td>151591</td><td>155919</td><td>120183</td><td>150024</td><td>191910</td><td>132153</td><td>122743</td><td>156972</td><td>195227</td><td>183092</td><td>166945</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">75060</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Tunisia
+                                </td><td>28004</td><td>28579</td><td>36987</td><td>51640</td><td>51083</td><td>55143</td><td>58251</td><td>68376</td><td>78539</td><td>78887</td><td>59251</td><td>63565</td><td>63689</td><td>59089</td><td>49277</td><td>41066</td><td>59249</td><td>67546</td><td>64371</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">74468</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Belarus
+                                </td><td>47314</td><td>59697</td><td>84573</td><td>119785</td><td>70231</td><td>90216</td><td>92998</td><td>105726</td><td>123750</td><td>126602</td><td>80884</td><td>74181</td><td>92551</td><td>107874</td><td>122304</td><td>104384</td><td>109338</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">68311</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">81294</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">73838</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Tanzania, United Republic of
+                                </td><td>19101</td><td>91157</td><td>33375</td><td>41256</td><td>45716</td><td>58012</td><td>65703</td><td>74114</td><td>82588</td><td>99135</td><td>90606</td><td>87391</td><td>64167</td><td>44111</td><td>45220</td><td>44624</td><td>48970</td><td>63679</td><td>69763</td><td>73375</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Armenia
+                                </td><td>10554</td><td>21106</td><td>30937</td><td>47062</td><td>31844</td><td>32061</td><td>34544</td><td>28637</td><td>30302</td><td>34230</td><td>23870</td><td>22673</td><td>28009</td><td>34957</td><td>34779</td><td>32592</td><td>37875</td><td>54122</td><td>60474</td><td>73251</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Moldova, Republic of
+                                </td><td>21215</td><td>26805</td><td>40282</td><td>55745</td><td>33238</td><td>36621</td><td>52091</td><td>47902</td><td>48372</td><td>49597</td><td>37543</td><td>37493</td><td>42562</td><td>49422</td><td>51115</td><td>54711</td><td>61136</td><td>61126</td><td>63154</td><td>72524</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Zimbabwe
+                                </td><td>7132</td><td>7196</td><td>10642</td><td>6825</td><td>9888</td><td>23739</td><td>31955</td><td>33191</td><td>35106</td><td>36498</td><td>31781</td><td>27648</td><td>27734</td><td>20775</td><td>29114</td><td>28857</td><td>41630</td><td>48447</td><td>58161</td><td>69492</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Sri Lanka
+                                </td><td>28166</td><td>35647</td><td>39636</td><td>37549</td><td>23710</td><td>34259</td><td>53090</td><td>61613</td><td>59675</td><td>66389</td><td>82924</td><td>109199</td><td>99774</td><td></td><td>79342</td><td>31421</td><td>29782</td><td>23675</td><td>26802</td><td>68558</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Mozambique
+                                </td><td>11890</td><td>13782</td><td>12177</td><td>16331</td><td>19750</td><td>18712</td><td>35978</td><td>45838</td><td>55595</td><td>85583</td><td>59764</td><td>45921</td><td>37881</td><td>45665</td><td>66563</td><td>58611</td><td>75347</td><td>67844</td><td>67802</td><td>68279</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Tajikistan
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>36760</td><td>32497</td><td>43817</td><td>37015</td><td>32442</td><td>25894</td><td>22604</td><td>39332</td><td>54350</td><td>57425</td><td>65293</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Honduras
+                                </td><td>24756</td><td>32897</td><td>37712</td><td>40710</td><td>30832</td><td>40351</td><td>45453</td><td>45840</td><td>43460</td><td>42433</td><td>47859</td><td>47578</td><td>56075</td><td>43608</td><td>41578</td><td>31282</td><td>63212</td><td>101037</td><td>65344</td><td>63721</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Uruguay
+                                </td><td>16101</td><td>18544</td><td>21584</td><td>29697</td><td>24341</td><td>38462</td><td>53891</td><td>52648</td><td>54900</td><td>41996</td><td>47598</td><td>40741</td><td>47049</td><td>46528</td><td>46359</td><td>42753</td><td>60373</td><td>60241</td><td>61890</td><td>63658</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Syrian Arab Republic
+                                </td><td>28988</td><td>38107</td><td>41257</td><td>80294</td><td>95814</td><td>114434</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">112606</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">43081</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">27137</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">47766</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">23306</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">17449</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">42590</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">55711</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">50813</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">29858</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">38800</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">43792</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">39673</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">61903</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Estonia
+                                </td><td>41774</td><td>62866</td><td>67745</td><td>69238</td><td>48091</td><td>54753</td><td>75320</td><td>65958</td><td>63556</td><td>66290</td><td>50146</td><td>50095</td><td>52054</td><td>56122</td><td>55036</td><td>50703</td><td>65541</td><td>68145</td><td>65942</td><td>60590</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Latvia
+                                </td><td>47454</td><td>67584</td><td>83405</td><td>75371</td><td>40739</td><td>40094</td><td>48603</td><td>48679</td><td>59681</td><td>61884</td><td>50149</td><td>54252</td><td>54398</td><td>59849</td><td>59571</td><td>57479</td><td>72895</td><td>75227</td><td>62961</td><td>60512</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Kyrgyzstan
+                                </td><td>7787</td><td>13513</td><td>18576</td><td>30223</td><td>30788</td><td>26189</td><td>37129</td><td>46554</td><td>62728</td><td>63958</td><td>38466</td><td>41700</td><td>78168</td><td>38766</td><td>43577</td><td>27698</td><td>38872</td><td>38319</td><td>45542</td><td>59860</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Uganda
+                                </td><td>11702</td><td>11162</td><td>22521</td><td>21304</td><td>19552</td><td>21827</td><td>25177</td><td>25836</td><td>29468</td><td>32114</td><td>31715</td><td>36701</td><td>36640</td><td>34698</td><td>28509</td><td>32111</td><td>36379</td><td>48711</td><td>57411</td><td>59577</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Congo
+                                </td><td></td><td></td><td>10568</td><td>11416</td><td>14658</td><td>14144</td><td>14437</td><td>19905</td><td>31318</td><td>31688</td><td>111095</td><td>25631</td><td>19660</td><td>16856</td><td>13569</td><td>19291</td><td>18134</td><td>13557</td><td>17972</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">56936</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Nepal
+                                </td><td></td><td></td><td></td><td></td><td>13379</td><td>17147</td><td>24367</td><td>26655</td><td>25333</td><td>36904</td><td>31822</td><td>50552</td><td>64317</td><td>88591</td><td>98895</td><td>85359</td><td>131209</td><td>95244</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">88077</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">56668</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Korea, Democratic People's Republic of
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">14368</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">10335</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">10961</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">11880</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">15171</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">15555</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">22688</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">29876</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">34594</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">48981</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">52210</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">43963</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">66287</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">58112</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">68057</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6925</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3582</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">12734</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">53780</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">55852</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Pakistan
+                                </td><td>100367</td><td>101432</td><td>106353</td><td>115853</td><td>85639</td><td>74832</td><td>90746</td><td>93603</td><td>101195</td><td>152204</td><td>190353</td><td>226471</td><td>233186</td><td>212190</td><td>120151</td><td>81288</td><td>96707</td><td>86246</td><td>54533</td><td>55345</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Nicaragua
+                                </td><td>15188</td><td>12690</td><td>19097</td><td>16147</td><td>14743</td><td>19240</td><td>24257</td><td>28482</td><td>32229</td><td>32625</td><td>34785</td><td>39035</td><td>38131</td><td>25120</td><td>24466</td><td>26121</td><td>37539</td><td>47121</td><td>47314</td><td>54378</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Yemen
+                                </td><td>19015</td><td>27819</td><td>34413</td><td>37635</td><td>54259</td><td>50786</td><td>33369</td><td>61774</td><td>77167</td><td>93693</td><td>29569</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">74088</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">80004</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">79565</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">93851</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">112356</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">127401</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">114700</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">79031</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">51035</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Jamaica
+                                </td><td>36325</td><td>38181</td><td>44353</td><td>48912</td><td>32129</td><td>40146</td><td>35384</td><td>35080</td><td>36136</td><td>37447</td><td>39716</td><td>38983</td><td>39858</td><td>40264</td><td>44765</td><td>33388</td><td>36359</td><td>57054</td><td>58277</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">51012</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Bolivia, Plurinational State of
+                                </td><td>10292</td><td>13158</td><td>15443</td><td>20239</td><td>24418</td><td>35414</td><td>43649</td><td>44281</td><td>50898</td><td>49565</td><td>54658</td><td>61033</td><td>62245</td><td>62242</td><td>60752</td><td>42365</td><td>64267</td><td>70319</td><td>66024</td><td>50244</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Montenegro
+                                </td><td></td><td>38612</td><td>66234</td><td>83265</td><td>38992</td><td>32074</td><td>36803</td><td>30962</td><td>32492</td><td>35245</td><td>28234</td><td>29787</td><td>31180</td><td>34129</td><td>33187</td><td>27531</td><td>28587</td><td>44476</td><td>51686</td><td>45768</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Malta
+                                </td><td>29915</td><td>31225</td><td>35812</td><td>34512</td><td>31531</td><td>30848</td><td>32219</td><td>27734</td><td>29257</td><td>32947</td><td>29244</td><td>30560</td><td>26697</td><td>34240</td><td>33678</td><td>34951</td><td>38830</td><td>44900</td><td>42516</td><td>43008</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Rwanda
+                                </td><td>4234</td><td>3694</td><td>5915</td><td>9688</td><td>8528</td><td>7453</td><td>8017</td><td>11875</td><td>11850</td><td>16058</td><td>25941</td><td>28029</td><td>34635</td><td>33818</td><td>33807</td><td>27573</td><td>35041</td><td>29672</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">49391</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">41404</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Mauritius
+                                </td><td>20816</td><td>19943</td><td>28714</td><td>34544</td><td>27079</td><td>30974</td><td>33157</td><td>36457</td><td>31767</td><td>31873</td><td>25577</td><td>30154</td><td>26553</td><td>35095</td><td>33461</td><td>28753</td><td>38247</td><td>46252</td><td>41588</td><td>40196</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Burkina Faso
+                                </td><td>6869</td><td>5134</td><td>5588</td><td>8306</td><td>8515</td><td>9578</td><td>12160</td><td>14731</td><td>15140</td><td>14565</td><td>10605</td><td>13067</td><td>4563</td><td>4526</td><td>22242</td><td>25592</td><td>32811</td><td>29198</td><td>36964</td><td>39821</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Turkmenistan
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6444</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6660</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">9268</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">14506</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">25032</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">29358</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">37071</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">44740</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">48057</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">57994</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">45951</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">38148</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">30862</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">18273</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">15787</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">21157</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">24332</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">33505</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">41041</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">39801</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Gabon
+                                </td><td>10113</td><td>8237</td><td>11860</td><td>16087</td><td>13213</td><td>17109</td><td>17588</td><td>14310</td><td>14852</td><td>13693</td><td>11162</td><td>16469</td><td>10702</td><td>14989</td><td>16741</td><td>13883</td><td>16748</td><td>17565</td><td>19306</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">37842</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Togo
+                                </td><td>3861</td><td></td><td>6284</td><td>7627</td><td>7788</td><td>9647</td><td>11601</td><td>9121</td><td>12554</td><td>17046</td><td>14062</td><td>10373</td><td>13274</td><td>12702</td><td>16327</td><td>17702</td><td>25522</td><td>27720</td><td>33162</td><td>33146</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Madagascar
+                                </td><td>6198</td><td>7067</td><td>9083</td><td>19658</td><td>13137</td><td>11847</td><td>14588</td><td>10078</td><td>9075</td><td>20863</td><td>13856</td><td>20177</td><td>19402</td><td>19741</td><td>26931</td><td>22744</td><td>33376</td><td>37838</td><td>27010</td><td>32326</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Namibia
+                                </td><td>13440</td><td>16204</td><td>19173</td><td>32767</td><td>27005</td><td>24462</td><td>24278</td><td>26088</td><td>26683</td><td>31992</td><td>38392</td><td>34876</td><td>31342</td><td>26996</td><td>26730</td><td>23524</td><td>25426</td><td>30945</td><td>29424</td><td>32047</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Macao, China
+                                </td><td>10131</td><td>12103</td><td>18347</td><td>17222</td><td>14093</td><td>11776</td><td>15913</td><td>29529</td><td>18332</td><td>23434</td><td>37106</td><td>30208</td><td>36815</td><td>30204</td><td>32157</td><td>22942</td><td>30569</td><td>23416</td><td>28697</td><td>30679</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Palestine, State of
+                                </td><td></td><td></td><td>33962</td><td>31447</td><td>39768</td><td>54997</td><td>71707</td><td>69415</td><td>82470</td><td>81503</td><td>87086</td><td>86499</td><td>92302</td><td>109010</td><td>92779</td><td>79831</td><td>116100</td><td>143336</td><td>124549</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">29681</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Benin
+                                </td><td>7984</td><td>8578</td><td>10012</td><td>13840</td><td>13515</td><td>14288</td><td>17525</td><td>16795</td><td>24297</td><td>21930</td><td>25743</td><td>21742</td><td>19637</td><td>18239</td><td>20193</td><td>23297</td><td>27714</td><td>41554</td><td>32907</td><td>29661</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Iceland
+                                </td><td>24195</td><td>31918</td><td>34702</td><td>23294</td><td>12963</td><td>15046</td><td>22262</td><td>17324</td><td>17024</td><td>17182</td><td>18880</td><td>18586</td><td>23049</td><td>26000</td><td>26373</td><td>26664</td><td>29665</td><td>31730</td><td>31342</td><td>29340</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Zambia
+                                </td><td>14203</td><td>22000</td><td>27171</td><td>29720</td><td>26550</td><td>26234</td><td>36022</td><td>42892</td><td>50987</td><td>57397</td><td>42707</td><td>33671</td><td>44156</td><td>49196</td><td>54646</td><td>26947</td><td>33640</td><td>39160</td><td>33633</td><td>29182</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Trinidad and Tobago
+                                </td><td>27085</td><td>30527</td><td>40255</td><td>38446</td><td>30794</td><td>33815</td><td>34324</td><td>45490</td><td>44838</td><td>45837</td><td>45890</td><td>34898</td><td>30686</td><td>33707</td><td>32011</td><td>23934</td><td>25986</td><td>48033</td><td>31909</td><td>28935</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Bahamas
+                                </td><td>24830</td><td>26216</td><td>30638</td><td>22388</td><td>19399</td><td>17146</td><td>14951</td><td>17436</td><td>17565</td><td>24018</td><td>21346</td><td>21632</td><td>25860</td><td>18677</td><td>10430</td><td>13152</td><td>21596</td><td>25697</td><td>28433</td><td>28766</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Botswana
+                                </td><td>19394</td><td>15533</td><td>22175</td><td>27020</td><td>25566</td><td>32276</td><td>43265</td><td>47109</td><td>28835</td><td>31022</td><td>29197</td><td>23284</td><td>16726</td><td>18218</td><td>21325</td><td>19622</td><td>25905</td><td>26801</td><td>29642</td><td>28498</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Somalia
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1454</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">397</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1776</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2435</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">779</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1926</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1772</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7510</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7740</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">8426</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">12149</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">24726</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">19799</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">28874</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">30551</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">31763</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">37466</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">38832</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">39733</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">27458</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Angola
+                                </td><td>47537</td><td>63993</td><td>86992</td><td>146603</td><td>169548</td><td>135692</td><td>146785</td><td>234029</td><td>182334</td><td>217073</td><td>73910</td><td>57131</td><td>80080</td><td>84888</td><td>72978</td><td>33789</td><td>35248</td><td>55042</td><td>55449</td><td>26933</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Maldives
+                                </td><td>7568</td><td>8513</td><td>11497</td><td>13380</td><td>10205</td><td>9162</td><td>16462</td><td>18336</td><td>13133</td><td>14958</td><td>24396</td><td>22710</td><td>23285</td><td>29325</td><td>37389</td><td>15352</td><td>27098</td><td>28299</td><td>21529</td><td>24595</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Ethiopia
+                                </td><td>12882</td><td>14341</td><td>20972</td><td>22686</td><td>25304</td><td>29737</td><td>31122</td><td>33384</td><td>50318</td><td>56241</td><td>65435</td><td>82002</td><td>87464</td><td>57372</td><td>56010</td><td>60268</td><td>55023</td><td>86702</td><td>74258</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">24305</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Cuba
+                                </td><td>41584</td><td>52783</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>70298</td><td>74021</td><td>86495</td><td>48984</td><td>40506</td><td>52982</td><td>43944</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">27940</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">23707</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Sierra Leone
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>17964</td><td>10657</td><td>10895</td><td>10929</td><td>9959</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">16145</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">25242</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">44085</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">40252</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">54449</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">23417</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Mauritania
+                                </td><td>3086</td><td></td><td>6435</td><td>8723</td><td>6838</td><td>7198</td><td>8619</td><td>11138</td><td>10388</td><td>12337</td><td>12143</td><td>12506</td><td>12543</td><td>11118</td><td>12504</td><td>17493</td><td>20292</td><td>20635</td><td>20440</td><td>22425</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Mali
+                                </td><td>6482</td><td>9963</td><td>12799</td><td>22484</td><td></td><td>27129</td><td>24974</td><td>25940</td><td></td><td></td><td></td><td>30297</td><td>38802</td><td>45060</td><td>60269</td><td>73965</td><td>90258</td><td>67192</td><td>70312</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">21568</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Malawi
+                                </td><td>3272</td><td>2967</td><td>3890</td><td>4908</td><td>8623</td><td>8446</td><td>10254</td><td>9185</td><td>9413</td><td>10406</td><td>9111</td><td>9422</td><td>10676</td><td>13731</td><td>13234</td><td>14119</td><td>17127</td><td>15677</td><td>18685</td><td>20005</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Guyana
+                                </td><td>3855</td><td>3184</td><td>4591</td><td>5279</td><td>5888</td><td>6397</td><td>8707</td><td>8801</td><td>10108</td><td>8286</td><td>9805</td><td>9407</td><td>9571</td><td>9713</td><td>11420</td><td>9866</td><td>13826</td><td>17116</td><td>21444</td><td>18775</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Liberia
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>9713</td><td>13865</td><td>7596</td><td>8467</td><td>13216</td><td>14616</td><td>14863</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">18560</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Sudan
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>42760</td><td>38449</td><td>51511</td><td>59950</td><td>59975</td><td>76603</td><td>40100</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">99047</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">110320</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">78564</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">83349</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">56848</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">17580</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Equatorial Guinea
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">5284</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6859</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">12496</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">10706</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">19242</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">13745</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">21247</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">32161</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">24703</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">24558</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">18164</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">17925</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">12951</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">15595</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">13271</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">16785</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">14798</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">31266</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">31149</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">17090</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Bhutan
+                                </td><td>1856</td><td>2815</td><td>3250</td><td>3165</td><td>3037</td><td>5200</td><td>7777</td><td>8406</td><td></td><td></td><td></td><td>4963</td><td>5538</td><td>6894</td><td>7607</td><td>4634</td><td>4907</td><td>12328</td><td>19225</td><td>16087</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            South Sudan
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">542</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1302</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">588</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">698</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">876</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">820</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1432</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1518</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3589</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4273</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4131</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4753</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">15666</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Papua New Guinea
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td>12358</td><td>11463</td><td></td><td></td><td></td><td></td><td></td><td></td><td>10934</td><td>10785</td><td>9412</td><td>13759</td><td>14527</td><td>14471</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Cabo Verde
+                                </td><td>8703</td><td>9773</td><td>12839</td><td>19839</td><td>12463</td><td>10744</td><td>11504</td><td>10434</td><td>8897</td><td>11317</td><td>9872</td><td>11714</td><td>12574</td><td>14447</td><td>10924</td><td>12491</td><td>11257</td><td>14028</td><td>16071</td><td>11713</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Gambia
+                                </td><td>2375</td><td>2335</td><td>3045</td><td>2894</td><td>2480</td><td>2658</td><td>2398</td><td>2399</td><td>3112</td><td>3834</td><td>4214</td><td>4354</td><td>4286</td><td>5315</td><td>6864</td><td>8771</td><td>7858</td><td>12215</td><td>17019</td><td>11569</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Burundi
+                                </td><td>1286</td><td>1861</td><td>1937</td><td>2418</td><td>2816</td><td>3342</td><td>5617</td><td>5441</td><td>3706</td><td>1773</td><td>9746</td><td>4660</td><td>5808</td><td>4285</td><td>5419</td><td>7349</td><td>8358</td><td>10366</td><td>11319</td><td>11306</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Brunei Darussalam
+                                </td><td>15183</td><td>14739</td><td>17955</td><td>18372</td><td>17253</td><td>20291</td><td>27750</td><td>25021</td><td>25693</td><td>24559</td><td>20282</td><td>16694</td><td>17191</td><td>15722</td><td>15628</td><td>12758</td><td>12704</td><td>13359</td><td>10449</td><td>11219</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Barbados
+                                </td><td>12818</td><td>12633</td><td>15700</td><td>14848</td><td>9320</td><td>9290</td><td>8471</td><td>8497</td><td>8848</td><td>9176</td><td>8561</td><td>9348</td><td>9739</td><td>7724</td><td>6721</td><td>6531</td><td>7284</td><td>12638</td><td>11571</td><td>11183</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Fiji
+                                </td><td>9266</td><td>9004</td><td>8116</td><td>8440</td><td>6148</td><td>6025</td><td>6197</td><td>6553</td><td>8777</td><td>9653</td><td>10522</td><td>10988</td><td>11301</td><td>11989</td><td>10071</td><td>8871</td><td>7136</td><td>12468</td><td>11622</td><td>11130</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Curaçao
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>7159</td><td>8762</td><td>10839</td><td>7290</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7186</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">10887</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">10851</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">11034</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Timor-Leste
+                                </td><td>451</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>2901</td><td></td><td></td><td></td><td>4427</td><td>3239</td><td>4683</td><td>4588</td><td>3663</td><td>7597</td><td>7507</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">10975</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Seychelles
+                                </td><td>4105</td><td>5007</td><td></td><td>8519</td><td>23968</td><td>14574</td><td>6446</td><td>6953</td><td>4250</td><td>4507</td><td>6137</td><td>6865</td><td>6211</td><td>7643</td><td>7423</td><td>6618</td><td>5825</td><td>9192</td><td>11277</td><td>10848</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Suriname
+                                </td><td>8100</td><td></td><td>9121</td><td></td><td>9982</td><td>9936</td><td>11140</td><td>11414</td><td>13234</td><td>11145</td><td>12216</td><td>7583</td><td>7637</td><td>9975</td><td>9280</td><td>8673</td><td>10448</td><td>13332</td><td>10001</td><td>10017</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Haiti
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>25911</td><td>26767</td><td>27433</td><td>21847</td><td>19981</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">22456</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">16499</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">25634</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">25841</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">18783</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">15489</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">9381</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Eswatini
+                                </td><td>6263</td><td>4376</td><td>4971</td><td>4339</td><td>4406</td><td>8427</td><td>10601</td><td>9167</td><td>9397</td><td>8830</td><td>7384</td><td>7897</td><td>7450</td><td>9205</td><td>8979</td><td>7834</td><td>10050</td><td>8622</td><td>8258</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">9163</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Ship stores and bunkers
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2013</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1290</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1269</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1106</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">662</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1237</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1984</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1803</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1959</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2535</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2731</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4486</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3673</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6655</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">9459</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2296</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2565</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6702</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">10061</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">8964</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Andorra
+                                </td><td></td><td>13858</td><td>14162</td><td>11881</td><td>9026</td><td>7828</td><td>6632</td><td>5737</td><td>4888</td><td>5529</td><td>5026</td><td>5359</td><td>5699</td><td>6662</td><td>6585</td><td>5012</td><td>7244</td><td>8721</td><td>9363</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">8604</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Aruba
+                                </td><td>10172</td><td>11527</td><td>11554</td><td>11157</td><td>7842</td><td>7632</td><td>7548</td><td>8471</td><td>8375</td><td>10609</td><td>9067</td><td>7498</td><td>8628</td><td>9888</td><td>9878</td><td>6754</td><td>7240</td><td>11781</td><td>10365</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">8256</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            New Caledonia
+                                </td><td>12078</td><td>10262</td><td>12834</td><td>24721</td><td>16544</td><td>13716</td><td>15644</td><td>14267</td><td>12453</td><td>15144</td><td>17963</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">11948</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">12375</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">12371</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">10072</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">10977</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">9082</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">16581</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">13295</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7597</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Belize
+                                </td><td>2642</td><td>3592</td><td>3025</td><td>3590</td><td>3089</td><td>2754</td><td>2417</td><td>3031</td><td>3563</td><td>3979</td><td>4276</td><td>4642</td><td>5778</td><td>4716</td><td>5369</td><td>3418</td><td>6216</td><td>8496</td><td>8638</td><td>7510</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Comoros
+                                </td><td>922</td><td></td><td>956</td><td>1828</td><td>3885</td><td>4319</td><td>3717</td><td>3699</td><td>3488</td><td>3577</td><td>3439</td><td>3397</td><td>5388</td><td>6527</td><td>5544</td><td>4721</td><td>7107</td><td>6191</td><td>7450</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7241</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Guinea-Bissau
+                                </td><td>561</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>733</td><td>1088</td><td>1887</td><td>1712</td><td>2065</td><td>2520</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">5925</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7390</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6413</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">5846</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7530</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7146</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Antigua and Barbuda
+                                </td><td>3773</td><td></td><td>7906</td><td></td><td>4074</td><td>2778</td><td>2155</td><td>2115</td><td>2368</td><td>2783</td><td>3701</td><td>3594</td><td>4658</td><td>6024</td><td>5016</td><td>3399</td><td>3580</td><td>6634</td><td>8172</td><td>7118</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Turks and Caicos Islands
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td>1841</td><td>2274</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">784</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">968</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1062</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1621</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1897</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1994</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2230</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2077</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2391</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3635</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4660</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6757</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            French Polynesia
+                                </td><td>8879</td><td>8462</td><td>8355</td><td>10863</td><td>7495</td><td>7606</td><td>6762</td><td>6355</td><td>6287</td><td>6294</td><td>5736</td><td>5309</td><td>6678</td><td>7434</td><td>6724</td><td>7215</td><td>8011</td><td>10719</td><td>7727</td><td>6341</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Niger
+                                </td><td>4146</td><td>2496</td><td>2379</td><td>3382</td><td>3739</td><td>7558</td><td>4817</td><td>3951</td><td>6669</td><td>8795</td><td>8533</td><td>8664</td><td>7031</td><td>8120</td><td>8524</td><td>7127</td><td>9380</td><td>10509</td><td>9809</td><td>6252</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Cayman Islands
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>7768</td><td>7796</td><td>8811</td><td>7355</td><td>6190</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Faroe Islands
+                                </td><td>2201</td><td>3044</td><td>3024</td><td>3336</td><td>2149</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1932</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2219</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2033</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2146</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2415</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2443</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1997</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3371</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2392</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2667</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3431</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3029</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2368</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2114</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">5399</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Lesotho
+                                </td><td>3143</td><td>2592</td><td>16456</td><td>3182</td><td>4522</td><td>7223</td><td>8135</td><td>7602</td><td>6573</td><td>3284</td><td>4170</td><td>4870</td><td>4882</td><td>4000</td><td>2725</td><td>4196</td><td>6025</td><td>5353</td><td>5447</td><td>5013</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Afghanistan
+                                </td><td></td><td></td><td></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>18</td><td>47842</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">25796</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">19647</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">15533</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">21043</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4859</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Bermuda
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>3975</td><td>4251</td><td>4554</td><td>4595</td><td>5299</td><td>5081</td><td>4789</td><td>4551</td><td>4378</td><td>4424</td><td>5498</td><td>4917</td><td>4683</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Solomon Islands
+                                </td><td>480</td><td>803</td><td>750</td><td>1124</td><td>601</td><td>803</td><td>1023</td><td>1059</td><td>1006</td><td>1390</td><td>964</td><td>1540</td><td>1657</td><td>1457</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2258</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2683</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4913</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">5271</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6933</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4166</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Grenada
+                                </td><td>4113</td><td>3325</td><td>3686</td><td>2981</td><td></td><td>2539</td><td>2594</td><td>1746</td><td>3606</td><td>2202</td><td>2341</td><td>2605</td><td>3464</td><td>4433</td><td>3861</td><td>3224</td><td>2815</td><td>6085</td><td>4396</td><td>4081</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Saint Lucia
+                                </td><td>4187</td><td>5843</td><td>3336</td><td>3369</td><td></td><td></td><td></td><td>4130</td><td>4135</td><td>3540</td><td>4744</td><td>4650</td><td>5410</td><td>4298</td><td>3602</td><td>2826</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3003</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3937</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3940</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3996</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Greenland
+                                </td><td>1470</td><td>1904</td><td>1654</td><td>1928</td><td>1610</td><td>1537</td><td>1364</td><td>1753</td><td>2057</td><td>2046</td><td>1959</td><td>2421</td><td>16553</td><td>3707</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2396</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2296</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1934</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3034</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3367</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3139</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Samoa
+                                </td><td>1431</td><td>1313</td><td>1438</td><td>1298</td><td>1620</td><td>1576</td><td>2114</td><td>1346</td><td>1756</td><td>2385</td><td>2519</td><td>1881</td><td>1465</td><td>1819</td><td>2249</td><td>2007</td><td>2165</td><td>2046</td><td>2505</td><td>3090</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Gibraltar
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3804</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4047</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">5599</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">5073</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">5599</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3372</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3666</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2116</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2829</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4058</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3179</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3815</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2960</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4179</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2989</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2477</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3917</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4716</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3651</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2835</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Tonga
+                                </td><td></td><td></td><td></td><td>657</td><td>721</td><td>602</td><td>1017</td><td>630</td><td>493</td><td>895</td><td></td><td></td><td>697</td><td>496</td><td>1203</td><td>1063</td><td>1022</td><td>1274</td><td>1300</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2775</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Vanuatu
+                                </td><td></td><td>1456</td><td>1759</td><td></td><td>1648</td><td>1832</td><td>1365</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">870</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">693</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1146</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2093</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2640</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3647</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1645</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2199</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2597</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2627</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2975</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4337</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2534</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Saint Vincent and the Grenadines
+                                </td><td>2024</td><td>2309</td><td>3716</td><td>3919</td><td>2708</td><td>3114</td><td>2704</td><td>2737</td><td>3208</td><td>1900</td><td>2386</td><td>2579</td><td>2680</td><td>3182</td><td>2771</td><td>2371</td><td>2868</td><td>4695</td><td>4524</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2514</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Dominica
+                                </td><td>825</td><td>931</td><td>1131</td><td>1960</td><td>1511</td><td>1501</td><td>1560</td><td>1880</td><td>1578</td><td></td><td></td><td>1463</td><td>1410</td><td>2107</td><td>2309</td><td>622</td><td>760</td><td>679</td><td>2261</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1841</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Sint Maarten (Dutch part)
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">583</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">844</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1810</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2686</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2248</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1875</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1079</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2625</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1913</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1661</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1108</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1090</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1920</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1818</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            British Virgin Islands
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1195</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1942</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2538</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4343</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3131</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3917</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3378</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2126</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1713</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1879</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1944</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1544</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2658</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2164</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1492</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1256</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1744</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2352</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1750</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1805</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Eritrea
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1684</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1902</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">607</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">914</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">759</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3432</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1326</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">8441</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2384</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4498</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1313</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3101</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3647</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3029</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6105</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4459</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">9136</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">9535</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">11483</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1765</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Chad
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">551</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">999</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1421</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1227</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1727</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7834</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1414</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2747</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4648</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">15587</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">8970</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2010</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1738</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1945</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1380</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2037</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3951</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2229</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2516</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1477</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Sao Tome and Principe
+                                </td><td>574</td><td>1089</td><td>1361</td><td>1826</td><td>1051</td><td>1095</td><td>1135</td><td>1411</td><td>1235</td><td>1151</td><td>4487</td><td>1361</td><td>1580</td><td>1314</td><td>1106</td><td>1503</td><td>1625</td><td>1579</td><td>1274</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1427</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            American Samoa
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">81</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">154</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">110</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">185</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">155</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">137</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">144</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">73</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1379</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1287</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Bonaire, Sint Eustatius and Saba
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">21</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">396</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">347</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">493</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">839</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1502</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2110</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1158</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">826</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">777</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1376</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1350</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1255</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Saint Kitts and Nevis
+                                </td><td>1704</td><td>2366</td><td>2467</td><td>2865</td><td>3114</td><td>2794</td><td>2289</td><td>1802</td><td>2123</td><td>2027</td><td>2716</td><td>2975</td><td>2638</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1493</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1037</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">833</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1152</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1623</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1697</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1180</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Guam
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">59</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">26</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">13</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">20</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">22</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">18</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">19</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">34</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">8</td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">25</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">23</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">9</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">35</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">8</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">20</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">97</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1135</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">956</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Central African Republic
+                                </td><td></td><td>0</td><td>474</td><td>1027</td><td>676</td><td>1062</td><td>982</td><td>758</td><td>434</td><td>161</td><td>1001</td><td>546</td><td>1522</td><td>771</td><td>1817</td><td>1661</td><td>1538</td><td>1649</td><td>3896</td><td>832</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Cook Islands
+                                </td><td>571</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>670</td><td>677</td><td>646</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Marshall Islands
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">104</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">95</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">117</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">198</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">124</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">122</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">178</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">270</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">230</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">371</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">166</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">286</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">352</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">633</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">540</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">372</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">558</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">320</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">374</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">621</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            United States Minor Outlying Islands
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2059</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1780</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1709</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1418</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1261</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1252</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1092</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">894</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1371</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1734</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1135</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">711</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">430</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">655</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">587</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">393</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">436</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">530</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2063</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">528</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Palau
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>311</td><td></td><td>307</td><td>629</td><td>377</td><td>522</td><td>734</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">736</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">788</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2415</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">410</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">915</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">519</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Anguilla
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">694</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">723</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1270</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2144</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1264</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">356</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">254</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">371</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">356</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">603</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">963</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">511</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">231</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2611</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">458</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">161</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">949</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">449</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">485</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">446</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Montserrat
+                                </td><td>420</td><td>378</td><td>298</td><td>365</td><td>400</td><td></td><td></td><td>367</td><td>428</td><td>1462</td><td>350</td><td>358</td><td>275</td><td>314</td><td>290</td><td>396</td><td>294</td><td>376</td><td>385</td><td>385</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Northern Mariana Islands
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">135</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">98</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">98</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">119</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">81</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">49</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">49</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">75</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">211</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">67</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">76</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">251</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">957</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">483</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">131</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">49</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">75</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">150</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">693</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">302</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Micronesia, Federated States of
+                                </td><td>467</td><td>605</td><td>484</td><td>605</td><td>449</td><td>376</td><td>1951</td><td>614</td><td>811</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">145</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">568</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">250</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">394</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">294</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">146</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">464</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">381</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">517</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">711</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">287</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Kiribati
+                                </td><td>103</td><td></td><td>83</td><td>112</td><td>69</td><td>125</td><td>87</td><td>231</td><td>140</td><td>272</td><td>186</td><td>228</td><td>179</td><td>479</td><td></td><td>221</td><td>491</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">973</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">724</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">264</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Nauru
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">27</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">54</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">8</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">13</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">74</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">42</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">54</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">76</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">203</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">59</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">146</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">44</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">234</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">119</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">169</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">549</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">641</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">353</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">246</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Falkland Islands (Malvinas)
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">389</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">51</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">84</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">96</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">209</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">203</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">199</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">349</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">429</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">971</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">200</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">786</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">346</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">178</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">393</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">478</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">422</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">559</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">265</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">239</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Saint Pierre and Miquelon
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>215</td><td>216</td><td>248</td><td>303</td><td>228</td><td>216</td><td>206</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Free Zones
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">11421</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">13264</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">21912</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">11814</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">5587</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3050</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4104</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7873</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">14411</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4891</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4997</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3954</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2311</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3325</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">767</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2308</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">600</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">576</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">828</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">194</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Norfolk Island
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">73</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">50</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">136</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">51</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">40</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">35</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">36</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">26</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">33</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">45</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">35</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">43</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">344</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">61</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">62</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">144</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">196</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">178</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">164</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">192</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Wallis and Futuna Islands
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">212</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">225</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">119</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">233</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">112</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">171</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">150</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">278</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">166</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">230</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">172</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">124</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">81</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">89</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">155</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">163</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">286</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">178</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">100</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">165</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            French Southern and Antarctic Territories
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">62</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">61</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">95</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3742</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">119</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">112</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">75</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">10</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">90</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">20</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">17</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">32</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">25</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">14</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">30</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">59</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">46</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">160</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Tuvalu
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">37</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">229</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">480</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">200</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">178</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">90</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">195</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3028</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">196</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">99</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">238</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">352</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">101</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">173</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">295</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">192</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">176</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">181</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">165</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">138</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Saint Helena
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">102</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">223</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">170</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">98</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">105</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">128</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">165</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">224</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">204</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">174</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">184</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">177</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">164</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">89</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">74</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">50</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">92</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">65</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">146</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">107</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            British Indian Ocean Territory
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">38</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">38</td><td></td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">31</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">33</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">16</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">55</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">350</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">673</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">29</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">99</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">23</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">12</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">33</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">27</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">61</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">55</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Bouvet Island
+                                </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">31</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Pitcairn
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">43</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2</td><td></td><td></td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">666</td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">27</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Tokelau
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">146</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">84</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">162</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">175</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">33</td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">296</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7</td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">24</td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">27</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">52</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">12</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">39</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">14</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">26</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Cocos (Keeling) Islands
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">27</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">19</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">12</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">53</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">37</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">9</td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">19</td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">26</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">60</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">57</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">16</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">21</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Christmas Island
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">15</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">41</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">182</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">48</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">25</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">246</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">102</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">58</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">54</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">428</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">72</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">49</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">33</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">41</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">52</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">25</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">20</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">69</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">11</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">14</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Niue
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">41</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">180</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">56</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">43</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">32</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">25</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">32</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">106</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">58</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">63</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">25</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">46</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">5</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">39</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">11</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">3</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">7</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">10</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">11</td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Western Sahara
+                                </td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">4</td><td></td><td></td><td></td><td></td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1</td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">87</td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">397</td><td></td><td></td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">6</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1</td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Sudan (before 2012)
+                                </td><td>28452</td><td>30456</td><td>35248</td><td>53932</td><td>46314</td><td>48300</td><td>49978</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Netherlands Antilles
+                                </td><td>6730</td><td>8440</td><td>10788</td><td>13806</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">13380</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">8802</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Serbia and Montenegro
+                                </td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">68087</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">40026</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:30%;">
+                            Mayotte
+                                </td><td>3000</td><td>2372</td><td>2870</td><td>3627</td><td>2769</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1571</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">1847</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">2539</td><td title="Mirror data" style="color:Goldenrod;border-color:#002B54;">5029</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+		</tr>
+	</table>
+</div></body></html>

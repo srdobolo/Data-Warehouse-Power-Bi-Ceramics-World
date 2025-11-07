@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title></title><META http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><table align="center"><tr><td colspan="6"><center><b>List of services exported by Portugal </b></center></td></tr><tr><td colspan="6"><center>   Service: 5 - Construction</center></td></tr></table><table><tr><td> </td></tr></table><table id="ctl00_PageContent_GridLegendTable" class="table_legend" border="0">
+	<tr>
+		<td>Sources: IMF, UNSD, Eurostat, UNCTAD and WTO statistics since January, 2021.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ITC, UNCTAD, WTO trade in services database statistics until January, 2021.<br /></td>
+	</tr><tr>
+		<td></td>
+	</tr><tr>
+		<td></td>
+	</tr><tr>
+		<td></td>
+	</tr>
+</table><table><tr><td> </td></tr></table><table id="ctl00_PageContent_GridLabelUnitTable" border="0">
+	<tr>
+		<td><span id="ctl00_PageContent_Label_Unit" class="Comment">Unit : US Dollar thousand</span></td>
+	</tr>
+</table><table><tr><td> </td></tr></table><div>
+	<table cellspacing="0" cellpadding="4" rules="all" border="1" id="ctl00_PageContent_MyGridView1" style="color:#002B54;border-color:#002B54;width:100%;border-collapse:collapse;">
+		<tr style="color:White;background-color:#5D7B9D;font-size:80%;font-weight:bold;">
+			<th scope="col">Code</th><th scope="col">Service label</th><th scope="col">Exported Value in 2005</th><th scope="col">Exported Value in 2006</th><th scope="col">Exported Value in 2007</th><th scope="col">Exported Value in 2008</th><th scope="col">Exported Value in 2009</th><th scope="col">Exported Value in 2010</th><th scope="col">Exported Value in 2011</th><th scope="col">Exported Value in 2012</th><th scope="col">Exported Value in 2013</th><th scope="col">Exported Value in 2014</th><th scope="col">Exported Value in 2015</th><th scope="col">Exported Value in 2016</th><th scope="col">Exported Value in 2017</th><th scope="col">Exported Value in 2018</th><th scope="col">Exported Value in 2019</th><th scope="col">Exported Value in 2020</th><th scope="col">Exported Value in 2021</th><th scope="col">Exported Value in 2022</th><th scope="col">Exported Value in 2023</th><th scope="col">Exported Value in 2024</th>
+		</tr><tr align="right" style="background-color:#F7F6F3;font-size:80%;">
+			<td align="left" style="width:6%;">
+                            5.1
+                                </td><td align="left" style="width:50%;">--- Construction abroad</td><td></td><td></td><td></td><td>763494</td><td>581828</td><td>551498</td><td>701545</td><td>674514</td><td>799527</td><td>704105</td><td>582494</td><td>701777</td><td>745590</td><td>785335</td><td>720942</td><td>651052</td><td>806629</td><td>844545</td><td>1099650</td><td></td>
+		</tr><tr align="right" style="background-color:White;font-size:80%;">
+			<td align="left" style="width:6%;">
+                            5.2
+                                </td><td align="left" style="width:50%;">--- Construction in the reporting economy</td><td></td><td></td><td></td><td>220274</td><td>152930</td><td>133897</td><td>111356</td><td>46252</td><td>57109</td><td>37198</td><td>42161</td><td>99621</td><td>133302</td><td>159429</td><td>141054</td><td>190747</td><td>193969</td><td>209557</td><td>276805</td><td></td>
+		</tr>
+	</table>
+</div></body></html>
