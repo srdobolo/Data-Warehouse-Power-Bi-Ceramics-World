@@ -62,11 +62,19 @@ O objetivo principal é utilizar análises de dados e visualizações em Power B
 
 ## Modelo Conceptual
 
+[Modelo Conceptual]('https://github.com/srdobolo/Data-Warehouse-Power-Bi-Ceramics-World/blob/main/docs/Modelo_Conceptual.md')
+
 ## Modelo Lógico
+
+[Modelo Lógico]('https://github.com/srdobolo/Data-Warehouse-Power-Bi-Ceramics-World/blob/42a5820d779a75e8285f5d3949c0b53080c2bd4e/docs/Modelo_Conceptual.md')
 
 ## Modelo Físico
 
+[Modelo Físico]('https://github.com/srdobolo/Data-Warehouse-Power-Bi-Ceramics-World/blob/42a5820d779a75e8285f5d3949c0b53080c2bd4e/docs/Modelo_Conceptual.md')
+
 ## Modelo Relacional
+
+[Modelo Relacional]('https://github.com/srdobolo/Data-Warehouse-Power-Bi-Ceramics-World/blob/42a5820d779a75e8285f5d3949c0b53080c2bd4e/docs/Modelo_Conceptual.md')
 
 ## References
 
