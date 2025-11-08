@@ -143,8 +143,9 @@ Chave primária: `ID_Data`
 | ID_Data      | INT    | ✅  |    | Identificador temporal |
 | Ano          | INT    |    |    | Ano                    |
 | Trimestre    | STRING |    |    | Ex: “Q1”, “Q2”         |
+| Mes          | INT    |    |    | Mês numérico (1-12)    |
 | Decada       | STRING |    |    | Ex: “2010s”, “2020s”   |
-| Period_Label | STRING |    |    | Ex: “2017_Q3”          |
+| Period_Label | STRING |    |    | Ex: “2017_Q3_09”       |
 
 ## Cardinalidades Globais
 

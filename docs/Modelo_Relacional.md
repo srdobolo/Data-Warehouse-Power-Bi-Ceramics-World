@@ -21,18 +21,19 @@ O modelo segue uma arquitetura em estrela (Star Schema), com três tabelas dimen
 | Coluna            | Tipo         | Chave | Descrição                               |
 | ----------------- | ------------ | ----- | --------------------------------------- |
 | ID_Produto        | INT          | PK    | Identificador único do produto cerâmico |
-| Codigo_HS         | VARCHAR(10)  |       | Código harmonizado (HS)                 |
+| Codigo_HS         | VARCHAR(20)  |       | Código harmonizado (HS)                 |
 | Descricao_Produto | VARCHAR(255) |       | Descrição do produto                    |
 
 `DIM_DATA`
 
-| Coluna       | Tipo        | Chave | Descrição              |
-| ------------ | ----------- | ----- | ---------------------- |
-| ID_Data      | INT         | PK    | Identificador temporal |
-| Ano          | INT         |       | Ano                    |
-| Trimestre    | CHAR(2)     |       | Exemplo: Q1, Q2        |
-| Decada       | VARCHAR(10) |       | Exemplo: “2010s”       |
-| Period_Label | VARCHAR(10) |       | Exemplo: “2017_Q3”     |
+| Coluna       | Tipo         | Chave | Descrição                      |
+| ------------ | ------------ | ----- | ------------------------------ |
+| ID_Data      | INT          | PK    | Identificador temporal         |
+| Ano          | INT          |       | Ano                            |
+| Trimestre    | CHAR(2)      |       | Exemplo: Q1, Q2                |
+| Mes          | TINYINT      |       | Mês numérico (1-12)            |
+| Decada       | VARCHAR(10)  |       | Exemplo: “2010s”               |
+| Period_Label | VARCHAR(12)  |       | Exemplo: “2017_Q3_09” (AAAA_Qn_MM) |
 
 ## Tabelas Factos
 

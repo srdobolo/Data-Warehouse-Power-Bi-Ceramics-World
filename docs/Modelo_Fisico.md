@@ -32,7 +32,7 @@ CREATE TABLE DIM_PAIS (
 ```sql
 CREATE TABLE DIM_PRODUTO (
     ID_Produto INT PRIMARY KEY IDENTITY(1,1),
-    Codigo_HS VARCHAR(10) NOT NULL,
+    Codigo_HS VARCHAR(20) NOT NULL,
     Descricao_Produto VARCHAR(255)
 );
 ```
@@ -44,8 +44,9 @@ CREATE TABLE DIM_DATA (
     ID_Data INT PRIMARY KEY IDENTITY(1,1),
     Ano INT NOT NULL,
     Trimestre CHAR(2),
+    Mes TINYINT,
     Decada VARCHAR(10),
-    Period_Label VARCHAR(10)
+    Period_Label VARCHAR(12)
 );
 ```
 

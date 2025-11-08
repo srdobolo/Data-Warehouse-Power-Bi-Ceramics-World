@@ -116,7 +116,8 @@ LEFT JOIN dim_pais AS p_name
    AND p_name.Nome_Pais = base.CountryName
 JOIN dbo.DIM_DATA AS d
     ON d.Ano = base.Ano
-   AND d.Trimestre IS NULL
+   AND d.Trimestre = 'Q4'
+   AND d.Mes = 12
 WHERE COALESCE(p_iso.ID_Pais, p_name.ID_Pais) IS NOT NULL;
 GO
 
@@ -156,7 +157,8 @@ LEFT JOIN dim_pais AS p_name
    AND p_name.Nome_Pais = base.CountryName
 JOIN dbo.DIM_DATA AS d
     ON d.Ano = base.Ano
-   AND d.Trimestre IS NULL
+   AND d.Trimestre = 'Q4'
+   AND d.Mes = 12
 WHERE COALESCE(p_iso.ID_Pais, p_name.ID_Pais) IS NOT NULL;
 GO
 
@@ -181,6 +183,7 @@ FROM staging.vw_exports_services_quarterly AS svc
 JOIN dbo.DIM_DATA AS d
     ON d.Ano = svc.Ano
    AND d.Trimestre = svc.Trimestre
+   AND d.Mes = CASE svc.Trimestre WHEN 'Q1' THEN 3 WHEN 'Q2' THEN 6 WHEN 'Q3' THEN 9 WHEN 'Q4' THEN 12 END
 WHERE svc.Valor_USD IS NOT NULL
   AND @PortugalID IS NOT NULL;
 GO
@@ -201,7 +204,8 @@ JOIN dbo.DIM_PAIS AS pais
     ON pais.Codigo_ISO = gdp.CountryCode
 JOIN dbo.DIM_DATA AS data
     ON data.Ano = gdp.Ano
-   AND data.Trimestre IS NULL
+   AND data.Trimestre = 'Q4'
+   AND data.Mes = 12
 WHERE gdp.Valor_USD IS NOT NULL;
 GO
 
@@ -221,6 +225,7 @@ JOIN dbo.DIM_PAIS AS pais
     ON pais.Codigo_ISO = urb.CountryCode
 JOIN dbo.DIM_DATA AS data
     ON data.Ano = urb.Ano
-   AND data.Trimestre IS NULL
+   AND data.Trimestre = 'Q4'
+   AND data.Mes = 12
 WHERE urb.Total_Populacao IS NOT NULL;
 GO
