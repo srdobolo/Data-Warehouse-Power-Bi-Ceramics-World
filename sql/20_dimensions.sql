@@ -131,13 +131,29 @@ WITH product_sources AS (
     SELECT HSCode, ProductLabel FROM staging.vw_calc_exp_prod_pt_2024
     UNION
     SELECT HSCode, ProductLabel FROM staging.vw_calc_imp_prod_pt_2024
+),
+normalized AS (
+    SELECT
+        UPPER(LTRIM(RTRIM(REPLACE(HSCode, '''', '')))) AS HSCode,
+        LTRIM(RTRIM(ProductLabel)) AS ProductLabel
+    FROM product_sources
+    WHERE HSCode IS NOT NULL AND HSCode <> ''
+),
+ranked AS (
+    SELECT
+        HSCode,
+        ProductLabel,
+        ROW_NUMBER() OVER (
+            PARTITION BY HSCode
+            ORDER BY CASE WHEN ProductLabel IS NULL THEN 1 ELSE 0 END,
+                     LEN(ProductLabel) DESC
+        ) AS rn
+    FROM normalized
 )
 INSERT INTO dbo.DIM_PRODUCT (code, product_label)
-SELECT DISTINCT
-    HSCode,
-    ProductLabel
-FROM product_sources
-WHERE HSCode IS NOT NULL;
+SELECT HSCode, ProductLabel
+FROM ranked
+WHERE rn = 1;
 GO
 
 /* ---------------------------------------------------------------------------
