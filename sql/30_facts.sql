@@ -190,15 +190,15 @@ SELECT
     country.id_country,
     src.Value2024_USD,
     src.TradeBalance2024_USD,
-    src.SharePortugalExportsPct,
-    src.Growth2020_2024_Pct,
-    src.Growth2023_2024_Pct,
+    src.SharePortugalExportsPct * 0.01,
+    src.Growth2020_2024_Pct * 0.01,
+    src.Growth2023_2024_Pct * 0.01,
     src.RankingWorldImports,
-    src.ShareWorldImportsPct,
-    src.PartnerGrowth2020_2024_Pct,
+    src.ShareWorldImportsPct * 0.01,
+    src.PartnerGrowth2020_2024_Pct * 0.01,
     src.AvgDistanceKm,
     src.ConcentrationIndex,
-    src.AvgTariffPct
+    src.AvgTariffPct * 0.01
 FROM staging.vw_calc_exp_pt_2024 AS src
 JOIN dbo.DIM_COUNTRY AS country
     ON country.country_code = src.ISO3;
@@ -238,9 +238,9 @@ SELECT
     country.id_country,
     src.Value2024_USD,
     src.TradeBalance2024_USD,
-    src.Growth2020_2024_Pct,
-    src.Growth2023_2024_Pct,
-    src.ShareWorldExportsPct,
+    src.Growth2020_2024_Pct * 0.01,
+    src.Growth2023_2024_Pct * 0.01,
+    src.ShareWorldExportsPct * 0.01,
     src.AvgDistanceKm,
     src.ConcentrationIndex
 FROM staging.vw_calc_exp_world_2024 AS src
@@ -285,11 +285,11 @@ SELECT
     prod.id_product,
     src.Value2024_USD,
     src.TradeBalance2024_USD,
-    src.GrowthValue2020_2024_Pct,
-    src.GrowthQty2020_2024_Pct,
-    src.GrowthValue2023_2024_Pct,
-    src.WorldImportGrowth2020_2024_Pct,
-    src.ShareWorldExportsPct,
+    src.GrowthValue2020_2024_Pct * 0.01,
+    src.GrowthQty2020_2024_Pct * 0.01,
+    src.GrowthValue2023_2024_Pct * 0.01,
+    src.WorldImportGrowth2020_2024_Pct * 0.01,
+    src.ShareWorldExportsPct * 0.01,
     src.RankingWorldExports,
     src.AvgDistanceKm,
     src.ConcentrationIndex
@@ -347,12 +347,12 @@ SELECT
     country.id_country,
     src.Value2024_USD,
     src.TradeBalance2024_USD,
-    src.Growth2020_2024_Pct,
-    src.Growth2023_2024_Pct,
-    src.ShareWorldImportsPct,
+    src.Growth2020_2024_Pct * 0.01,
+    src.Growth2023_2024_Pct * 0.01,
+    src.ShareWorldImportsPct * 0.01,
     src.AvgDistanceKm,
     src.ConcentrationIndex,
-    src.AvgTariffPct
+    src.AvgTariffPct * 0.01
 FROM staging.vw_calc_imp_pt_2024 AS src
 JOIN dbo.DIM_COUNTRY AS country
     ON country.country_code = src.ISO3;
@@ -393,10 +393,10 @@ SELECT
     prod.id_product,
     src.Value2024_USD,
     src.TradeBalance2024_USD,
-    src.GrowthValue2020_2024_Pct,
-    src.GrowthQty2020_2024_Pct,
-    src.GrowthValue2023_2024_Pct,
-    src.WorldExportGrowth2020_2024_Pct,
+    src.GrowthValue2020_2024_Pct * 0.01,
+    src.GrowthQty2020_2024_Pct * 0.01,
+    src.GrowthValue2023_2024_Pct * 0.01,
+    src.WorldExportGrowth2020_2024_Pct * 0.01,
     src.AvgDistanceKm,
     src.ConcentrationIndex
 FROM staging.vw_calc_imp_prod_pt_2024 AS src
@@ -407,14 +407,43 @@ GO
 /* ---------------------------------------------------------------------------
    FACT_IMP_SECTOR (construction services imports - world total)
 --------------------------------------------------------------------------- */
+;WITH svc AS (
+    SELECT
+        TRY_CONVERT(INT, LEFT(period.PeriodLabel, 4)) AS Ano,
+        RIGHT(period.PeriodLabel, 2) AS Trimestre,
+        TRY_CONVERT(DECIMAL(18, 2), period.Amount) AS Valor_USD
+    FROM dbo.imports_services_csv_trade_map_list_of_importers_for_the_selected_service_construction_xls AS base
+    CROSS APPLY (VALUES
+        ('2019-Q1', [Imported value in 2019-Q1]),
+        ('2019-Q2', [Imported value in 2019-Q2]),
+        ('2019-Q3', [Imported value in 2019-Q3]),
+        ('2019-Q4', [Imported value in 2019-Q4]),
+        ('2020-Q1', [Imported value in 2020-Q1]),
+        ('2020-Q2', [Imported value in 2020-Q2]),
+        ('2020-Q3', [Imported value in 2020-Q3]),
+        ('2020-Q4', [Imported value in 2020-Q4]),
+        ('2021-Q1', [Imported value in 2021-Q1]),
+        ('2021-Q2', [Imported value in 2021-Q2]),
+        ('2021-Q3', [Imported value in 2021-Q3]),
+        ('2021-Q4', [Imported value in 2021-Q4]),
+        ('2022-Q1', [Imported value in 2022-Q1]),
+        ('2022-Q2', [Imported value in 2022-Q2]),
+        ('2022-Q3', [Imported value in 2022-Q3]),
+        ('2022-Q4', [Imported value in 2022-Q4]),
+        ('2023-Q1', [Imported value in 2023-Q1]),
+        ('2023-Q2', [Imported value in 2023-Q2]),
+        ('2023-Q3', [Imported value in 2023-Q3]),
+        ('2023-Q4', [Imported value in 2023-Q4])
+    ) AS period(PeriodLabel, Amount)
+    WHERE period.Amount IS NOT NULL
+)
 INSERT INTO dbo.FACT_IMP_SECTOR (id_date, value)
 SELECT
     date_map.id_date,
-    svc.Valor_USD
-FROM staging.vw_imports_services_quarterly AS svc
+    SUM(svc.Valor_USD) AS value
+FROM svc
 JOIN dbo.DIM_DATE AS date_map
     ON date_map.[year] = svc.Ano
    AND date_map.[quarter] = svc.Trimestre
-WHERE svc.CountryName = 'World'
-  AND svc.Valor_USD IS NOT NULL;
+GROUP BY date_map.id_date;
 GO
