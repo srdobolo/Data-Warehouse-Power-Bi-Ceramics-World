@@ -24,6 +24,20 @@ IF OBJECT_ID('staging.vw_gdp_per_capita_timeseries', 'V') IS NOT NULL
     DROP VIEW staging.vw_gdp_per_capita_timeseries;
 IF OBJECT_ID('staging.vw_urban_population_timeseries', 'V') IS NOT NULL
     DROP VIEW staging.vw_urban_population_timeseries;
+IF OBJECT_ID('staging.vw_world_exports_timeseries', 'V') IS NOT NULL
+    DROP VIEW staging.vw_world_exports_timeseries;
+IF OBJECT_ID('staging.vw_world_imports_timeseries', 'V') IS NOT NULL
+    DROP VIEW staging.vw_world_imports_timeseries;
+IF OBJECT_ID('staging.vw_calc_exp_pt_2024', 'V') IS NOT NULL
+    DROP VIEW staging.vw_calc_exp_pt_2024;
+IF OBJECT_ID('staging.vw_calc_exp_world_2024', 'V') IS NOT NULL
+    DROP VIEW staging.vw_calc_exp_world_2024;
+IF OBJECT_ID('staging.vw_calc_exp_prod_pt_2024', 'V') IS NOT NULL
+    DROP VIEW staging.vw_calc_exp_prod_pt_2024;
+IF OBJECT_ID('staging.vw_calc_imp_pt_2024', 'V') IS NOT NULL
+    DROP VIEW staging.vw_calc_imp_pt_2024;
+IF OBJECT_ID('staging.vw_calc_imp_prod_pt_2024', 'V') IS NOT NULL
+    DROP VIEW staging.vw_calc_imp_prod_pt_2024;
 GO
 
 IF OBJECT_ID('staging.ref_country_lookup', 'U') IS NOT NULL
@@ -64,6 +78,21 @@ WHERE NOT EXISTS (
     FROM staging.ref_country_lookup AS c
     WHERE c.CountryLabel = v.CountryLabel
 );
+
+INSERT INTO staging.ref_country_lookup (CountryLabel, ISO3, StandardName, Continent, Region)
+SELECT DISTINCT
+    up.[Country Name]          AS CountryLabel,
+    up.[Country Code]          AS ISO3,
+    up.[Country Name]          AS StandardName,
+    'Unknown'                  AS Continent,
+    'Unknown'                  AS Region
+FROM dbo.urban_population AS up
+WHERE up.[Country Code] IS NOT NULL
+  AND NOT EXISTS (
+        SELECT 1
+        FROM staging.ref_country_lookup AS c
+        WHERE c.ISO3 = up.[Country Code]
+    );
 GO
 
 CREATE TABLE staging.ref_hs_product (
@@ -221,6 +250,132 @@ SELECT
     ref.Region,
     TRY_CONVERT(INT, year_data.YearLabel)                        AS Ano,
     year_data.Amount                                             AS Valor_USD
+FROM base
+CROSS APPLY (VALUES
+    ('2005', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2005])),
+    ('2006', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2006])),
+    ('2007', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2007])),
+    ('2008', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2008])),
+    ('2009', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2009])),
+    ('2010', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2010])),
+    ('2011', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2011])),
+    ('2012', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2012])),
+    ('2013', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2013])),
+    ('2014', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2014])),
+    ('2015', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2015])),
+    ('2016', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2016])),
+    ('2017', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2017])),
+    ('2018', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2018])),
+    ('2019', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2019])),
+    ('2020', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2020])),
+    ('2021', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2021])),
+    ('2022', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2022])),
+    ('2023', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2023])),
+    ('2024', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2024]))
+) AS year_data(YearLabel, Amount)
+LEFT JOIN staging.ref_country_lookup AS ref
+    ON ref.CountryLabel = base.RawCountry
+WHERE year_data.Amount IS NOT NULL;
+GO
+
+/* ---------------------------------------------------------------------------
+   World exports by exporter (annual)
+--------------------------------------------------------------------------- */
+CREATE OR ALTER VIEW staging.vw_world_exports_timeseries AS
+WITH base AS (
+    SELECT
+        LTRIM(RTRIM(Exporters)) AS RawCountry,
+        [Exported value in 2005],
+        [Exported value in 2006],
+        [Exported value in 2007],
+        [Exported value in 2008],
+        [Exported value in 2009],
+        [Exported value in 2010],
+        [Exported value in 2011],
+        [Exported value in 2012],
+        [Exported value in 2013],
+        [Exported value in 2014],
+        [Exported value in 2015],
+        [Exported value in 2016],
+        [Exported value in 2017],
+        [Exported value in 2018],
+        [Exported value in 2019],
+        [Exported value in 2020],
+        [Exported value in 2021],
+        [Exported value in 2022],
+        [Exported value in 2023],
+        [Exported value in 2024]
+    FROM dbo.exports_csv_trade_map_list_of_exporters_for_the_selected_product_ceramic_products_xls
+)
+SELECT
+    base.RawCountry                                            AS RawCountryLabel,
+    COALESCE(ref.StandardName, base.RawCountry)                AS CountryName,
+    ref.ISO3,
+    TRY_CONVERT(INT, year_data.YearLabel)                      AS Ano,
+    year_data.Amount                                           AS Valor_USD
+FROM base
+CROSS APPLY (VALUES
+    ('2005', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2005])),
+    ('2006', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2006])),
+    ('2007', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2007])),
+    ('2008', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2008])),
+    ('2009', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2009])),
+    ('2010', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2010])),
+    ('2011', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2011])),
+    ('2012', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2012])),
+    ('2013', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2013])),
+    ('2014', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2014])),
+    ('2015', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2015])),
+    ('2016', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2016])),
+    ('2017', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2017])),
+    ('2018', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2018])),
+    ('2019', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2019])),
+    ('2020', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2020])),
+    ('2021', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2021])),
+    ('2022', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2022])),
+    ('2023', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2023])),
+    ('2024', TRY_CONVERT(DECIMAL(18, 2), [Exported value in 2024]))
+) AS year_data(YearLabel, Amount)
+LEFT JOIN staging.ref_country_lookup AS ref
+    ON ref.CountryLabel = base.RawCountry
+WHERE year_data.Amount IS NOT NULL;
+GO
+
+/* ---------------------------------------------------------------------------
+   World imports by importer (annual)
+--------------------------------------------------------------------------- */
+CREATE OR ALTER VIEW staging.vw_world_imports_timeseries AS
+WITH base AS (
+    SELECT
+        LTRIM(RTRIM(Importers)) AS RawCountry,
+        [Imported value in 2005],
+        [Imported value in 2006],
+        [Imported value in 2007],
+        [Imported value in 2008],
+        [Imported value in 2009],
+        [Imported value in 2010],
+        [Imported value in 2011],
+        [Imported value in 2012],
+        [Imported value in 2013],
+        [Imported value in 2014],
+        [Imported value in 2015],
+        [Imported value in 2016],
+        [Imported value in 2017],
+        [Imported value in 2018],
+        [Imported value in 2019],
+        [Imported value in 2020],
+        [Imported value in 2021],
+        [Imported value in 2022],
+        [Imported value in 2023],
+        [Imported value in 2024]
+    FROM dbo.imports_country_csv_trade_map_list_of_importers_for_the_selected_product_ceramic_products_xls
+)
+SELECT
+    base.RawCountry                                            AS RawCountryLabel,
+    COALESCE(ref.StandardName, base.RawCountry)                AS CountryName,
+    ref.ISO3,
+    TRY_CONVERT(INT, year_data.YearLabel)                      AS Ano,
+    year_data.Amount                                           AS Valor_USD
 FROM base
 CROSS APPLY (VALUES
     ('2005', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2005])),
@@ -572,4 +727,95 @@ SELECT
     UrbanPopulation             AS Total_Populacao
 FROM unpivoted
 WHERE UrbanPopulation IS NOT NULL;
+GO
+
+/* ---------------------------------------------------------------------------
+   2024 snapshot metrics (calc tables)
+--------------------------------------------------------------------------- */
+CREATE OR ALTER VIEW staging.vw_calc_exp_pt_2024 AS
+SELECT
+    LTRIM(RTRIM(src.Importers))                                AS CountryName,
+    ref.ISO3,
+    TRY_CONVERT(DECIMAL(18, 2), src.[Value exported in 2024 (USD thousand)])       AS Value2024_USD,
+    TRY_CONVERT(DECIMAL(18, 2), src.[Trade balance 2024 (USD thousand)])           AS TradeBalance2024_USD,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Share in Portugal's exports (%)])             AS SharePortugalExportsPct,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Growth in exported value between 2020-2024 (%, p.a.)]) AS Growth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Growth in exported value between 2023-2024 (%, p.a.)]) AS Growth2023_2024_Pct,
+    TRY_CONVERT(INT, src.[Ranking of partner countries in world imports])          AS RankingWorldImports,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Share of partner countries in world imports (%)]) AS ShareWorldImportsPct,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Total imports growth in value of partner countries between 2020-2024 (%, p.a.)]) AS PartnerGrowth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 2), src.[Average distance between partner countries and all their supplying markets (km)]) AS AvgDistanceKm,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Concentration of all supplying countries of partner countries]) AS ConcentrationIndex,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Average tariff (estimated) faced by Portugal (%)]) AS AvgTariffPct
+FROM dbo.exports_country_csv_trade_map_list_of_importing_markets_for_the_product_exported_by_portugal_in_2024_xls AS src
+LEFT JOIN staging.ref_country_lookup AS ref
+    ON ref.CountryLabel = LTRIM(RTRIM(src.Importers))
+WHERE ref.ISO3 IS NOT NULL;
+GO
+
+CREATE OR ALTER VIEW staging.vw_calc_exp_world_2024 AS
+SELECT
+    LTRIM(RTRIM(src.Exporters))                                AS CountryName,
+    ref.ISO3,
+    TRY_CONVERT(DECIMAL(18, 2), src.[Value exported in 2024 (USD thousand)])            AS Value2024_USD,
+    TRY_CONVERT(DECIMAL(18, 2), src.[Trade balance in 2024 (USD thousand)])             AS TradeBalance2024_USD,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Annual growth in value between 2020-2024 (%)])     AS Growth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Annual growth in value between 2023-2024 (%)])     AS Growth2023_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Share in world exports (%)])                       AS ShareWorldExportsPct,
+    TRY_CONVERT(DECIMAL(18, 2), src.[Average distance of importing countries (km)])     AS AvgDistanceKm,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Concentration of importing countries])             AS ConcentrationIndex
+FROM dbo.exports_csv_trade_map_list_of_exporters_for_the_selected_product_in_2024_ceramic_products_xls AS src
+LEFT JOIN staging.ref_country_lookup AS ref
+    ON ref.CountryLabel = LTRIM(RTRIM(src.Exporters))
+WHERE ref.ISO3 IS NOT NULL;
+GO
+
+CREATE OR ALTER VIEW staging.vw_calc_exp_prod_pt_2024 AS
+SELECT
+    LTRIM(RTRIM(REPLACE([Code], '''', '')))                   AS HSCode,
+    LTRIM(RTRIM([Product label]))                             AS ProductLabel,
+    TRY_CONVERT(DECIMAL(18, 2), [Value exported in 2024 (USD thousand)])           AS Value2024_USD,
+    TRY_CONVERT(DECIMAL(18, 2), [Trade balance 2024 (USD thousand)])               AS TradeBalance2024_USD,
+    TRY_CONVERT(DECIMAL(18, 4), [Annual growth in value between 2020-2024 (%, p.a.)])        AS GrowthValue2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), [Annual growth in quantity between 2020-2024 (%, p.a.)])     AS GrowthQty2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), [Annual growth in value between 2023-2024 (%, p.a.)])        AS GrowthValue2023_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), [Annual growth of world imports between 2020-2024 (%, p.a.)]) AS WorldImportGrowth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), [Share in world exports (%)])                         AS ShareWorldExportsPct,
+    TRY_CONVERT(INT, [Ranking in world exports])                                      AS RankingWorldExports,
+    TRY_CONVERT(DECIMAL(18, 2), [Average distance of importing countries (km)])       AS AvgDistanceKm,
+    TRY_CONVERT(DECIMAL(18, 4), [Concentration of importing countries])               AS ConcentrationIndex
+FROM dbo.exports_products_csv_trade_map_list_of_products_at_4_digits_level_exported_by_portugal_in_2024_xls;
+GO
+
+CREATE OR ALTER VIEW staging.vw_calc_imp_pt_2024 AS
+SELECT
+    LTRIM(RTRIM(src.Importers))                                AS CountryName,
+    ref.ISO3,
+    TRY_CONVERT(DECIMAL(18, 2), src.[Value imported in 2024 (USD thousand)])            AS Value2024_USD,
+    TRY_CONVERT(DECIMAL(18, 2), src.[Trade balance in 2024 (USD thousand)])             AS TradeBalance2024_USD,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Annual growth in value between 2020-2024 (%)])     AS Growth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Annual growth in value between 2023-2024 (%)])     AS Growth2023_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Share in world imports (%)])                       AS ShareWorldImportsPct,
+    TRY_CONVERT(DECIMAL(18, 2), src.[Average distance of supplying countries (km)])     AS AvgDistanceKm,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Concentration of supplying countries])             AS ConcentrationIndex,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Average tariff (estimated) applied by the country (%)]) AS AvgTariffPct
+FROM dbo.imports_country_csv_trade_map_list_of_importers_for_the_selected_product_in_2024_ceramic_products_xls AS src
+LEFT JOIN staging.ref_country_lookup AS ref
+    ON ref.CountryLabel = LTRIM(RTRIM(src.Importers))
+WHERE ref.ISO3 IS NOT NULL;
+GO
+
+CREATE OR ALTER VIEW staging.vw_calc_imp_prod_pt_2024 AS
+SELECT
+    LTRIM(RTRIM(REPLACE([Code], '''', '')))                   AS HSCode,
+    LTRIM(RTRIM([Product label]))                             AS ProductLabel,
+    TRY_CONVERT(DECIMAL(18, 2), [Value imported in 2024 (USD thousand)])             AS Value2024_USD,
+    TRY_CONVERT(DECIMAL(18, 2), [Trade balance 2024 (USD thousand)])                 AS TradeBalance2024_USD,
+    TRY_CONVERT(DECIMAL(18, 4), [Annual growth in value between 2020-2024 (%, p.a.)])        AS GrowthValue2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), [Annual growth in quantity between 2020-2024 (%, p.a.)])     AS GrowthQty2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), [Annual growth in value between 2023-2024 (%, p.a.)])        AS GrowthValue2023_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), [Annual growth of world exports between 2020-2024 (%, p.a.)]) AS WorldExportGrowth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 2), [Average distance of supplying countries (km)])       AS AvgDistanceKm,
+    TRY_CONVERT(DECIMAL(18, 4), [Concentration of supplying countries])               AS ConcentrationIndex
+FROM dbo.imports_products_csv_trade_map_list_of_products_at_4_digits_level_imported_in_2024_xls;
 GO

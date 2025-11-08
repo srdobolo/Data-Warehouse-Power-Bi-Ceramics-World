@@ -1,167 +1,121 @@
 # Modelo Lógico
 
-## Objetivo
+## Visão Geral
 
-Transformar o modelo conceptual num modelo lógico estruturado, com identificação clara de:
+| Tabela                  | Tipo  | Descrição breve                                                                |
+| ----------------------- | ----- | ------------------------------------------------------------------------------ |
+| `DIM_COUNTRY`           | Dim   | Dicionário de países/territórios (nome normalizado + código ISO3).             |
+| `DIM_PRODUCT`           | Dim   | Catálogo HS dos produtos analisados.                                           |
+| `DIM_DATE`              | Dim   | Calendário (ano, trimestre, década).                                           |
+| `FACT_EXP_PT`           | Fato  | Exportações de Portugal por destino/ano.                                       |
+| `FACT_EXP`              | Fato  | Exportações mundiais por exportador/ano.                                       |
+| `FACT_EXP_PROD_BY_PT`   | Fato  | Exportações de Portugal por código HS.                                         |
+| `FACT_EXP_SECTOR_BY_PT` | Fato  | Exportações de serviços de construção por trimestre.                           |
+| `FACT_IMP_PT`           | Fato  | Importações mundiais por importador/ano.                                       |
+| `FACT_IMP_PROD_BY_PT`   | Fato  | Importações por código HS.                                                     |
+| `FACT_IMP_SECTOR`       | Fato  | Importações globais de serviços de construção (linha “World”).                 |
+| `CALC_EXP_PT_2024`      | Calc  | KPIs 2024 para destinos das exportações portuguesas.                           |
+| `CALC_EXP_2024`         | Calc  | KPIs 2024 para exportadores mundiais.                                          |
+| `CALC_EXP_PROD_BY_PT`   | Calc  | KPIs 2024 para produtos exportados por Portugal.                               |
+| `CALC_IMP_PT_2024`      | Calc  | KPIs 2024 para importadores (inclui tarifa média aplicada).                    |
+| `CALC_IMP_PROD_BY_PT`   | Calc  | KPIs 2024 para produtos importados.                                            |
 
-- Chaves primárias (PK)
-- Chaves estrangeiras (FK)
-- Tipos de relacionamento (1:N, N:M)
-- Dependências funcionais
-- Cardinalidades e integridade referencial
+## Estruturas
 
-## Entidades Detalhadas
+### DIM_COUNTRY
 
-### PAIS
+| Coluna        | Tipo         | PK | FK | Descrição                  |
+| ------------- | ------------ | -- | -- | -------------------------- |
+| `id_country`  | INT IDENTITY | ✅  |    | Chave surrogate            |
+| `country_name`| VARCHAR(150) |    |    | Nome normalizado           |
+| `country_code`| CHAR(3)      |    |    | ISO3 (único)               |
 
-Descrição: Contém informação geográfica e económica de cada país.
-Chave primária: `ID_Pais`
+### DIM_PRODUCT
 
-| Atributo   | Tipo   | PK | FK | Descrição                   |
-| ---------- | ------ | -- | -- | --------------------------- |
-| ID_Pais    | INT    | ✅  |    | Identificador único do país |
-| Nome_Pais  | STRING |    |    | Nome oficial                |
-| Continente | STRING |    |    | Continente                  |
-| Regiao     | STRING |    |    | Região económica/geográfica |
-| Codigo_ISO | STRING |    |    | Código ISO (Alpha-3)        |
+| Coluna        | Tipo          | PK | FK | Descrição                        |
+| ------------- | ------------- | -- | -- | -------------------------------- |
+| `id_product`  | INT IDENTITY  | ✅  |    | Chave surrogate                  |
+| `code`        | VARCHAR(20)   |    |    | Código HS (sem apóstrofos)       |
+| `product_label`| VARCHAR(255) |    |    | Descrição amigável               |
 
-Relações:
+### DIM_DATE
 
-- 1:N → `EXPORTACAO`, `IMPORTACAO`, `SERVICO_CONSTRUCAO`, `PIB_PER_CAPITA`, `POPULACAO_URBANA`
+| Coluna    | Tipo      | PK | FK | Descrição                 |
+| --------- | --------- | -- | -- | ------------------------- |
+| `id_date` | INT IDENTITY | ✅ |    | Chave surrogate          |
+| `year`    | INT       |    |    | Ano (AAAA)                |
+| `quarter` | CHAR(2)   |    |    | `Q1`, `Q2`, `Q3`, `Q4`    |
+| `decade`  | VARCHAR(10)|   |    | Ex.: `2010s`              |
 
-### PRODUTO_CERAMICO
+### FACT_EXP_PT
 
-Descrição: Catálogo de produtos cerâmicos baseados nos códigos HS (6907, 6908, 6910).
-Chave primária: `ID_Produto`
+| Coluna      | Tipo        | PK | FK | Descrição                               |
+| ----------- | ----------- | -- | -- | --------------------------------------- |
+| `id_exp_pt` | INT IDENTITY| ✅ |    | Linha fact                              |
+| `id_country`| INT         |    | ✔  | Destino das exportações (DIM_COUNTRY)   |
+| `id_date`   | INT         |    | ✔  | Ano (DIM_DATE, quarter `Q4`)            |
+| `value`     | DECIMAL     |    |    | Valor exportado (USD)                   |
 
-| Atributo          | Tipo   | PK | FK | Descrição                      |
-| ----------------- | ------ | -- | -- | ------------------------------ |
-| ID_Produto        | INT    | ✅  |    | Identificador único do produto |
-| Codigo_HS         | STRING |    |    | Código harmonizado (HS Code)   |
-| Descricao_Produto | STRING |    |    | Descrição do produto           |
+### CALC_EXP_PT_2024
 
-Relações:
+| Coluna                           | Tipo      | PK | FK | Descrição                                                |
+| -------------------------------- | --------- | -- | -- | -------------------------------------------------------- |
+| `id_country`                     | INT       | ✅ | ✔  | País destino                                             |
+| `value_2024_usd`                 | DECIMAL   |    |    | Valor exportado em 2024                                  |
+| `trade_balance_2024_usd`         | DECIMAL   |    |    | Balança comercial 2024                                   |
+| `share_portugal_exports_pct`     | DECIMAL   |    |    | % na pauta portuguesa                                    |
+| `growth_value_2020_2024_pct`     | DECIMAL   |    |    | CAGR 2020-24                                             |
+| `growth_value_2023_2024_pct`     | DECIMAL   |    |    | Variação 2023-24                                         |
+| `ranking_world_imports`          | INT       |    |    | Ranking do destino em importações mundiais               |
+| `share_world_imports_pct`        | DECIMAL   |    |    | % nas importações mundiais                               |
+| `partner_growth_2020_2024_pct`   | DECIMAL   |    |    | Crescimento das importações do parceiro                  |
+| `avg_distance_km`                | DECIMAL   |    |    | Distância média (km)                                     |
+| `concentration_index`            | DECIMAL   |    |    | Índice de concentração                                   |
+| `avg_tariff_pct`                 | DECIMAL   |    |    | Tarifa média estimada                                    |
 
-- 1:N → `EXPORTACAO`
-- 1:N → `IMPORTACAO`
+### FACT_EXP
 
-### EXPORTACAO
+| Coluna      | Tipo        | PK | FK | Descrição                         |
+| ----------- | ----------- | -- | -- | --------------------------------- |
+| `id_exp`    | INT IDENTITY| ✅ |    | Linha fact                        |
+| `id_country`| INT         |    | ✔  | País exportador                   |
+| `id_date`   | INT         |    | ✔  | Ano (`Q4`)                        |
+| `value`     | DECIMAL     |    |    | Valor exportado (USD)             |
 
-Descrição: Representa os valores de exportação de Portugal por produto e país de destino.
-Chave primária: `ID_Exp`
+### CALC_EXP_2024
 
-| Atributo        | Tipo   | PK | FK | Descrição                                |
-| --------------- | ------ | -- | -- | ---------------------------------------- |
-| ID_Exp          | INT    | ✅  |    | Identificador único da exportação        |
-| ID_Pais         | INT    |    | ✅  | País de destino                          |
-| ID_Produto      | INT    |    | ✅  | Produto cerâmico exportado               |
-| ID_Data         | INT    |    | ✅  | Referência temporal                      |
-| Valor_Exportado | FLOAT  |    |    | Valor total exportado                    |
-| Unidade         | STRING |    |    | Unidade de medida (USD, toneladas, etc.) |
-| Ano             | INT    |    |    | Ano da operação                          |
+Semelhante a `CALC_EXP_PT_2024`, mas com métricas globais (share mundial, distância média, etc.) e sem campos específicos de parceiros.
 
-Relações:
+### FACT_EXP_PROD_BY_PT / CALC_EXP_PROD_BY_PT
 
-- N:1 → `PAIS`
-- N:1 → `PRODUTO_CERAMICO`
-- N:1 → `DATA`
+- `FACT_EXP_PROD_BY_PT`: `id_product`, `id_date (Q4)`, `value`.
+- `CALC_EXP_PROD_BY_PT`: métricas 2024 por HS (`value_2024_usd`, `trade_balance_2024_usd`, `growth_value_2020_2024_pct`, `growth_quantity_2020_2024_pct`, `growth_value_2023_2024_pct`, `world_import_growth_2020_2024_pct`, `share_world_exports_pct`, `ranking_world_exports`, `avg_distance_km`, `concentration_index`).
 
-### IMPORTACAO
+### FACT_EXP_SECTOR_BY_PT
 
-Descrição: Representa os valores de importação de produtos cerâmicos por país.
-Chave primária: `ID_Imp`
+| Coluna         | Tipo   | PK | FK | Descrição                                    |
+| -------------- | ------ | -- | -- | -------------------------------------------- |
+| `id_exp_sector`| INT IDENTITY | ✅ |    | Linha fact                                   |
+| `id_date`      | INT    |    | ✔  | Trimestre (DIM_DATE)                         |
+| `value`        | DECIMAL|    |    | Valor exportado em serviços de construção    |
 
-| Atributo        | Tipo   | PK | FK | Descrição                                |
-| --------------- | ------ | -- | -- | ---------------------------------------- |
-| ID_Imp          | INT    | ✅  |    | Identificador único da importação        |
-| ID_Pais         | INT    |    | ✅  | País importador                          |
-| ID_Produto      | INT    |    | ✅  | Produto cerâmico                         |
-| ID_Data         | INT    |    | ✅  | Referência temporal                      |
-| Valor_Importado | FLOAT  |    |    | Valor total importado                    |
-| Unidade         | STRING |    |    | Unidade de medida (USD, toneladas, etc.) |
-| Ano             | INT    |    |    | Ano da operação                          |
+### FACT_IMP_PT / CALC_IMP_PT_2024
 
-Relações:
+Estrutura idêntica às tabelas de exportação, mas usando as views de importação (país importador). Os campos de cálculo incluem `avg_tariff_pct`.
 
-- N:1 → `PAIS`
-- N:1 → `PRODUTO_CERAMICO`
-- N:1 → `DATA`
+### FACT_IMP_PROD_BY_PT / CALC_IMP_PROD_BY_PT
 
-### SERVICO_CONSTRUCAO
+Usam `id_product` + `id_date` e métricas correspondentes.
 
-Descrição: Serviços de construção exportados por Portugal.
-Chave primária: `ID_Servico`
+### FACT_IMP_SECTOR
 
-| Atributo        | Tipo   | PK | FK | Descrição                                     |
-| --------------- | ------ | -- | -- | --------------------------------------------- |
-| ID_Servico      | INT    | ✅  |    | Identificador único do serviço                |
-| ID_Pais         | INT    |    | ✅  | País de destino                               |
-| Tipo_Servico    | STRING |    |    | Categoria do serviço (ex: “Construção civil”) |
-| Valor_Exportado | FLOAT  |    |    | Valor total exportado                         |
-| Unidade         | STRING |    |    | Unidade (USD)                                 |
-| Ano             | INT    |    |    | Ano da exportação                             |
-| ID_Data         | INT    |    | ✅  | Referência temporal                           |
+- `id_imp_sector` (PK), `id_date` (FK), `value`.
+- Apenas linha “World” do dataset de serviços importados.
 
-Relações:
+## Cardinalidades
 
-- N:1 → `PAIS`
-- N:1 → `DATA`
+- `DIM_COUNTRY` 1:N (`FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP_PT`, `CALC_EXP_*`, `CALC_IMP_*`)
+- `DIM_PRODUCT` 1:N (`FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD_BY_PT`, `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT`)
+- `DIM_DATE` 1:N (`FACT_EXP_PT`, `FACT_EXP`, `FACT_EXP_PROD_BY_PT`, `FACT_EXP_SECTOR_BY_PT`, `FACT_IMP_PT`, `FACT_IMP_PROD_BY_PT`, `FACT_IMP_SECTOR`)
 
-### PIB_PER_CAPITA
-
-Descrição: Indicadores económicos anuais por país.
-Chave primária: `ID_PIB`
-
-| Atributo  | Tipo  | PK | FK | Descrição               |
-| --------- | ----- | -- | -- | ----------------------- |
-| ID_PIB    | INT   | ✅  |    | Identificador           |
-| ID_Pais   | INT   |    | ✅  | País                    |
-| PIB_Valor | FLOAT |    |    | Valor do PIB per capita |
-| Ano       | INT   |    |    | Ano de referência       |
-| ID_Data   | INT   |    | ✅  | Ligação à dimensão Data |
-
-### POPULACAO_URBANA
-
-Descrição: Indicadores de urbanização e crescimento populacional.
-Chave primária: `ID_Urbano`
-
-| Atributo        | Tipo  | PK | FK | Descrição              |
-| --------------- | ----- | -- | -- | ---------------------- |
-| ID_Urbano       | INT   | ✅  |    | Identificador          |
-| ID_Pais         | INT   |    | ✅  | País                   |
-| Total_Populacao | FLOAT |    |    | População total urbana |
-| Ano             | INT   |    |    | Ano                    |
-| ID_Data         | INT   |    | ✅  | Referência temporal    |
-
-### DATA
-
-Descrição: Dimensão temporal usada para análise histórica.
-Chave primária: `ID_Data`
-
-| Atributo     | Tipo   | PK | FK | Descrição              |
-| ------------ | ------ | -- | -- | ---------------------- |
-| ID_Data      | INT    | ✅  |    | Identificador temporal |
-| Ano          | INT    |    |    | Ano                    |
-| Trimestre    | STRING |    |    | Ex: “Q1”, “Q2”         |
-| Mes          | INT    |    |    | Mês numérico (1-12)    |
-| Decada       | STRING |    |    | Ex: “2010s”, “2020s”   |
-| Period_Label | STRING |    |    | Ex: “2017_Q3_09”       |
-
-## Cardinalidades Globais
-
-| Relação                            | Tipo | Descrição                                         |
-| ---------------------------------- | ---- | ------------------------------------------------- |
-| PAIS → EXPORTACAO                  | 1:N  | Um país (Portugal) exporta para vários países     |
-| PAIS → IMPORTACAO                  | 1:N  | Um país importa de vários fornecedores            |
-| PAIS → SERVICO_CONSTRUCAO          | 1:N  | Um país recebe serviços de construção portugueses |
-| PAIS → PIB_PER_CAPITA              | 1:N  | Um país tem vários registos anuais                |
-| PAIS → POPULACAO_URBANA            | 1:N  | Um país tem indicadores anuais                    |
-| PRODUTO_CERAMICO → EXPORTACAO      | 1:N  | Um produto é exportado várias vezes               |
-| PRODUTO_CERAMICO → IMPORTACAO      | 1:N  | Um produto é importado várias vezes               |
-| DATA → (todas as tabelas factuais) | 1:N  | Cada linha factual pertence a um período temporal |
-
-## Resumo do Modelo Lógico
-
-- Tabelas Dimensionais: `PAIS`, `PRODUTO_CERAMICO`, `DATA`
-- Tabelas Fato: `EXPORTACAO`, `IMPORTACAO`, `SERVICO_CONSTRUCAO`, `PIB_PER_CAPITA`, `POPULACAO_URBANA`
-- Tipo de Modelo: Snowflake simplificado → Star Schema híbrido
+Não há FKs para `DIM_DATE` nas tabelas CALC porque representam apenas o snapshot 2024.

@@ -1,139 +1,60 @@
-# Modelo Relacional – Data Warehouse Power BI Ceramics World
+# Modelo Relacional – Ceramics World
 
 ## Estrutura Geral
 
-O modelo segue uma arquitetura em estrela (Star Schema), com três tabelas dimensionais principais (`DIM_PAIS`, `DIM_PRODUTO`, `DIM_DATA`) e cinco tabelas fato (`FACT_EXPORTACAO`, `FACT_IMPORTACAO`, `FACT_SERVICO_CONSTRUCAO`, `FACT_PIB_PER_CAPITA`, `FACT_POPULACAO_URBANA`).
+Arquitetura em estrela com dimensões `DIM_COUNTRY`, `DIM_PRODUCT`, `DIM_DATE` ligando fact tables (`FACT_*`) e tabelas de KPIs (`CALC_*`). As tabelas CALC guardam apenas o snapshot 2024 e referenciam `DIM_COUNTRY` ou `DIM_PRODUCT`.
 
-## Tabelas Dimensionais
+## Dimensões
 
-`DIM_PAIS`
+`DIM_COUNTRY (id_country, country_name, country_code)`  
+`DIM_PRODUCT (id_product, code, product_label)`  
+`DIM_DATE (id_date, year, quarter, decade)`
 
-| Coluna     | Tipo         | Chave | Descrição                   |
-| ---------- | ------------ | ----- | --------------------------- |
-| ID_Pais    | INT          | PK    | Identificador único do país |
-| Nome_Pais  | VARCHAR(100) |       | Nome oficial                |
-| Continente | VARCHAR(50)  |       | Continente                  |
-| Regiao     | VARCHAR(100) |       | Região económica/geográfica |
-| Codigo_ISO | CHAR(3)      |       | Código ISO Alpha-3          |
+## Fact tables
 
-`DIM_PRODUTO`
+| Tabela                   | Chaves estrangeiras                       | Descrição                                               |
+| ------------------------ | ----------------------------------------- | ------------------------------------------------------- |
+| `FACT_EXP_PT`            | `id_country → DIM_COUNTRY`, `id_date → DIM_DATE` | Exportações de Portugal por país / ano                 |
+| `FACT_EXP`               | `id_country → DIM_COUNTRY`, `id_date → DIM_DATE` | Exportações mundiais                                    |
+| `FACT_EXP_PROD_BY_PT`    | `id_product → DIM_PRODUCT`, `id_date → DIM_DATE` | Exportações de Portugal por HS                          |
+| `FACT_EXP_SECTOR_BY_PT`  | `id_date → DIM_DATE`                       | Serviços de construção exportados (Portugal)            |
+| `FACT_IMP_PT`            | `id_country → DIM_COUNTRY`, `id_date → DIM_DATE` | Importações mundiais por país                           |
+| `FACT_IMP_PROD_BY_PT`    | `id_product → DIM_PRODUCT`, `id_date → DIM_DATE` | Importações por HS                                      |
+| `FACT_IMP_SECTOR`        | `id_date → DIM_DATE`                       | Serviços de construção importados (linha “World”)       |
 
-| Coluna            | Tipo         | Chave | Descrição                               |
-| ----------------- | ------------ | ----- | --------------------------------------- |
-| ID_Produto        | INT          | PK    | Identificador único do produto cerâmico |
-| Codigo_HS         | VARCHAR(20)  |       | Código harmonizado (HS)                 |
-| Descricao_Produto | VARCHAR(255) |       | Descrição do produto                    |
-
-`DIM_DATA`
-
-| Coluna       | Tipo         | Chave | Descrição                      |
-| ------------ | ------------ | ----- | ------------------------------ |
-| ID_Data      | INT          | PK    | Identificador temporal         |
-| Ano          | INT          |       | Ano                            |
-| Trimestre    | CHAR(2)      |       | Exemplo: Q1, Q2                |
-| Mes          | TINYINT      |       | Mês numérico (1-12)            |
-| Decada       | VARCHAR(10)  |       | Exemplo: “2010s”               |
-| Period_Label | VARCHAR(12)  |       | Exemplo: “2017_Q3_09” (AAAA_Qn_MM) |
-
-## Tabelas Factos
-
-`FACT_EXPORTACAO`
-
-| Coluna          | Tipo        | Chave | FK | Descrição                                |
-| --------------- | ----------- | ----- | -- | ---------------------------------------- |
-| ID_Exp          | INT         | PK    |    | Identificador da exportação              |
-| ID_Pais         | INT         |       | ✅  | País de destino                          |
-| ID_Produto      | INT         |       | ✅  | Produto cerâmico                         |
-| ID_Data         | INT         |       | ✅  | Período                                  |
-| Valor_Exportado | FLOAT       |       |    | Valor total exportado                    |
-| Unidade         | VARCHAR(20) |       |    | Unidade de medida (USD, toneladas, etc.) |
-| Ano             | INT         |       |    | Ano da operação                          |
-
-Relações:
-
-- FK(ID_Pais) → DIM_PAIS(ID_Pais)
-- FK(ID_Produto) → DIM_PRODUTO(ID_Produto)
-- FK(ID_Data) → DIM_DATA(ID_Data)
-
-`FACT_IMPORTACAO`
-
-| Coluna          | Tipo        | Chave | FK | Descrição                   |
-| --------------- | ----------- | ----- | -- | --------------------------- |
-| ID_Imp          | INT         | PK    |    | Identificador da importação |
-| ID_Pais         | INT         |       | ✅  | País importador             |
-| ID_Produto      | INT         |       | ✅  | Produto cerâmico            |
-| ID_Data         | INT         |       | ✅  | Período                     |
-| Valor_Importado | FLOAT       |       |    | Valor total importado       |
-| Unidade         | VARCHAR(20) |       |    | Unidade de medida           |
-| Ano             | INT         |       |    | Ano da operação             |
-
-Relações:
-
-- FK(ID_Pais) → DIM_PAIS(ID_Pais)
-- FK(ID_Produto) → DIM_PRODUTO(ID_Produto)
-- FK(ID_Data) → DIM_DATA(ID_Data)
-
-`FACT_SERVICO_CONSTRUCAO`
-
-| Coluna          | Tipo         | Chave | FK | Descrição                          |
-| --------------- | ------------ | ----- | -- | ---------------------------------- |
-| ID_Servico      | INT          | PK    |    | Identificador do serviço           |
-| ID_Pais         | INT          |       | ✅  | País destino                       |
-| ID_Data         | INT          |       | ✅  | Período                            |
-| Tipo_Servico    | VARCHAR(100) |       |    | Categoria (ex: “Construção civil”) |
-| Valor_Exportado | FLOAT        |       |    | Valor exportado                    |
-| Unidade         | VARCHAR(20)  |       |    | Unidade (USD)                      |
-| Ano             | INT          |       |    | Ano de referência                  |
-
-Relações:
-
-- K(ID_Pais) → DIM_PAIS(ID_Pais)
-- FK(ID_Data) → DIM_DATA(ID_Data)
-
-`FACT_PIB_PER_CAPITA`
-
-| Coluna    | Tipo  | Chave | FK | Descrição               |
-| --------- | ----- | ----- | -- | ----------------------- |
-| ID_PIB    | INT   | PK    |    | Identificador           |
-| ID_Pais   | INT   |       | ✅  | País                    |
-| ID_Data   | INT   |       | ✅  | Período                 |
-| PIB_Valor | FLOAT |       |    | Valor do PIB per capita |
-| Ano       | INT   |       |    | Ano de referência       |
-
-Relações:
-
-- FK(ID_Pais) → DIM_PAIS(ID_Pais)
-- FK(ID_Data) → DIM_DATA(ID_Data)
-
-`FACT_POPULACAO_URBANA`
-
-| Coluna          | Tipo  | Chave | FK | Descrição              |
-| --------------- | ----- | ----- | -- | ---------------------- |
-| ID_Urbano       | INT   | PK    |    | Identificador          |
-| ID_Pais         | INT   |       | ✅  | País                   |
-| ID_Data         | INT   |       | ✅  | Período                |
-| Total_Populacao | FLOAT |       |    | População urbana total |
-| Ano             | INT   |       |    | Ano de referência      |
-
-Relações:
-
-- FK(ID_Pais) → DIM_PAIS(ID_Pais)
-- FK(ID_Data) → DIM_DATA(ID_Data)
+Modelo simplificado (Mermaid):
 
 ```mermaid
 erDiagram
-    DIM_PAIS ||--o{ FACT_EXPORTACAO : tem
-    DIM_PAIS ||--o{ FACT_IMPORTACAO : tem
-    DIM_PAIS ||--o{ FACT_SERVICO_CONSTRUCAO : tem
-    DIM_PAIS ||--o{ FACT_PIB_PER_CAPITA : tem
-    DIM_PAIS ||--o{ FACT_POPULACAO_URBANA : tem
+    DIM_COUNTRY ||--o{ FACT_EXP_PT : destino
+    DIM_COUNTRY ||--o{ FACT_EXP : exportador
+    DIM_COUNTRY ||--o{ FACT_IMP_PT : importador
+    DIM_COUNTRY ||--o{ CALC_EXP_PT_2024 : destino
+    DIM_COUNTRY ||--o{ CALC_EXP_2024 : exportador
+    DIM_COUNTRY ||--o{ CALC_IMP_PT_2024 : importador
 
-    DIM_PRODUTO ||--o{ FACT_EXPORTACAO : inclui
-    DIM_PRODUTO ||--o{ FACT_IMPORTACAO : inclui
+    DIM_PRODUCT ||--o{ FACT_EXP_PROD_BY_PT : produto
+    DIM_PRODUCT ||--o{ FACT_IMP_PROD_BY_PT : produto
+    DIM_PRODUCT ||--o{ CALC_EXP_PROD_BY_PT : produto
+    DIM_PRODUCT ||--o{ CALC_IMP_PROD_BY_PT : produto
 
-    DIM_DATA ||--o{ FACT_EXPORTACAO : ocorre_em
-    DIM_DATA ||--o{ FACT_IMPORTACAO : ocorre_em
-    DIM_DATA ||--o{ FACT_SERVICO_CONSTRUCAO : ocorre_em
-    DIM_DATA ||--o{ FACT_PIB_PER_CAPITA : ocorre_em
-    DIM_DATA ||--o{ FACT_POPULACAO_URBANA : ocorre_em
+    DIM_DATE ||--o{ FACT_EXP_PT : ocorre
+    DIM_DATE ||--o{ FACT_EXP : ocorre
+    DIM_DATE ||--o{ FACT_EXP_PROD_BY_PT : ocorre
+    DIM_DATE ||--o{ FACT_EXP_SECTOR_BY_PT : ocorre
+    DIM_DATE ||--o{ FACT_IMP_PT : ocorre
+    DIM_DATE ||--o{ FACT_IMP_PROD_BY_PT : ocorre
+    DIM_DATE ||--o{ FACT_IMP_SECTOR : ocorre
 ```
+
+## Tabelas de KPIs 2024
+
+| Tabela                   | FK                     | Campos principais                                                                                 |
+| ------------------------ | ---------------------- | -------------------------------------------------------------------------------------------------- |
+| `CALC_EXP_PT_2024`       | `id_country`           | `value_2024_usd`, `trade_balance_2024_usd`, `% share`, `growth_20_24`, `average distance`, `tariff` |
+| `CALC_EXP_2024`          | `id_country`           | KPIs globais (share mundial, crescimento, distância, concentração)                                 |
+| `CALC_EXP_PROD_BY_PT`    | `id_product`           | KPIs 2024 por produto exportado (crescimentos, ranking, share, distância)                          |
+| `CALC_IMP_PT_2024`       | `id_country`           | KPIs 2024 por país importador (crescimentos, share, tarifa)                                       |
+| `CALC_IMP_PROD_BY_PT`    | `id_product`           | KPIs 2024 por produto importado (crescimentos, distâncias)                                        |
+
+Essas tabelas mantêm uma linha por país/produto e não utilizam `id_date`, pois representam apenas o snapshot 2024.

@@ -4,228 +4,417 @@ GO
 SET NOCOUNT ON;
 
 /* ---------------------------------------------------------------------------
-   Ensure fact tables exist
+   Drop existing fact / calc tables
 --------------------------------------------------------------------------- */
-IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name = 'FACT_EXPORTACAO' AND schema_id = SCHEMA_ID('dbo'))
-BEGIN
-    CREATE TABLE dbo.FACT_EXPORTACAO (
-        ID_Exp           INT IDENTITY(1,1) PRIMARY KEY,
-        ID_Pais          INT NOT NULL,
-        ID_Produto       INT NOT NULL,
-        ID_Data          INT NOT NULL,
-        Valor_Exportado  DECIMAL(18, 2) NULL,
-        Unidade          VARCHAR(20) NULL,
-        Ano              INT NULL,
-        CONSTRAINT FK_FactExportacao_Pais FOREIGN KEY (ID_Pais) REFERENCES dbo.DIM_PAIS(ID_Pais),
-        CONSTRAINT FK_FactExportacao_Produto FOREIGN KEY (ID_Produto) REFERENCES dbo.DIM_PRODUTO(ID_Produto),
-        CONSTRAINT FK_FactExportacao_Data FOREIGN KEY (ID_Data) REFERENCES dbo.DIM_DATA(ID_Data)
-    );
-END;
-
-IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name = 'FACT_IMPORTACAO' AND schema_id = SCHEMA_ID('dbo'))
-BEGIN
-    CREATE TABLE dbo.FACT_IMPORTACAO (
-        ID_Imp           INT IDENTITY(1,1) PRIMARY KEY,
-        ID_Pais          INT NOT NULL,
-        ID_Produto       INT NOT NULL,
-        ID_Data          INT NOT NULL,
-        Valor_Importado  DECIMAL(18, 2) NULL,
-        Unidade          VARCHAR(20) NULL,
-        Ano              INT NULL,
-        CONSTRAINT FK_FactImportacao_Pais FOREIGN KEY (ID_Pais) REFERENCES dbo.DIM_PAIS(ID_Pais),
-        CONSTRAINT FK_FactImportacao_Produto FOREIGN KEY (ID_Produto) REFERENCES dbo.DIM_PRODUTO(ID_Produto),
-        CONSTRAINT FK_FactImportacao_Data FOREIGN KEY (ID_Data) REFERENCES dbo.DIM_DATA(ID_Data)
-    );
-END;
-
-IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name = 'FACT_SERVICO_CONSTRUCAO' AND schema_id = SCHEMA_ID('dbo'))
-BEGIN
-    CREATE TABLE dbo.FACT_SERVICO_CONSTRUCAO (
-        ID_Servico       INT IDENTITY(1,1) PRIMARY KEY,
-        ID_Pais          INT NOT NULL,
-        ID_Data          INT NOT NULL,
-        Tipo_Servico     VARCHAR(100) NULL,
-        Valor_Exportado  DECIMAL(18, 2) NULL,
-        Unidade          VARCHAR(20) NULL,
-        Ano              INT NULL,
-        CONSTRAINT FK_FactServico_Pais FOREIGN KEY (ID_Pais) REFERENCES dbo.DIM_PAIS(ID_Pais),
-        CONSTRAINT FK_FactServico_Data FOREIGN KEY (ID_Data) REFERENCES dbo.DIM_DATA(ID_Data)
-    );
-END;
-
-IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name = 'FACT_PIB_PER_CAPITA' AND schema_id = SCHEMA_ID('dbo'))
-BEGIN
-    CREATE TABLE dbo.FACT_PIB_PER_CAPITA (
-        ID_PIB     INT IDENTITY(1,1) PRIMARY KEY,
-        ID_Pais    INT NOT NULL,
-        ID_Data    INT NOT NULL,
-        PIB_Valor  DECIMAL(18, 2) NULL,
-        Ano        INT NULL,
-        CONSTRAINT FK_FactPIB_Pais FOREIGN KEY (ID_Pais) REFERENCES dbo.DIM_PAIS(ID_Pais),
-        CONSTRAINT FK_FactPIB_Data FOREIGN KEY (ID_Data) REFERENCES dbo.DIM_DATA(ID_Data)
-    );
-END;
-
-IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name = 'FACT_POPULACAO_URBANA' AND schema_id = SCHEMA_ID('dbo'))
-BEGIN
-    CREATE TABLE dbo.FACT_POPULACAO_URBANA (
-        ID_Urbano         INT IDENTITY(1,1) PRIMARY KEY,
-        ID_Pais           INT NOT NULL,
-        ID_Data           INT NOT NULL,
-        Total_Populacao   DECIMAL(18, 2) NULL,
-        Ano               INT NULL,
-        CONSTRAINT FK_FactPopUrb_Pais FOREIGN KEY (ID_Pais) REFERENCES dbo.DIM_PAIS(ID_Pais),
-        CONSTRAINT FK_FactPopUrb_Data FOREIGN KEY (ID_Data) REFERENCES dbo.DIM_DATA(ID_Data)
-    );
-END;
+DROP TABLE IF EXISTS dbo.FACT_EXP_PT;
+DROP TABLE IF EXISTS dbo.CALC_EXP_PT_2024;
+DROP TABLE IF EXISTS dbo.FACT_EXP;
+DROP TABLE IF EXISTS dbo.CALC_EXP_2024;
+DROP TABLE IF EXISTS dbo.FACT_EXP_PROD_BY_PT;
+DROP TABLE IF EXISTS dbo.CALC_EXP_PROD_BY_PT;
+DROP TABLE IF EXISTS dbo.FACT_EXP_SECTOR_BY_PT;
+DROP TABLE IF EXISTS dbo.FACT_IMP_PT;
+DROP TABLE IF EXISTS dbo.CALC_IMP_PT_2024;
+DROP TABLE IF EXISTS dbo.FACT_IMP_PROD_BY_PT;
+DROP TABLE IF EXISTS dbo.CALC_IMP_PROD_BY_PT;
+DROP TABLE IF EXISTS dbo.FACT_IMP_SECTOR;
 GO
 
 /* ---------------------------------------------------------------------------
-   FACT_EXPORTACAO
+   Create tables (dimensions already exist)
 --------------------------------------------------------------------------- */
-TRUNCATE TABLE dbo.FACT_EXPORTACAO;
-
-WITH base AS (
-    SELECT CountryName, ISO3, Ano, Valor_USD
-    FROM staging.vw_exports_country_timeseries
-    WHERE Valor_USD IS NOT NULL
-),
-dim_prod AS (
-    SELECT ID_Produto
-    FROM dbo.DIM_PRODUTO
-    WHERE Codigo_HS = 'CERAMICS_ALL'
-),
-dim_pais AS (
-    SELECT Codigo_ISO, Nome_Pais, ID_Pais
-    FROM dbo.DIM_PAIS
-)
-INSERT INTO dbo.FACT_EXPORTACAO (ID_Pais, ID_Produto, ID_Data, Valor_Exportado, Unidade, Ano)
-SELECT
-    COALESCE(p_iso.ID_Pais, p_name.ID_Pais)      AS ID_Pais,
-    prod.ID_Produto,
-    d.ID_Data,
-    base.Valor_USD,
-    'USD' AS Unidade,
-    base.Ano
-FROM base
-CROSS JOIN dim_prod AS prod
-LEFT JOIN dim_pais AS p_iso
-    ON p_iso.Codigo_ISO = base.ISO3
-LEFT JOIN dim_pais AS p_name
-    ON p_name.Codigo_ISO IS NULL
-   AND p_name.Nome_Pais = base.CountryName
-JOIN dbo.DIM_DATA AS d
-    ON d.Ano = base.Ano
-   AND d.Trimestre = 'Q4'
-   AND d.Mes = 12
-WHERE COALESCE(p_iso.ID_Pais, p_name.ID_Pais) IS NOT NULL;
-GO
-
-/* ---------------------------------------------------------------------------
-   FACT_IMPORTACAO
---------------------------------------------------------------------------- */
-TRUNCATE TABLE dbo.FACT_IMPORTACAO;
-
-WITH base AS (
-    SELECT CountryName, ISO3, Ano, Valor_USD
-    FROM staging.vw_imports_country_timeseries
-    WHERE Valor_USD IS NOT NULL
-),
-dim_prod AS (
-    SELECT ID_Produto
-    FROM dbo.DIM_PRODUTO
-    WHERE Codigo_HS = 'CERAMICS_ALL'
-),
-dim_pais AS (
-    SELECT Codigo_ISO, Nome_Pais, ID_Pais
-    FROM dbo.DIM_PAIS
-)
-INSERT INTO dbo.FACT_IMPORTACAO (ID_Pais, ID_Produto, ID_Data, Valor_Importado, Unidade, Ano)
-SELECT
-    COALESCE(p_iso.ID_Pais, p_name.ID_Pais)      AS ID_Pais,
-    prod.ID_Produto,
-    d.ID_Data,
-    base.Valor_USD,
-    'USD' AS Unidade,
-    base.Ano
-FROM base
-CROSS JOIN dim_prod AS prod
-LEFT JOIN dim_pais AS p_iso
-    ON p_iso.Codigo_ISO = base.ISO3
-LEFT JOIN dim_pais AS p_name
-    ON p_name.Codigo_ISO IS NULL
-   AND p_name.Nome_Pais = base.CountryName
-JOIN dbo.DIM_DATA AS d
-    ON d.Ano = base.Ano
-   AND d.Trimestre = 'Q4'
-   AND d.Mes = 12
-WHERE COALESCE(p_iso.ID_Pais, p_name.ID_Pais) IS NOT NULL;
-GO
-
-/* ---------------------------------------------------------------------------
-   FACT_SERVICO_CONSTRUCAO
---------------------------------------------------------------------------- */
-TRUNCATE TABLE dbo.FACT_SERVICO_CONSTRUCAO;
-
-DECLARE @PortugalID INT = (
-    SELECT TOP 1 ID_Pais FROM dbo.DIM_PAIS WHERE Codigo_ISO = 'PRT' OR Nome_Pais = 'Portugal'
+CREATE TABLE dbo.FACT_EXP_PT (
+    id_exp_pt INT IDENTITY(1,1) PRIMARY KEY,
+    id_country INT NOT NULL,
+    id_date INT NOT NULL,
+    value DECIMAL(18,2) NULL,
+    CONSTRAINT FK_FACT_EXP_PT_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country),
+    CONSTRAINT FK_FACT_EXP_PT_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
 );
 
-INSERT INTO dbo.FACT_SERVICO_CONSTRUCAO (ID_Pais, ID_Data, Tipo_Servico, Valor_Exportado, Unidade, Ano)
+CREATE TABLE dbo.CALC_EXP_PT_2024 (
+    id_country INT PRIMARY KEY,
+    value_2024_usd DECIMAL(18,2) NULL,
+    trade_balance_2024_usd DECIMAL(18,2) NULL,
+    share_portugal_exports_pct DECIMAL(18,4) NULL,
+    growth_value_2020_2024_pct DECIMAL(18,4) NULL,
+    growth_value_2023_2024_pct DECIMAL(18,4) NULL,
+    ranking_world_imports INT NULL,
+    share_world_imports_pct DECIMAL(18,4) NULL,
+    partner_growth_2020_2024_pct DECIMAL(18,4) NULL,
+    avg_distance_km DECIMAL(18,2) NULL,
+    concentration_index DECIMAL(18,4) NULL,
+    avg_tariff_pct DECIMAL(18,4) NULL,
+    CONSTRAINT FK_CALC_EXP_PT_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country)
+);
+
+CREATE TABLE dbo.FACT_EXP (
+    id_exp INT IDENTITY(1,1) PRIMARY KEY,
+    id_country INT NOT NULL,
+    id_date INT NOT NULL,
+    value DECIMAL(18,2) NULL,
+    CONSTRAINT FK_FACT_EXP_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country),
+    CONSTRAINT FK_FACT_EXP_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
+);
+
+CREATE TABLE dbo.CALC_EXP_2024 (
+    id_country INT PRIMARY KEY,
+    value_2024_usd DECIMAL(18,2) NULL,
+    trade_balance_2024_usd DECIMAL(18,2) NULL,
+    growth_value_2020_2024_pct DECIMAL(18,4) NULL,
+    growth_value_2023_2024_pct DECIMAL(18,4) NULL,
+    share_world_exports_pct DECIMAL(18,4) NULL,
+    avg_distance_km DECIMAL(18,2) NULL,
+    concentration_index DECIMAL(18,4) NULL,
+    CONSTRAINT FK_CALC_EXP_WORLD_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country)
+);
+
+CREATE TABLE dbo.FACT_EXP_PROD_BY_PT (
+    id_exp_prod_pt INT IDENTITY(1,1) PRIMARY KEY,
+    id_product INT NOT NULL,
+    id_date INT NOT NULL,
+    value DECIMAL(18,2) NULL,
+    CONSTRAINT FK_FACT_EXP_PROD_PRODUCT FOREIGN KEY (id_product) REFERENCES dbo.DIM_PRODUCT(id_product),
+    CONSTRAINT FK_FACT_EXP_PROD_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
+);
+
+CREATE TABLE dbo.CALC_EXP_PROD_BY_PT (
+    id_product INT PRIMARY KEY,
+    value_2024_usd DECIMAL(18,2) NULL,
+    trade_balance_2024_usd DECIMAL(18,2) NULL,
+    growth_value_2020_2024_pct DECIMAL(18,4) NULL,
+    growth_quantity_2020_2024_pct DECIMAL(18,4) NULL,
+    growth_value_2023_2024_pct DECIMAL(18,4) NULL,
+    world_import_growth_2020_2024_pct DECIMAL(18,4) NULL,
+    share_world_exports_pct DECIMAL(18,4) NULL,
+    ranking_world_exports INT NULL,
+    avg_distance_km DECIMAL(18,2) NULL,
+    concentration_index DECIMAL(18,4) NULL,
+    CONSTRAINT FK_CALC_EXP_PROD_PRODUCT FOREIGN KEY (id_product) REFERENCES dbo.DIM_PRODUCT(id_product)
+);
+
+CREATE TABLE dbo.FACT_EXP_SECTOR_BY_PT (
+    id_exp_sector INT IDENTITY(1,1) PRIMARY KEY,
+    id_date INT NOT NULL,
+    value DECIMAL(18,2) NULL,
+    CONSTRAINT FK_FACT_EXP_SECTOR_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
+);
+
+CREATE TABLE dbo.FACT_IMP_PT (
+    id_imp_pt INT IDENTITY(1,1) PRIMARY KEY,
+    id_country INT NOT NULL,
+    id_date INT NOT NULL,
+    value DECIMAL(18,2) NULL,
+    CONSTRAINT FK_FACT_IMP_PT_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country),
+    CONSTRAINT FK_FACT_IMP_PT_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
+);
+
+CREATE TABLE dbo.CALC_IMP_PT_2024 (
+    id_country INT PRIMARY KEY,
+    value_2024_usd DECIMAL(18,2) NULL,
+    trade_balance_2024_usd DECIMAL(18,2) NULL,
+    growth_value_2020_2024_pct DECIMAL(18,4) NULL,
+    growth_value_2023_2024_pct DECIMAL(18,4) NULL,
+    share_world_imports_pct DECIMAL(18,4) NULL,
+    avg_distance_km DECIMAL(18,2) NULL,
+    concentration_index DECIMAL(18,4) NULL,
+    avg_tariff_pct DECIMAL(18,4) NULL,
+    CONSTRAINT FK_CALC_IMP_PT_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country)
+);
+
+CREATE TABLE dbo.FACT_IMP_PROD_BY_PT (
+    id_imp_prod_pt INT IDENTITY(1,1) PRIMARY KEY,
+    id_product INT NOT NULL,
+    id_date INT NOT NULL,
+    value DECIMAL(18,2) NULL,
+    CONSTRAINT FK_FACT_IMP_PROD_PRODUCT FOREIGN KEY (id_product) REFERENCES dbo.DIM_PRODUCT(id_product),
+    CONSTRAINT FK_FACT_IMP_PROD_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
+);
+
+CREATE TABLE dbo.CALC_IMP_PROD_BY_PT (
+    id_product INT PRIMARY KEY,
+    value_2024_usd DECIMAL(18,2) NULL,
+    trade_balance_2024_usd DECIMAL(18,2) NULL,
+    growth_value_2020_2024_pct DECIMAL(18,4) NULL,
+    growth_quantity_2020_2024_pct DECIMAL(18,4) NULL,
+    growth_value_2023_2024_pct DECIMAL(18,4) NULL,
+    world_export_growth_2020_2024_pct DECIMAL(18,4) NULL,
+    avg_distance_km DECIMAL(18,2) NULL,
+    concentration_index DECIMAL(18,4) NULL,
+    CONSTRAINT FK_CALC_IMP_PROD_PRODUCT FOREIGN KEY (id_product) REFERENCES dbo.DIM_PRODUCT(id_product)
+);
+
+CREATE TABLE dbo.FACT_IMP_SECTOR (
+    id_imp_sector INT IDENTITY(1,1) PRIMARY KEY,
+    id_date INT NOT NULL,
+    value DECIMAL(18,2) NULL,
+    CONSTRAINT FK_FACT_IMP_SECTOR_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
+);
+GO
+
+/* ---------------------------------------------------------------------------
+   FACT_EXP_PT (Portugal exports by destination)
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.FACT_EXP_PT (id_country, id_date, value)
 SELECT
-    @PortugalID,
-    d.ID_Data,
-    svc.ServiceLabel,
-    svc.Valor_USD,
-    'USD',
-    svc.Ano
+    country.id_country,
+    date_map.id_date,
+    src.Valor_USD
+FROM staging.vw_exports_country_timeseries AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.ISO3
+JOIN dbo.DIM_DATE AS date_map
+    ON date_map.[year] = src.Ano
+   AND date_map.[quarter] = 'Q4'
+WHERE src.Valor_USD IS NOT NULL;
+GO
+
+/* ---------------------------------------------------------------------------
+   CALC_EXP_PT_2024
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.CALC_EXP_PT_2024 (
+    id_country,
+    value_2024_usd,
+    trade_balance_2024_usd,
+    share_portugal_exports_pct,
+    growth_value_2020_2024_pct,
+    growth_value_2023_2024_pct,
+    ranking_world_imports,
+    share_world_imports_pct,
+    partner_growth_2020_2024_pct,
+    avg_distance_km,
+    concentration_index,
+    avg_tariff_pct
+)
+SELECT
+    country.id_country,
+    src.Value2024_USD,
+    src.TradeBalance2024_USD,
+    src.SharePortugalExportsPct,
+    src.Growth2020_2024_Pct,
+    src.Growth2023_2024_Pct,
+    src.RankingWorldImports,
+    src.ShareWorldImportsPct,
+    src.PartnerGrowth2020_2024_Pct,
+    src.AvgDistanceKm,
+    src.ConcentrationIndex,
+    src.AvgTariffPct
+FROM staging.vw_calc_exp_pt_2024 AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.ISO3;
+GO
+
+/* ---------------------------------------------------------------------------
+   FACT_EXP (world exports by exporter)
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.FACT_EXP (id_country, id_date, value)
+SELECT
+    country.id_country,
+    date_map.id_date,
+    src.Valor_USD
+FROM staging.vw_world_exports_timeseries AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.ISO3
+JOIN dbo.DIM_DATE AS date_map
+    ON date_map.[year] = src.Ano
+   AND date_map.[quarter] = 'Q4'
+WHERE src.Valor_USD IS NOT NULL;
+GO
+
+/* ---------------------------------------------------------------------------
+   CALC_EXP_2024
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.CALC_EXP_2024 (
+    id_country,
+    value_2024_usd,
+    trade_balance_2024_usd,
+    growth_value_2020_2024_pct,
+    growth_value_2023_2024_pct,
+    share_world_exports_pct,
+    avg_distance_km,
+    concentration_index
+)
+SELECT
+    country.id_country,
+    src.Value2024_USD,
+    src.TradeBalance2024_USD,
+    src.Growth2020_2024_Pct,
+    src.Growth2023_2024_Pct,
+    src.ShareWorldExportsPct,
+    src.AvgDistanceKm,
+    src.ConcentrationIndex
+FROM staging.vw_calc_exp_world_2024 AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.ISO3;
+GO
+
+/* ---------------------------------------------------------------------------
+   FACT_EXP_PROD_BY_PT
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.FACT_EXP_PROD_BY_PT (id_product, id_date, value)
+SELECT
+    prod.id_product,
+    date_map.id_date,
+    src.Valor_USD
+FROM staging.vw_exports_products_timeseries AS src
+JOIN dbo.DIM_PRODUCT AS prod
+    ON prod.code = src.HSCode
+JOIN dbo.DIM_DATE AS date_map
+    ON date_map.[year] = src.Ano
+   AND date_map.[quarter] = 'Q4'
+WHERE src.Valor_USD IS NOT NULL;
+GO
+
+/* ---------------------------------------------------------------------------
+   CALC_EXP_PROD_BY_PT
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.CALC_EXP_PROD_BY_PT (
+    id_product,
+    value_2024_usd,
+    trade_balance_2024_usd,
+    growth_value_2020_2024_pct,
+    growth_quantity_2020_2024_pct,
+    growth_value_2023_2024_pct,
+    world_import_growth_2020_2024_pct,
+    share_world_exports_pct,
+    ranking_world_exports,
+    avg_distance_km,
+    concentration_index
+)
+SELECT
+    prod.id_product,
+    src.Value2024_USD,
+    src.TradeBalance2024_USD,
+    src.GrowthValue2020_2024_Pct,
+    src.GrowthQty2020_2024_Pct,
+    src.GrowthValue2023_2024_Pct,
+    src.WorldImportGrowth2020_2024_Pct,
+    src.ShareWorldExportsPct,
+    src.RankingWorldExports,
+    src.AvgDistanceKm,
+    src.ConcentrationIndex
+FROM staging.vw_calc_exp_prod_pt_2024 AS src
+JOIN dbo.DIM_PRODUCT AS prod
+    ON prod.code = src.HSCode;
+GO
+
+/* ---------------------------------------------------------------------------
+   FACT_EXP_SECTOR_BY_PT (construction services exports)
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.FACT_EXP_SECTOR_BY_PT (id_date, value)
+SELECT
+    date_map.id_date,
+    svc.Valor_USD
 FROM staging.vw_exports_services_quarterly AS svc
-JOIN dbo.DIM_DATA AS d
-    ON d.Ano = svc.Ano
-   AND d.Trimestre = svc.Trimestre
-   AND d.Mes = CASE svc.Trimestre WHEN 'Q1' THEN 3 WHEN 'Q2' THEN 6 WHEN 'Q3' THEN 9 WHEN 'Q4' THEN 12 END
-WHERE svc.Valor_USD IS NOT NULL
-  AND @PortugalID IS NOT NULL;
+JOIN dbo.DIM_DATE AS date_map
+    ON date_map.[year] = svc.Ano
+   AND date_map.[quarter] = svc.Trimestre
+WHERE svc.Valor_USD IS NOT NULL;
 GO
 
 /* ---------------------------------------------------------------------------
-   FACT_PIB_PER_CAPITA
+   FACT_IMP_PT (world imports by importer)
 --------------------------------------------------------------------------- */
-TRUNCATE TABLE dbo.FACT_PIB_PER_CAPITA;
-
-INSERT INTO dbo.FACT_PIB_PER_CAPITA (ID_Pais, ID_Data, PIB_Valor, Ano)
+INSERT INTO dbo.FACT_IMP_PT (id_country, id_date, value)
 SELECT
-    pais.ID_Pais,
-    data.ID_Data,
-    gdp.Valor_USD,
-    gdp.Ano
-FROM staging.vw_gdp_per_capita_timeseries AS gdp
-JOIN dbo.DIM_PAIS AS pais
-    ON pais.Codigo_ISO = gdp.CountryCode
-JOIN dbo.DIM_DATA AS data
-    ON data.Ano = gdp.Ano
-   AND data.Trimestre = 'Q4'
-   AND data.Mes = 12
-WHERE gdp.Valor_USD IS NOT NULL;
+    country.id_country,
+    date_map.id_date,
+    src.Valor_USD
+FROM staging.vw_world_imports_timeseries AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.ISO3
+JOIN dbo.DIM_DATE AS date_map
+    ON date_map.[year] = src.Ano
+   AND date_map.[quarter] = 'Q4'
+WHERE src.Valor_USD IS NOT NULL;
 GO
 
 /* ---------------------------------------------------------------------------
-   FACT_POPULACAO_URBANA
+   CALC_IMP_PT_2024
 --------------------------------------------------------------------------- */
-TRUNCATE TABLE dbo.FACT_POPULACAO_URBANA;
-
-INSERT INTO dbo.FACT_POPULACAO_URBANA (ID_Pais, ID_Data, Total_Populacao, Ano)
+INSERT INTO dbo.CALC_IMP_PT_2024 (
+    id_country,
+    value_2024_usd,
+    trade_balance_2024_usd,
+    growth_value_2020_2024_pct,
+    growth_value_2023_2024_pct,
+    share_world_imports_pct,
+    avg_distance_km,
+    concentration_index,
+    avg_tariff_pct
+)
 SELECT
-    pais.ID_Pais,
-    data.ID_Data,
-    urb.Total_Populacao,
-    urb.Ano
-FROM staging.vw_urban_population_timeseries AS urb
-JOIN dbo.DIM_PAIS AS pais
-    ON pais.Codigo_ISO = urb.CountryCode
-JOIN dbo.DIM_DATA AS data
-    ON data.Ano = urb.Ano
-   AND data.Trimestre = 'Q4'
-   AND data.Mes = 12
-WHERE urb.Total_Populacao IS NOT NULL;
+    country.id_country,
+    src.Value2024_USD,
+    src.TradeBalance2024_USD,
+    src.Growth2020_2024_Pct,
+    src.Growth2023_2024_Pct,
+    src.ShareWorldImportsPct,
+    src.AvgDistanceKm,
+    src.ConcentrationIndex,
+    src.AvgTariffPct
+FROM staging.vw_calc_imp_pt_2024 AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.ISO3;
+GO
+
+/* ---------------------------------------------------------------------------
+   FACT_IMP_PROD_BY_PT
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.FACT_IMP_PROD_BY_PT (id_product, id_date, value)
+SELECT
+    prod.id_product,
+    date_map.id_date,
+    src.Valor_USD
+FROM staging.vw_imports_products_timeseries AS src
+JOIN dbo.DIM_PRODUCT AS prod
+    ON prod.code = src.HSCode
+JOIN dbo.DIM_DATE AS date_map
+    ON date_map.[year] = src.Ano
+   AND date_map.[quarter] = 'Q4'
+WHERE src.Valor_USD IS NOT NULL;
+GO
+
+/* ---------------------------------------------------------------------------
+   CALC_IMP_PROD_BY_PT
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.CALC_IMP_PROD_BY_PT (
+    id_product,
+    value_2024_usd,
+    trade_balance_2024_usd,
+    growth_value_2020_2024_pct,
+    growth_quantity_2020_2024_pct,
+    growth_value_2023_2024_pct,
+    world_export_growth_2020_2024_pct,
+    avg_distance_km,
+    concentration_index
+)
+SELECT
+    prod.id_product,
+    src.Value2024_USD,
+    src.TradeBalance2024_USD,
+    src.GrowthValue2020_2024_Pct,
+    src.GrowthQty2020_2024_Pct,
+    src.GrowthValue2023_2024_Pct,
+    src.WorldExportGrowth2020_2024_Pct,
+    src.AvgDistanceKm,
+    src.ConcentrationIndex
+FROM staging.vw_calc_imp_prod_pt_2024 AS src
+JOIN dbo.DIM_PRODUCT AS prod
+    ON prod.code = src.HSCode;
+GO
+
+/* ---------------------------------------------------------------------------
+   FACT_IMP_SECTOR (construction services imports - world total)
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.FACT_IMP_SECTOR (id_date, value)
+SELECT
+    date_map.id_date,
+    svc.Valor_USD
+FROM staging.vw_imports_services_quarterly AS svc
+JOIN dbo.DIM_DATE AS date_map
+    ON date_map.[year] = svc.Ano
+   AND date_map.[quarter] = svc.Trimestre
+WHERE svc.CountryName = 'World'
+  AND svc.Valor_USD IS NOT NULL;
 GO

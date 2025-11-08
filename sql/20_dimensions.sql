@@ -3,283 +3,170 @@ GO
 
 SET NOCOUNT ON;
 
-IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name = 'DIM_PAIS' AND schema_id = SCHEMA_ID('dbo'))
-BEGIN
-    CREATE TABLE dbo.DIM_PAIS (
-        ID_Pais     INT IDENTITY(1,1) PRIMARY KEY,
-        Nome_Pais   VARCHAR(100) NOT NULL,
-        Continente  VARCHAR(50) NULL,
-        Regiao      VARCHAR(100) NULL,
-        Codigo_ISO  CHAR(3) NOT NULL,
-        CONSTRAINT UQ_DIM_PAIS_Nome UNIQUE (Nome_Pais),
-        CONSTRAINT UQ_DIM_PAIS_ISO UNIQUE (Codigo_ISO)
-    );
-END;
+/* ---------------------------------------------------------------------------
+   Remove fact / calc tables to avoid FK conflicts before rebuilding dims
+--------------------------------------------------------------------------- */
+DROP TABLE IF EXISTS dbo.FACT_EXP_PT;
+DROP TABLE IF EXISTS dbo.CALC_EXP_PT_2024;
+DROP TABLE IF EXISTS dbo.FACT_EXP;
+DROP TABLE IF EXISTS dbo.CALC_EXP_2024;
+DROP TABLE IF EXISTS dbo.FACT_EXP_PROD_BY_PT;
+DROP TABLE IF EXISTS dbo.CALC_EXP_PROD_BY_PT;
+DROP TABLE IF EXISTS dbo.FACT_EXP_SECTOR_BY_PT;
+DROP TABLE IF EXISTS dbo.FACT_IMP_PT;
+DROP TABLE IF EXISTS dbo.CALC_IMP_PT_2024;
+DROP TABLE IF EXISTS dbo.FACT_IMP_PROD_BY_PT;
+DROP TABLE IF EXISTS dbo.CALC_IMP_PROD_BY_PT;
+DROP TABLE IF EXISTS dbo.FACT_IMP_SECTOR;
 
-IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name = 'DIM_PRODUTO' AND schema_id = SCHEMA_ID('dbo'))
-BEGIN
-    CREATE TABLE dbo.DIM_PRODUTO (
-        ID_Produto        INT IDENTITY(1,1) PRIMARY KEY,
-        Codigo_HS         VARCHAR(20) NOT NULL,
-        Descricao_Produto VARCHAR(255) NULL,
-        Grupo_Produto     VARCHAR(100) NULL
-    );
-END;
-
-IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE name = 'DIM_DATA' AND schema_id = SCHEMA_ID('dbo'))
-BEGIN
-    CREATE TABLE dbo.DIM_DATA (
-        ID_Data      INT IDENTITY(1,1) PRIMARY KEY,
-        Ano          INT NOT NULL,
-        Trimestre    CHAR(2) NULL,
-        Mes          INT NULL,
-        Decada       VARCHAR(10) NULL,
-        Period_Label VARCHAR(12) NULL
-    );
-END;
+/* Legacy tables from previous iterations */
+DROP TABLE IF EXISTS dbo.FACT_EXPORTACAO;
+DROP TABLE IF EXISTS dbo.FACT_IMPORTACAO;
+DROP TABLE IF EXISTS dbo.FACT_SERVICO_CONSTRUCAO;
+DROP TABLE IF EXISTS dbo.FACT_PIB_PER_CAPITA;
+DROP TABLE IF EXISTS dbo.FACT_POPULACAO_URBANA;
 GO
 
 /* ---------------------------------------------------------------------------
-   Ensure fact tables are empty (prevents FK violations during dimension reload)
+   Drop & recreate dimensions with final column names
 --------------------------------------------------------------------------- */
-IF OBJECT_ID('dbo.FACT_EXPORTACAO', 'U') IS NOT NULL
-    TRUNCATE TABLE dbo.FACT_EXPORTACAO;
-IF OBJECT_ID('dbo.FACT_IMPORTACAO', 'U') IS NOT NULL
-    TRUNCATE TABLE dbo.FACT_IMPORTACAO;
-IF OBJECT_ID('dbo.FACT_SERVICO_CONSTRUCAO', 'U') IS NOT NULL
-    TRUNCATE TABLE dbo.FACT_SERVICO_CONSTRUCAO;
-IF OBJECT_ID('dbo.FACT_PIB_PER_CAPITA', 'U') IS NOT NULL
-    TRUNCATE TABLE dbo.FACT_PIB_PER_CAPITA;
-IF OBJECT_ID('dbo.FACT_POPULACAO_URBANA', 'U') IS NOT NULL
-    TRUNCATE TABLE dbo.FACT_POPULACAO_URBANA;
+DROP TABLE IF EXISTS dbo.DIM_COUNTRY;
+DROP TABLE IF EXISTS dbo.DIM_PRODUCT;
+DROP TABLE IF EXISTS dbo.DIM_DATE;
 
-TRUNCATE TABLE dbo.DIM_PAIS;
-IF EXISTS (
-    SELECT 1
-    FROM INFORMATION_SCHEMA.COLUMNS
-    WHERE TABLE_SCHEMA = 'dbo'
-      AND TABLE_NAME = 'DIM_PAIS'
-      AND COLUMN_NAME = 'Codigo_ISO'
-      AND IS_NULLABLE = 'YES'
-)
-BEGIN
-    ALTER TABLE dbo.DIM_PAIS ALTER COLUMN Codigo_ISO CHAR(3) NOT NULL;
-END;
-IF NOT EXISTS (
-    SELECT 1
-    FROM sys.indexes
-    WHERE name = 'UQ_DIM_PAIS_Nome'
-      AND object_id = OBJECT_ID('dbo.DIM_PAIS')
-)
-BEGIN
-    ALTER TABLE dbo.DIM_PAIS ADD CONSTRAINT UQ_DIM_PAIS_Nome UNIQUE (Nome_Pais);
-END;
-IF NOT EXISTS (
-    SELECT 1
-    FROM sys.indexes
-    WHERE name = 'UQ_DIM_PAIS_ISO'
-      AND object_id = OBJECT_ID('dbo.DIM_PAIS')
-)
-BEGIN
-    ALTER TABLE dbo.DIM_PAIS ADD CONSTRAINT UQ_DIM_PAIS_ISO UNIQUE (Codigo_ISO);
-END;
+CREATE TABLE dbo.DIM_COUNTRY (
+    id_country   INT IDENTITY(1,1) PRIMARY KEY,
+    country_name VARCHAR(150) NOT NULL,
+    country_code CHAR(3)      NOT NULL,
+    CONSTRAINT UQ_DIM_COUNTRY_CODE UNIQUE (country_code),
+    CONSTRAINT UQ_DIM_COUNTRY_NAME UNIQUE (country_name)
+);
 
-WITH unioned AS (
-    SELECT CountryName, Continent, Region, ISO3
-    FROM staging.vw_exports_country_timeseries
+CREATE TABLE dbo.DIM_PRODUCT (
+    id_product   INT IDENTITY(1,1) PRIMARY KEY,
+    code         VARCHAR(20) NOT NULL,
+    product_label VARCHAR(255) NULL,
+    CONSTRAINT UQ_DIM_PRODUCT_CODE UNIQUE (code)
+);
+
+CREATE TABLE dbo.DIM_DATE (
+    id_date INT IDENTITY(1,1) PRIMARY KEY,
+    [year]  INT NOT NULL,
+    [quarter] CHAR(2) NOT NULL,
+    decade VARCHAR(10) NOT NULL,
+    CONSTRAINT UQ_DIM_DATE UNIQUE ([year], [quarter])
+);
+GO
+
+/* ---------------------------------------------------------------------------
+   Populate DIM_COUNTRY
+--------------------------------------------------------------------------- */
+WITH country_sources AS (
+    SELECT CountryName, ISO3 FROM staging.vw_exports_country_timeseries
     UNION
-    SELECT CountryName, Continent, Region, ISO3
-    FROM staging.vw_imports_country_timeseries
+    SELECT CountryName, ISO3 FROM staging.vw_imports_country_timeseries
     UNION
-    SELECT CountryName, NULL AS Continent, NULL AS Region, CountryCode AS ISO3
-    FROM staging.vw_gdp_per_capita_timeseries
+    SELECT CountryName, ISO3 FROM staging.vw_world_exports_timeseries
     UNION
-    SELECT CountryName, NULL, NULL, CountryCode
-    FROM staging.vw_urban_population_timeseries
+    SELECT CountryName, ISO3 FROM staging.vw_world_imports_timeseries
+    UNION
+    SELECT CountryName, CountryCode AS ISO3 FROM staging.vw_gdp_per_capita_timeseries
+    UNION
+    SELECT CountryName, CountryCode AS ISO3 FROM staging.vw_urban_population_timeseries
+    UNION
+    SELECT CountryName, ISO3 FROM staging.vw_calc_exp_pt_2024
+    UNION
+    SELECT CountryName, ISO3 FROM staging.vw_calc_exp_world_2024
+    UNION
+    SELECT CountryName, ISO3 FROM staging.vw_calc_imp_pt_2024
 ),
-ranked AS (
+dedup_iso AS (
     SELECT
         ISO3,
         CountryName,
-        Continent,
-        Region,
         ROW_NUMBER() OVER (
             PARTITION BY ISO3
-            ORDER BY
-                CASE WHEN Continent IS NOT NULL THEN 0 ELSE 1 END,
-                CountryName
-        ) AS rn
-    FROM unioned
+            ORDER BY CASE WHEN CountryName IS NULL THEN 1 ELSE 0 END,
+                     CountryName
+        ) AS rn_iso
+    FROM country_sources
     WHERE ISO3 IS NOT NULL
 ),
-ai_lookup AS (
+primary_names AS (
     SELECT
-        UPPER(Codigo_ISO) AS ISO3,
-        Continente,
-        Regiao
-    FROM staging.ref_country_lookup
-    UNION ALL
-    SELECT *
-    FROM (VALUES
-        ('USA','North America','Northern America'),
-        ('CAN','North America','Northern America'),
-        ('MEX','North America','Northern America'),
-        ('BRA','South America','South America'),
-        ('ARG','South America','South America'),
-        ('COL','South America','South America'),
-        ('PER','South America','South America'),
-        ('CHL','South America','South America'),
-        ('URY','South America','South America'),
-        ('DEU','Europe','Western Europe'),
-        ('FRA','Europe','Western Europe'),
-        ('ESP','Europe','Southern Europe'),
-        ('PRT','Europe','Southern Europe'),
-        ('ITA','Europe','Southern Europe'),
-        ('GBR','Europe','Northern Europe'),
-        ('IRL','Europe','Northern Europe'),
-        ('NLD','Europe','Western Europe'),
-        ('BEL','Europe','Western Europe'),
-        ('LUX','Europe','Western Europe'),
-        ('CHE','Europe','Western Europe'),
-        ('AUT','Europe','Western Europe'),
-        ('DNK','Europe','Northern Europe'),
-        ('SWE','Europe','Northern Europe'),
-        ('NOR','Europe','Northern Europe'),
-        ('FIN','Europe','Northern Europe'),
-        ('POL','Europe','Eastern Europe'),
-        ('CZE','Europe','Eastern Europe'),
-        ('SVK','Europe','Eastern Europe'),
-        ('HUN','Europe','Eastern Europe'),
-        ('ROU','Europe','Eastern Europe'),
-        ('BGR','Europe','Eastern Europe'),
-        ('GRC','Europe','Southern Europe'),
-        ('TUR','Asia','Western Asia'),
-        ('SAU','Asia','Western Asia'),
-        ('ARE','Asia','Western Asia'),
-        ('QAT','Asia','Western Asia'),
-        ('EGY','Africa','Northern Africa'),
-        ('ZAF','Africa','Southern Africa'),
-        ('NGA','Africa','Western Africa'),
-        ('GHA','Africa','Western Africa'),
-        ('KEN','Africa','Eastern Africa'),
-        ('ETH','Africa','Eastern Africa'),
-        ('MAR','Africa','Northern Africa'),
-        ('DZA','Africa','Northern Africa'),
-        ('CHN','Asia','Eastern Asia'),
-        ('JPN','Asia','Eastern Asia'),
-        ('KOR','Asia','Eastern Asia'),
-        ('SGP','Asia','South-Eastern Asia'),
-        ('MYS','Asia','South-Eastern Asia'),
-        ('THA','Asia','South-Eastern Asia'),
-        ('VNM','Asia','South-Eastern Asia'),
-        ('PHL','Asia','South-Eastern Asia'),
-        ('IDN','Asia','South-Eastern Asia'),
-        ('IND','Asia','Southern Asia'),
-        ('PAK','Asia','Southern Asia'),
-        ('BGD','Asia','Southern Asia'),
-        ('AUS','Oceania','Australia and New Zealand'),
-        ('NZL','Oceania','Australia and New Zealand'),
-        ('RUS','Europe','Eastern Europe'),
-        ('UKR','Europe','Eastern Europe'),
-        ('USA','North America','Northern America'),
-        ('MYS','Asia','South-Eastern Asia'),
-        ('PAN','North America','Central America'),
-        ('CRI','North America','Central America'),
-        ('GTM','North America','Central America'),
-        ('SLV','North America','Central America'),
-        ('HND','North America','Central America'),
-        ('DOM','North America','Caribbean'),
-        ('CUB','North America','Caribbean'),
-        ('JAM','North America','Caribbean'),
-        ('KWT','Asia','Western Asia'),
-        ('OMN','Asia','Western Asia'),
-        ('ISR','Asia','Western Asia'),
-        ('IRN','Asia','Southern Asia'),
-        ('QAT','Asia','Western Asia'),
-        ('LBN','Asia','Western Asia'),
-        ('JOR','Asia','Western Asia'),
-        ('KAZ','Asia','Central Asia'),
-        ('UZB','Asia','Central Asia'),
-        ('TZA','Africa','Eastern Africa'),
-        ('AGO','Africa','Middle Africa'),
-        ('CMR','Africa','Middle Africa'),
-        ('MOZ','Africa','Eastern Africa'),
-        ('BOL','South America','South America'),
-        ('PAR','South America','South America')
-    ) AS data(ISO3, Continente, Regiao)
+        ISO3,
+        CASE
+            WHEN CountryName IS NULL THEN CONCAT('ISO-', ISO3)
+            ELSE CountryName
+        END AS CountryLabel
+    FROM dedup_iso
+    WHERE rn_iso = 1
+),
+resolved AS (
+    SELECT
+        ISO3,
+        CountryLabel,
+        ROW_NUMBER() OVER (
+            PARTITION BY CountryLabel
+            ORDER BY ISO3
+        ) AS rn_name
+    FROM primary_names
 )
-INSERT INTO dbo.DIM_PAIS (Nome_Pais, Continente, Regiao, Codigo_ISO)
+INSERT INTO dbo.DIM_COUNTRY (country_name, country_code)
 SELECT
-    COALESCE(r.CountryName, CONCAT('ISO-', r.ISO3)) AS Nome_Pais,
-    COALESCE(r.Continent, ai.Continente, 'Unknown') AS Continente,
-    COALESCE(r.Region, ai.Regiao, 'Unknown') AS Regiao,
-    r.ISO3
-FROM ranked AS r
-OUTER APPLY (
-    SELECT Continente, Regiao
-    FROM ai_lookup
-    WHERE ISO3 = r.ISO3
-) AS ai
-WHERE r.rn = 1;
+    CASE WHEN rn_name > 1 THEN CONCAT(CountryLabel, ' (', ISO3, ')') ELSE CountryLabel END,
+    ISO3
+FROM resolved
+ORDER BY CountryLabel;
 GO
 
-TRUNCATE TABLE dbo.DIM_PRODUTO;
-IF EXISTS (
-    SELECT 1
-    FROM INFORMATION_SCHEMA.COLUMNS
-    WHERE TABLE_SCHEMA = 'dbo'
-      AND TABLE_NAME = 'DIM_PRODUTO'
-      AND COLUMN_NAME = 'Codigo_HS'
-      AND CHARACTER_MAXIMUM_LENGTH < 20
-)
-BEGIN
-    ALTER TABLE dbo.DIM_PRODUTO ALTER COLUMN Codigo_HS VARCHAR(20) NOT NULL;
-END;
-
-INSERT INTO dbo.DIM_PRODUTO (Codigo_HS, Descricao_Produto, Grupo_Produto)
-SELECT DISTINCT Codigo_HS, Descricao_Produto, Grupo_Produto
-FROM (
-    SELECT HSCode AS Codigo_HS, ProductLabel AS Descricao_Produto, ProductGroup AS Grupo_Produto
-    FROM staging.vw_exports_products_timeseries
+/* ---------------------------------------------------------------------------
+   Populate DIM_PRODUCT
+--------------------------------------------------------------------------- */
+WITH product_sources AS (
+    SELECT HSCode, ProductLabel FROM staging.vw_exports_products_timeseries
     UNION
-    SELECT HSCode, ProductLabel, ProductGroup
-    FROM staging.vw_imports_products_timeseries
-    UNION ALL
-    SELECT 'CERAMICS_ALL', 'All ceramic products', 'Aggregate'
-) v
-WHERE Codigo_HS IS NOT NULL;
+    SELECT HSCode, ProductLabel FROM staging.vw_imports_products_timeseries
+    UNION
+    SELECT HSCode, ProductLabel FROM staging.vw_calc_exp_prod_pt_2024
+    UNION
+    SELECT HSCode, ProductLabel FROM staging.vw_calc_imp_prod_pt_2024
+)
+INSERT INTO dbo.DIM_PRODUCT (code, product_label)
+SELECT DISTINCT
+    HSCode,
+    ProductLabel
+FROM product_sources
+WHERE HSCode IS NOT NULL;
 GO
 
-TRUNCATE TABLE dbo.DIM_DATA;
-
-WITH all_years AS (
-    SELECT DISTINCT Ano FROM staging.vw_exports_country_timeseries
+/* ---------------------------------------------------------------------------
+   Populate DIM_DATE
+--------------------------------------------------------------------------- */
+WITH year_list AS (
+    SELECT DISTINCT Ano AS YearValue FROM staging.vw_exports_country_timeseries
     UNION SELECT DISTINCT Ano FROM staging.vw_imports_country_timeseries
+    UNION SELECT DISTINCT Ano FROM staging.vw_world_exports_timeseries
+    UNION SELECT DISTINCT Ano FROM staging.vw_world_imports_timeseries
     UNION SELECT DISTINCT Ano FROM staging.vw_exports_products_timeseries
     UNION SELECT DISTINCT Ano FROM staging.vw_imports_products_timeseries
     UNION SELECT DISTINCT Ano FROM staging.vw_gdp_per_capita_timeseries
     UNION SELECT DISTINCT Ano FROM staging.vw_urban_population_timeseries
     UNION SELECT DISTINCT Ano FROM staging.vw_exports_services_quarterly
-UNION SELECT DISTINCT Ano FROM staging.vw_imports_services_quarterly
+    UNION SELECT DISTINCT Ano FROM staging.vw_imports_services_quarterly
 ),
-months AS (
-    SELECT v.Mes
-    FROM (VALUES
-        (1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12)
-    ) v(Mes)
+quarters AS (
+    SELECT 'Q1' AS q UNION ALL
+    SELECT 'Q2' UNION ALL
+    SELECT 'Q3' UNION ALL
+    SELECT 'Q4'
 )
-INSERT INTO dbo.DIM_DATA (Ano, Trimestre, Mes, Decada, Period_Label)
+INSERT INTO dbo.DIM_DATE ([year], [quarter], decade)
 SELECT
-    y.Ano,
-    CONCAT('Q', ((m.Mes - 1) / 3) + 1) AS Trimestre,
-    m.Mes,
-    CONCAT((y.Ano / 10) * 10, 's') AS Decada,
-    CONCAT(
-        y.Ano, '_',
-        'Q', ((m.Mes - 1) / 3) + 1, '_',
-        RIGHT('00' + CAST(m.Mes AS VARCHAR(2)), 2)
-    ) AS Period_Label
-FROM all_years y
-CROSS JOIN months m
-ORDER BY y.Ano, m.Mes;
+    y.YearValue,
+    q.q,
+    CONCAT((y.YearValue / 10) * 10, 's') AS decade
+FROM year_list AS y
+CROSS JOIN quarters AS q
+ORDER BY y.YearValue, q.q;
 GO

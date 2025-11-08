@@ -1,142 +1,170 @@
-# Modelo Físico – Data Warehouse Power BI Ceramics World
+# Modelo Físico – Data Warehouse Ceramics World
 
-## Especificações Técnicas
+- **SGBD**: SQL Server  
+- **Codificação**: UTF-8  
+- **Tipos**: `INT` para chaves, `DECIMAL(18,2)` para valores em USD, `DECIMAL(18,4)` para percentagens/índices  
+- **Naming**: `DIM_*`, `FACT_*`, `CALC_*`  
+- **Integridade**: PK em todas as tabelas, FK para dimensões onde aplicável.
 
-- SGBD: SQL Server.
-- Padrão de nomenclatura:
-    - DIM_ → tabelas dimensionais
-    - FACT_ → tabelas fato
-- Tipos de dados escolhidos:
-    - INT para identificadores e anos
-    - VARCHAR para texto variável
-    - FLOAT para valores numéricos contínuos
-    - CHAR(3) para códigos ISO
-- Codificação recomendada: UTF-8
-- Primary Key (PK) sempre not null
-- Foreign Keys (FK) com integridade referencial
-
-## Tabela DIM_PAIS
+## Dimensões
 
 ```sql
-CREATE TABLE DIM_PAIS (
-    ID_Pais INT PRIMARY KEY IDENTITY(1,1),
-    Nome_Pais VARCHAR(100) NOT NULL,
-    Continente VARCHAR(50),
-    Regiao VARCHAR(100),
-    Codigo_ISO CHAR(3)
+CREATE TABLE DIM_COUNTRY (
+    id_country   INT IDENTITY(1,1) PRIMARY KEY,
+    country_name VARCHAR(150) NOT NULL UNIQUE,
+    country_code CHAR(3)      NOT NULL UNIQUE
+);
+
+CREATE TABLE DIM_PRODUCT (
+    id_product   INT IDENTITY(1,1) PRIMARY KEY,
+    code         VARCHAR(20)  NOT NULL UNIQUE,
+    product_label VARCHAR(255)
+);
+
+CREATE TABLE DIM_DATE (
+    id_date  INT IDENTITY(1,1) PRIMARY KEY,
+    [year]   INT NOT NULL,
+    [quarter] CHAR(2) NOT NULL,
+    decade   VARCHAR(10) NOT NULL,
+    CONSTRAINT UQ_DIM_DATE UNIQUE ([year], [quarter])
 );
 ```
 
-## Tabela DIM_PRODUTO
+## Fact tables
 
 ```sql
-CREATE TABLE DIM_PRODUTO (
-    ID_Produto INT PRIMARY KEY IDENTITY(1,1),
-    Codigo_HS VARCHAR(20) NOT NULL,
-    Descricao_Produto VARCHAR(255)
+CREATE TABLE FACT_EXP_PT (
+    id_exp_pt  INT IDENTITY(1,1) PRIMARY KEY,
+    id_country INT NOT NULL REFERENCES DIM_COUNTRY(id_country),
+    id_date    INT NOT NULL REFERENCES DIM_DATE(id_date),
+    value      DECIMAL(18,2)
+);
+
+CREATE TABLE FACT_EXP (
+    id_exp     INT IDENTITY(1,1) PRIMARY KEY,
+    id_country INT NOT NULL REFERENCES DIM_COUNTRY(id_country),
+    id_date    INT NOT NULL REFERENCES DIM_DATE(id_date),
+    value      DECIMAL(18,2)
+);
+
+CREATE TABLE FACT_EXP_PROD_BY_PT (
+    id_exp_prod_pt INT IDENTITY(1,1) PRIMARY KEY,
+    id_product     INT NOT NULL REFERENCES DIM_PRODUCT(id_product),
+    id_date        INT NOT NULL REFERENCES DIM_DATE(id_date),
+    value          DECIMAL(18,2)
+);
+
+CREATE TABLE FACT_EXP_SECTOR_BY_PT (
+    id_exp_sector INT IDENTITY(1,1) PRIMARY KEY,
+    id_date       INT NOT NULL REFERENCES DIM_DATE(id_date),
+    value         DECIMAL(18,2)
+);
+
+CREATE TABLE FACT_IMP_PT (
+    id_imp_pt  INT IDENTITY(1,1) PRIMARY KEY,
+    id_country INT NOT NULL REFERENCES DIM_COUNTRY(id_country),
+    id_date    INT NOT NULL REFERENCES DIM_DATE(id_date),
+    value      DECIMAL(18,2)
+);
+
+CREATE TABLE FACT_IMP_PROD_BY_PT (
+    id_imp_prod_pt INT IDENTITY(1,1) PRIMARY KEY,
+    id_product     INT NOT NULL REFERENCES DIM_PRODUCT(id_product),
+    id_date        INT NOT NULL REFERENCES DIM_DATE(id_date),
+    value          DECIMAL(18,2)
+);
+
+CREATE TABLE FACT_IMP_SECTOR (
+    id_imp_sector INT IDENTITY(1,1) PRIMARY KEY,
+    id_date       INT NOT NULL REFERENCES DIM_DATE(id_date),
+    value         DECIMAL(18,2)
 );
 ```
 
-## Tabela DIM_DATA
+## Tabelas de KPIs (snapshot 2024)
 
 ```sql
-CREATE TABLE DIM_DATA (
-    ID_Data INT PRIMARY KEY IDENTITY(1,1),
-    Ano INT NOT NULL,
-    Trimestre CHAR(2),
-    Mes TINYINT,
-    Decada VARCHAR(10),
-    Period_Label VARCHAR(12)
+CREATE TABLE CALC_EXP_PT_2024 (
+    id_country INT PRIMARY KEY REFERENCES DIM_COUNTRY(id_country),
+    value_2024_usd              DECIMAL(18,2),
+    trade_balance_2024_usd      DECIMAL(18,2),
+    share_portugal_exports_pct  DECIMAL(18,4),
+    growth_value_2020_2024_pct  DECIMAL(18,4),
+    growth_value_2023_2024_pct  DECIMAL(18,4),
+    ranking_world_imports       INT,
+    share_world_imports_pct     DECIMAL(18,4),
+    partner_growth_2020_2024_pct DECIMAL(18,4),
+    avg_distance_km             DECIMAL(18,2),
+    concentration_index         DECIMAL(18,4),
+    avg_tariff_pct              DECIMAL(18,4)
 );
-```
 
-## Tabela FACT_EXPORTACAO
-
-```sql
-CREATE TABLE FACT_EXPORTACAO (
-    ID_Exp INT PRIMARY KEY IDENTITY(1,1),
-    ID_Pais INT NOT NULL,
-    ID_Produto INT NOT NULL,
-    ID_Data INT NOT NULL,
-    Valor_Exportado FLOAT,
-    Unidade VARCHAR(20),
-    Ano INT,
-    CONSTRAINT FK_Exportacao_Pais FOREIGN KEY (ID_Pais) REFERENCES DIM_PAIS(ID_Pais),
-    CONSTRAINT FK_Exportacao_Produto FOREIGN KEY (ID_Produto) REFERENCES DIM_PRODUTO(ID_Produto),
-    CONSTRAINT FK_Exportacao_Data FOREIGN KEY (ID_Data) REFERENCES DIM_DATA(ID_Data)
+CREATE TABLE CALC_EXP_2024 (
+    id_country INT PRIMARY KEY REFERENCES DIM_COUNTRY(id_country),
+    value_2024_usd             DECIMAL(18,2),
+    trade_balance_2024_usd     DECIMAL(18,2),
+    growth_value_2020_2024_pct DECIMAL(18,4),
+    growth_value_2023_2024_pct DECIMAL(18,4),
+    share_world_exports_pct    DECIMAL(18,4),
+    avg_distance_km            DECIMAL(18,2),
+    concentration_index        DECIMAL(18,4)
 );
-```
 
-## Tabela FACT_IMPORTACAO
-
-```sql
-CREATE TABLE FACT_IMPORTACAO (
-    ID_Imp INT PRIMARY KEY IDENTITY(1,1),
-    ID_Pais INT NOT NULL,
-    ID_Produto INT NOT NULL,
-    ID_Data INT NOT NULL,
-    Valor_Importado FLOAT,
-    Unidade VARCHAR(20),
-    Ano INT,
-    CONSTRAINT FK_Importacao_Pais FOREIGN KEY (ID_Pais) REFERENCES DIM_PAIS(ID_Pais),
-    CONSTRAINT FK_Importacao_Produto FOREIGN KEY (ID_Produto) REFERENCES DIM_PRODUTO(ID_Produto),
-    CONSTRAINT FK_Importacao_Data FOREIGN KEY (ID_Data) REFERENCES DIM_DATA(ID_Data)
+CREATE TABLE CALC_EXP_PROD_BY_PT (
+    id_product INT PRIMARY KEY REFERENCES DIM_PRODUCT(id_product),
+    value_2024_usd                  DECIMAL(18,2),
+    trade_balance_2024_usd          DECIMAL(18,2),
+    growth_value_2020_2024_pct      DECIMAL(18,4),
+    growth_quantity_2020_2024_pct   DECIMAL(18,4),
+    growth_value_2023_2024_pct      DECIMAL(18,4),
+    world_import_growth_2020_2024_pct DECIMAL(18,4),
+    share_world_exports_pct         DECIMAL(18,4),
+    ranking_world_exports           INT,
+    avg_distance_km                 DECIMAL(18,2),
+    concentration_index             DECIMAL(18,4)
 );
-```
 
-## Tabela FACT_SERVICO_CONSTRUCAO
-
-```sql
-CREATE TABLE FACT_SERVICO_CONSTRUCAO (
-    ID_Servico INT PRIMARY KEY IDENTITY(1,1),
-    ID_Pais INT NOT NULL,
-    ID_Data INT NOT NULL,
-    Tipo_Servico VARCHAR(100),
-    Valor_Exportado FLOAT,
-    Unidade VARCHAR(20),
-    Ano INT,
-    CONSTRAINT FK_Servico_Pais FOREIGN KEY (ID_Pais) REFERENCES DIM_PAIS(ID_Pais),
-    CONSTRAINT FK_Servico_Data FOREIGN KEY (ID_Data) REFERENCES DIM_DATA(ID_Data)
+CREATE TABLE CALC_IMP_PT_2024 (
+    id_country INT PRIMARY KEY REFERENCES DIM_COUNTRY(id_country),
+    value_2024_usd             DECIMAL(18,2),
+    trade_balance_2024_usd     DECIMAL(18,2),
+    growth_value_2020_2024_pct DECIMAL(18,4),
+    growth_value_2023_2024_pct DECIMAL(18,4),
+    share_world_imports_pct    DECIMAL(18,4),
+    avg_distance_km            DECIMAL(18,2),
+    concentration_index        DECIMAL(18,4),
+    avg_tariff_pct             DECIMAL(18,4)
 );
-```
 
-## Tabela FACT_PIB_PER_CAPITA
-
-```sql
-CREATE TABLE FACT_PIB_PER_CAPITA (
-    ID_PIB INT PRIMARY KEY IDENTITY(1,1),
-    ID_Pais INT NOT NULL,
-    ID_Data INT NOT NULL,
-    PIB_Valor FLOAT,
-    Ano INT,
-    CONSTRAINT FK_PIB_Pais FOREIGN KEY (ID_Pais) REFERENCES DIM_PAIS(ID_Pais),
-    CONSTRAINT FK_PIB_Data FOREIGN KEY (ID_Data) REFERENCES DIM_DATA(ID_Data)
-);
-```
-
-## Tabela FACT_POPULACAO_URBANA
-
-```sql
-CREATE TABLE FACT_POPULACAO_URBANA (
-    ID_Urbano INT PRIMARY KEY IDENTITY(1,1),
-    ID_Pais INT NOT NULL,
-    ID_Data INT NOT NULL,
-    Total_Populacao FLOAT,
-    Ano INT,
-    CONSTRAINT FK_PopUrb_Pais FOREIGN KEY (ID_Pais) REFERENCES DIM_PAIS(ID_Pais),
-    CONSTRAINT FK_PopUrb_Data FOREIGN KEY (ID_Data) REFERENCES DIM_DATA(ID_Data)
+CREATE TABLE CALC_IMP_PROD_BY_PT (
+    id_product INT PRIMARY KEY REFERENCES DIM_PRODUCT(id_product),
+    value_2024_usd                 DECIMAL(18,2),
+    trade_balance_2024_usd         DECIMAL(18,2),
+    growth_value_2020_2024_pct     DECIMAL(18,4),
+    growth_quantity_2020_2024_pct  DECIMAL(18,4),
+    growth_value_2023_2024_pct     DECIMAL(18,4),
+    world_export_growth_2020_2024_pct DECIMAL(18,4),
+    avg_distance_km                DECIMAL(18,2),
+    concentration_index            DECIMAL(18,4)
 );
 ```
 
 ## Resumo Estrutural
 
-| Tipo     | Tabela                  | PK         | FKs                          |
-| -------- | ----------------------- | ---------- | ---------------------------- |
-| Dimensão | DIM_PAIS                | ID_Pais    | —                            |
-| Dimensão | DIM_PRODUTO             | ID_Produto | —                            |
-| Dimensão | DIM_DATA                | ID_Data    | —                            |
-| Fato     | FACT_EXPORTACAO         | ID_Exp     | ID_Pais, ID_Produto, ID_Data |
-| Fato     | FACT_IMPORTACAO         | ID_Imp     | ID_Pais, ID_Produto, ID_Data |
-| Fato     | FACT_SERVICO_CONSTRUCAO | ID_Servico | ID_Pais, ID_Data             |
-| Fato     | FACT_PIB_PER_CAPITA     | ID_PIB     | ID_Pais, ID_Data             |
-| Fato     | FACT_POPULACAO_URBANA   | ID_Urbano  | ID_Pais, ID_Data             |
+| Tipo  | Tabela                    | Chaves/FKs principais                                               |
+| ----- | ------------------------- | ------------------------------------------------------------------- |
+| Dim   | `DIM_COUNTRY`             | PK `id_country`                                                     |
+| Dim   | `DIM_PRODUCT`             | PK `id_product`                                                     |
+| Dim   | `DIM_DATE`                | PK `id_date`, UNIQUE (`year`,`quarter`)                             |
+| Fato  | `FACT_EXP_PT`             | FK `id_country`, FK `id_date`                                       |
+| Fato  | `FACT_EXP`                | FK `id_country`, FK `id_date`                                       |
+| Fato  | `FACT_EXP_PROD_BY_PT`     | FK `id_product`, FK `id_date`                                       |
+| Fato  | `FACT_EXP_SECTOR_BY_PT`   | FK `id_date`                                                        |
+| Fato  | `FACT_IMP_PT`             | FK `id_country`, FK `id_date`                                       |
+| Fato  | `FACT_IMP_PROD_BY_PT`     | FK `id_product`, FK `id_date`                                       |
+| Fato  | `FACT_IMP_SECTOR`         | FK `id_date`                                                        |
+| Calc  | `CALC_EXP_PT_2024`        | FK `id_country`                                                     |
+| Calc  | `CALC_EXP_2024`           | FK `id_country`                                                     |
+| Calc  | `CALC_EXP_PROD_BY_PT`     | FK `id_product`                                                     |
+| Calc  | `CALC_IMP_PT_2024`        | FK `id_country`                                                     |
+| Calc  | `CALC_IMP_PROD_BY_PT`     | FK `id_product`                                                     |

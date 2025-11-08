@@ -1,121 +1,69 @@
-# Modelo Conceptual – Produtos Cerâmicos
+# Modelo Conceptual – Ceramics World
 
 ## Objetivo
 
-Modelar a informação proveniente das fontes Trade Map e World Bank, com foco em:
+Unificar as várias fontes (Trade Map, World Bank) num modelo dimensional simples que permita:
 
-- Comércio internacional (importações/exportações de produtos cerâmicos e serviços de construção);
-- Indicadores macroeconómicos (PIB per capita, urbanização);
-- Identificação de mercados potenciais para expansão de exportações portuguesas.
+- acompanhar exportações/importações de produtos cerâmicos por país e produto;
+- analisar o setor de serviços de construção por trimestre;
+- expor KPI’s específicos de 2024 (trade balance, ranking, distâncias, tarifas) para países e produtos.
 
-## Entidades Principais e Significado
+## Entidades (alto nível)
 
-| Entidade               | Descrição                                                      | Principais Atributos                                                                                                     |
-| ---------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **PAIS**               | Unidade geográfica e económica base.                           | ID_Pais *(int)*, Nome_Pais *(string)*, Continente *(string)*, Regiao *(string)*, Codigo_ISO *(string)*                   |
-| **PRODUTO_CERAMICO**   | Categoria de produto cerâmico analisado (HS 6907, 6908, 6910). | ID_Produto *(int)*, Codigo_HS *(string)*, Descricao_Produto *(string)*                                                   |
-| **EXPORTACAO**         | Exportações portuguesas de produtos cerâmicos.                 | ID_Exp *(int)*, Pais_Destino *(string)*, Valor_Exportado *(float)*, Unidade *(string)*, Ano *(int)*                      |
-| **IMPORTACAO**         | Importações de produtos cerâmicos por país.                    | ID_Imp *(int)*, Pais_Origem *(string)*, Valor_Importado *(float)*, Unidade *(string)*, Ano *(int)*                       |
-| **SERVICO_CONSTRUCAO** | Serviços de construção exportados por Portugal.                | ID_Servico *(int)*, Tipo_Servico *(string)*, Pais *(string)*, Valor_Exportado *(float)*, Unidade *(string)*, Ano *(int)* |
-| **PIB_PER_CAPITA**     | Indicador económico (World Bank).                              | ID_PIB *(int)*, Pais *(string)*, PIB_Valor *(float)*, Ano *(int)*                                                        |
-| **POPULACAO_URBANA**   | Indicador de urbanização (World Bank).                         | ID_Urbano *(int)*, Pais *(string)*, Total_Populacao *(float)*, Ano *(int)*                                               |
-| **DATA**               | Dimensão temporal comum.                                       | ID_Data *(int)*, Ano *(int)*, Trimestre *(string)*, Decada *(string)*, Period_Label *(string)*                           |
+| Entidade                 | Descrição                                                                                         | Principais Atributos                                                                                             |
+| ------------------------ | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **DIM_COUNTRY**          | Catálogo único de países/territórios usados em todas as métricas.                                 | `id_country`, `country_name`, `country_code (ISO3)`                                                              |
+| **DIM_PRODUCT**          | Catálogo de códigos HS (4 dígitos) relevantes para o domínio cerâmico.                            | `id_product`, `code (HS)`, `product_label`                                                                       |
+| **DIM_DATE**             | Dimensão temporal simplificada (ano + trimestre + década).                                        | `id_date`, `year`, `quarter`, `decade`                                                                           |
+| **FACT_EXP_PT**          | Exportações de Portugal por país de destino (séries anuais).                                      | `id_country`, `id_date`, `value`                                                                                 |
+| **FACT_EXP**             | Exportações mundiais por país exportador (Trade Map).                                             | `id_country`, `id_date`, `value`                                                                                 |
+| **FACT_EXP_PROD_BY_PT**  | Exportações de Portugal por código HS.                                                            | `id_product`, `id_date`, `value`                                                                                |
+| **FACT_EXP_SECTOR_BY_PT**| Exportações portuguesas de serviços de construção (trimestral).                                   | `id_date`, `value`                                                                                               |
+| **FACT_IMP_PT**          | Importações mundiais por país importador (benchmark/competição).                                  | `id_country`, `id_date`, `value`                                                                                |
+| **FACT_IMP_PROD_BY_PT**  | Importações por produto (Trade Map).                                                              | `id_product`, `id_date`, `value`                                                                                |
+| **FACT_IMP_SECTOR**      | Importações globais de serviços de construção (linha agregada “World”).                           | `id_date`, `value`                                                                                               |
+| **CALC_EXP_PT_2024**     | KPIs 2024 para cada destino das exportações portuguesas (trade balance, ranking, distâncias etc.) | `id_country` + métricas (`value_2024_usd`, `trade_balance_2024_usd`, `share_portugal_exports_pct`, …)            |
+| **CALC_EXP_2024**        | KPIs 2024 para exportadores mundiais.                                                             | `id_country` + métricas globais                                            |
+| **CALC_EXP_PROD_BY_PT**  | KPIs 2024 para produtos exportados por Portugal.                                                  | `id_product` + métricas (crescimentos, ranking, distâncias)                                                      |
+| **CALC_IMP_PT_2024**     | KPIs 2024 para países importadores (inclui tarifa média aplicada).                                | `id_country` + métricas                                                    |
+| **CALC_IMP_PROD_BY_PT**  | KPIs 2024 para produtos importados.                                                               | `id_product` + métricas                                                    |
 
-## Relações entre Entidades
+> As tabelas CALC_ são “buckets” com indicadores anuais (2024) que não exigem `id_date` porque representam apenas o último ano disponível, mas continuam referenciando `id_country` ou `id_product`.
 
-- País 1—N Exportação
-- País 1—N Importação
-- País 1—N Serviço_Construção (exportações de Portugal para vários países)    ?????????????????????
-- País 1—N PIB_per_Capita
-- País 1—N População_Urbana
-- Produto_Cerâmico 1—N Exportação / Importação
-- Data 1—N todas as entidades com série temporal
+## Relações principais
 
-## Diagrama Conceptual (Mermaid.js)
+- `DIM_COUNTRY` 1:N `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP_PT`, `CALC_EXP_PT_2024`, `CALC_EXP_2024`, `CALC_IMP_PT_2024`
+- `DIM_PRODUCT` 1:N `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD_BY_PT`, `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT`
+- `DIM_DATE` 1:N todas as tabelas fact que representam séries temporais (`FACT_*`, exceto CALC tables)
+- `FACT_EXP_SECTOR_BY_PT` e `FACT_IMP_SECTOR` dependem apenas de `DIM_DATE`
+
+## Diagrama (Mermaid)
 
 ```mermaid
 erDiagram
-    PAIS ||--o{ EXPORTACAO : exporta
-    PAIS ||--o{ IMPORTACAO : importa
-    PAIS ||--o{ SERVICO_CONSTRUCAO : exporta
-    PAIS ||--o{ PIB_PER_CAPITA : possui
-    PAIS ||--o{ POPULACAO_URBANA : apresenta
-    PRODUTO_CERAMICO ||--o{ EXPORTACAO : inclui
-    PRODUTO_CERAMICO ||--o{ IMPORTACAO : inclui
-    DATA ||--o{ EXPORTACAO : ocorre_em
-    DATA ||--o{ IMPORTACAO : ocorre_em
-    DATA ||--o{ SERVICO_CONSTRUCAO : ocorre_em
+    DIM_COUNTRY ||--o{ FACT_EXP_PT : destino
+    DIM_COUNTRY ||--o{ FACT_EXP : exportador
+    DIM_COUNTRY ||--o{ FACT_IMP_PT : importador
+    DIM_COUNTRY ||--o{ CALC_EXP_PT_2024 : destino
+    DIM_COUNTRY ||--o{ CALC_EXP_2024 : exportador
+    DIM_COUNTRY ||--o{ CALC_IMP_PT_2024 : importador
 
-    PAIS {
-        int ID_Pais
-        string Nome_Pais
-        string Continente
-        string Regiao
-        string Codigo_ISO
-    }
+    DIM_PRODUCT ||--o{ FACT_EXP_PROD_BY_PT : produto
+    DIM_PRODUCT ||--o{ FACT_IMP_PROD_BY_PT : produto
+    DIM_PRODUCT ||--o{ CALC_EXP_PROD_BY_PT : produto
+    DIM_PRODUCT ||--o{ CALC_IMP_PROD_BY_PT : produto
 
-    PRODUTO_CERAMICO {
-        int ID_Produto
-        string Codigo_HS
-        string Descricao_Produto
-    }
-
-    EXPORTACAO {
-        int ID_Exp
-        string Pais_Destino
-        float Valor_Exportado
-        string Unidade
-        int Ano
-    }
-
-    IMPORTACAO {
-        int ID_Imp
-        string Pais_Origem
-        float Valor_Importado
-        string Unidade
-        int Ano
-    }
-
-    SERVICO_CONSTRUCAO {
-        int ID_Servico
-        string Tipo_Servico
-        string Pais
-        float Valor_Exportado
-        string Unidade
-        int Ano
-    }
-
-    PIB_PER_CAPITA {
-        int ID_PIB
-        string Pais
-        float PIB_Valor
-        int Ano
-    }
-
-    POPULACAO_URBANA {
-        int ID_Urbano
-        string Pais
-        float Total_Populacao
-        int Ano
-    }
-
-    DATA {
-        int ID_Data
-        int Ano
-        string Trimestre
-        string Decada
-        string Period_Label
-    }
+    DIM_DATE ||--o{ FACT_EXP_PT : ocorre
+    DIM_DATE ||--o{ FACT_EXP : ocorre
+    DIM_DATE ||--o{ FACT_EXP_PROD_BY_PT : ocorre
+    DIM_DATE ||--o{ FACT_EXP_SECTOR_BY_PT : ocorre
+    DIM_DATE ||--o{ FACT_IMP_PT : ocorre
+    DIM_DATE ||--o{ FACT_IMP_PROD_BY_PT : ocorre
+    DIM_DATE ||--o{ FACT_IMP_SECTOR : ocorre
 ```
 
-## Resumo das Relações-Chave
+## Resumo
 
-| Entidade A       | Relação    | Entidade B                 | Tipo |
-| ---------------- | ---------- | -------------------------- | ---- |
-| País             | realiza    | Exportação                 | 1:N  |
-| País             | realiza    | Serviço_Construção         | 1:N  |
-| País             | recebe     | Importação                 | 1:N  |
-| País             | possui     | PIB_per_Capita             | 1:N  |
-| País             | possui     | População_Urbana           | 1:N  |
-| Produto_Cerâmico | compõe     | Exportação / Importação    | 1:N  |
-| Data             | referencia | todas as tabelas temporais | 1:N  |
+- **Dimensões**: três tabelas pequenas (`DIM_COUNTRY`, `DIM_PRODUCT`, `DIM_DATE`) mantêm chaves substitutas e atributos estáticos.
+- **Fact tables**: capturam séries anuais/trimestrais (valor em USD) e alimentam os dashboards.
+- **Calc tables**: guardam os indicadores adicionais do snapshot 2024 (rankings, distâncias, tarifas) mantendo o relacionamento via `id_country` / `id_product`.
