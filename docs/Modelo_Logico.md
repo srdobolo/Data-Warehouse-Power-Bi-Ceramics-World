@@ -15,7 +15,8 @@
 | `FACT_IMP_PROD_BY_PT`   | Fato  | Importações por código HS.                                                     |
 | `FACT_IMP_SECTOR`       | Fato  | Importações globais de serviços de construção (linha “World”).                 |
 | `CALC_EXP_PT_2024`      | Calc  | KPIs 2024 para destinos das exportações portuguesas.                           |
-| `CALC_EXP_2024`         | Calc  | KPIs 2024 para exportadores mundiais.                                          |
+| `CALC_EXP_2024`         | Calc  | KPIs 2024 para exportadores mundiais (produtos cerâmicos).                     |
+| `CALC_ALL_EXP_2024`     | Calc  | KPIs 2024 para exportadores de todos os produtos (Total Trade Map).            |
 | `CALC_EXP_PROD_BY_PT`   | Calc  | KPIs 2024 para produtos exportados por Portugal.                               |
 | `CALC_IMP_PT_2024`      | Calc  | KPIs 2024 para importadores (inclui tarifa média aplicada).                    |
 | `CALC_IMP_PROD_BY_PT`   | Calc  | KPIs 2024 para produtos importados.                                            |
@@ -84,7 +85,20 @@
 
 ### CALC_EXP_2024
 
-Semelhante a `CALC_EXP_PT_2024`, mas com métricas globais (share mundial, distância média, etc.) e sem campos específicos de parceiros.
+Semelhante a `CALC_EXP_PT_2024`, mas com métricas globais (share mundial, distância média, etc.) e sem campos específicos de parceiros, sempre para o portfólio cerâmico.
+
+### CALC_ALL_EXP_2024
+
+| Coluna                           | Tipo    | PK | FK | Descrição                                         |
+| -------------------------------- | ------- | -- | -- | ------------------------------------------------- |
+| `id_country`                     | INT     | ✅  | ✔  | País exportador (todos os produtos)               |
+| `value_2024_usd`                 | DECIMAL |    |    | Valor exportado total em 2024                     |
+| `trade_balance_2024_usd`         | DECIMAL |    |    | Balança comercial 2024                            |
+| `growth_value_2020_2024_pct`     | DECIMAL |    |    | Crescimento anual composto 2020‑24 (convertido)   |
+| `growth_value_2023_2024_pct`     | DECIMAL |    |    | Crescimento 2023‑24                               |
+| `share_world_exports_pct`        | DECIMAL |    |    | Participação nas exportações mundiais             |
+| `avg_distance_km`                | DECIMAL |    |    | Distância média dos importadores                  |
+| `concentration_index`            | DECIMAL |    |    | Índice de concentração dos importadores           |
 
 ### FACT_EXP_PROD_BY_PT / CALC_EXP_PROD_BY_PT
 

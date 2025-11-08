@@ -32,6 +32,8 @@ IF OBJECT_ID('staging.vw_calc_exp_pt_2024', 'V') IS NOT NULL
     DROP VIEW staging.vw_calc_exp_pt_2024;
 IF OBJECT_ID('staging.vw_calc_exp_world_2024', 'V') IS NOT NULL
     DROP VIEW staging.vw_calc_exp_world_2024;
+IF OBJECT_ID('staging.vw_calc_all_exp_2024', 'V') IS NOT NULL
+    DROP VIEW staging.vw_calc_all_exp_2024;
 IF OBJECT_ID('staging.vw_calc_exp_prod_pt_2024', 'V') IS NOT NULL
     DROP VIEW staging.vw_calc_exp_prod_pt_2024;
 IF OBJECT_ID('staging.vw_calc_imp_pt_2024', 'V') IS NOT NULL
@@ -767,6 +769,26 @@ SELECT
 FROM dbo.exports_csv_trade_map_list_of_exporters_for_the_selected_product_in_2024_ceramic_products_xls AS src
 LEFT JOIN staging.ref_country_lookup AS ref
     ON ref.CountryLabel = LTRIM(RTRIM(src.Exporters))
+WHERE ref.ISO3 IS NOT NULL;
+GO
+
+/* ---------------------------------------------------------------------------
+   2024 snapshot – ALL products (exportadores mundiais)
+--------------------------------------------------------------------------- */
+CREATE OR ALTER VIEW staging.vw_calc_all_exp_2024 AS
+SELECT
+    LTRIM(RTRIM(src.[Exporters]))                              AS CountryName,
+    ref.ISO3,
+    TRY_CONVERT(DECIMAL(18, 2), src.[Value exported in 2024 (USD thousand)])            AS Value2024_USD,
+    TRY_CONVERT(DECIMAL(18, 2), src.[Trade balance in 2024 (USD thousand)])             AS TradeBalance2024_USD,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Annual growth in value between 2020-2024 (%)])     AS Growth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Annual growth in value between 2023-2024 (%)])     AS Growth2023_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Share in world exports (%)])                       AS ShareWorldExportsPct,
+    TRY_CONVERT(DECIMAL(18, 2), src.[Average distance of importing countries (km)])     AS AvgDistanceKm,
+    TRY_CONVERT(DECIMAL(18, 4), src.[Concentration of importing countries])             AS ConcentrationIndex
+FROM dbo.trade_map_list_of_exporters_for_the_selected_product_in_2024_all_products_xls AS src
+LEFT JOIN staging.ref_country_lookup AS ref
+    ON ref.CountryLabel = LTRIM(RTRIM(src.[Exporters]))
 WHERE ref.ISO3 IS NOT NULL;
 GO
 

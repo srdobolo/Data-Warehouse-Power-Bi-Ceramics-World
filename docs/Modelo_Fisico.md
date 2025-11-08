@@ -110,6 +110,17 @@ CREATE TABLE CALC_EXP_2024 (
     concentration_index        DECIMAL(18,4)
 );
 
+CREATE TABLE CALC_ALL_EXP_2024 (
+    id_country INT PRIMARY KEY REFERENCES DIM_COUNTRY(id_country),
+    value_2024_usd             DECIMAL(18,2),
+    trade_balance_2024_usd     DECIMAL(18,2),
+    growth_value_2020_2024_pct DECIMAL(18,4),
+    growth_value_2023_2024_pct DECIMAL(18,4),
+    share_world_exports_pct    DECIMAL(18,4),
+    avg_distance_km            DECIMAL(18,2),
+    concentration_index        DECIMAL(18,4)
+);
+
 CREATE TABLE CALC_EXP_PROD_BY_PT (
     id_product INT PRIMARY KEY REFERENCES DIM_PRODUCT(id_product),
     value_2024_usd                  DECIMAL(18,2),
@@ -165,6 +176,7 @@ CREATE TABLE CALC_IMP_PROD_BY_PT (
 | Fato  | `FACT_IMP_SECTOR`         | FK `id_date`                                                        |
 | Calc  | `CALC_EXP_PT_2024`        | FK `id_country`                                                     |
 | Calc  | `CALC_EXP_2024`           | FK `id_country`                                                     |
+| Calc  | `CALC_ALL_EXP_2024`       | FK `id_country`                                                     |
 | Calc  | `CALC_EXP_PROD_BY_PT`     | FK `id_product`                                                     |
 | Calc  | `CALC_IMP_PT_2024`        | FK `id_country`                                                     |
 | Calc  | `CALC_IMP_PROD_BY_PT`     | FK `id_product`                                                     |

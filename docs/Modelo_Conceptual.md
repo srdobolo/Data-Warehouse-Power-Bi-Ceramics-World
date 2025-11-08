@@ -23,7 +23,8 @@ Unificar as várias fontes (Trade Map, World Bank) num modelo dimensional simple
 | **FACT_IMP_PROD_BY_PT**  | Importações por produto (Trade Map).                                                              | `id_product`, `id_date`, `value`                                                                                |
 | **FACT_IMP_SECTOR**      | Importações globais de serviços de construção (linha agregada “World”).                           | `id_date`, `value`                                                                                               |
 | **CALC_EXP_PT_2024**     | KPIs 2024 para cada destino das exportações portuguesas (trade balance, ranking, distâncias etc.) | `id_country` + métricas (`value_2024_usd`, `trade_balance_2024_usd`, `share_portugal_exports_pct`, …)            |
-| **CALC_EXP_2024**        | KPIs 2024 para exportadores mundiais.                                                             | `id_country` + métricas globais                                            |
+| **CALC_EXP_2024**        | KPIs 2024 para exportadores mundiais (produtos cerâmicos).                                        | `id_country` + métricas globais                                            |
+| **CALC_ALL_EXP_2024**    | KPIs 2024 para exportadores de todos os produtos (Total Trade Map).                               | `id_country` + métricas globais                                            |
 | **CALC_EXP_PROD_BY_PT**  | KPIs 2024 para produtos exportados por Portugal.                                                  | `id_product` + métricas (crescimentos, ranking, distâncias)                                                      |
 | **CALC_IMP_PT_2024**     | KPIs 2024 para países importadores (inclui tarifa média aplicada).                                | `id_country` + métricas                                                    |
 | **CALC_IMP_PROD_BY_PT**  | KPIs 2024 para produtos importados.                                                               | `id_product` + métricas                                                    |
@@ -32,7 +33,7 @@ Unificar as várias fontes (Trade Map, World Bank) num modelo dimensional simple
 
 ## Relações principais
 
-- `DIM_COUNTRY` 1:N `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP_PT`, `CALC_EXP_PT_2024`, `CALC_EXP_2024`, `CALC_IMP_PT_2024`
+- `DIM_COUNTRY` 1:N `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP_PT`, `CALC_EXP_PT_2024`, `CALC_EXP_2024`, `CALC_ALL_EXP_2024`, `CALC_IMP_PT_2024`
 - `DIM_PRODUCT` 1:N `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD_BY_PT`, `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT`
 - `DIM_DATE` 1:N todas as tabelas fact que representam séries temporais (`FACT_*`, exceto CALC tables)
 - `FACT_EXP_SECTOR_BY_PT` e `FACT_IMP_SECTOR` dependem apenas de `DIM_DATE`
