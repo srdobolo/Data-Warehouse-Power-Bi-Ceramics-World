@@ -70,3 +70,19 @@ IF (
 )
 ```
 
+```dax
+Ceramics Share in Exports (%) = 
+VAR CountryID = SELECTEDVALUE ( 'DIM_COUNTRY'[id_country] )
+VAR CeramicsExports =
+    CALCULATE (
+        [Total Exports Ceramics 2024],
+        'CALC_EXP_WORLD'[id_country] = CountryID
+    )
+VAR CountryExports =
+    CALCULATE (
+        [Total Exports World 2024],
+        'CALC_EXP_WORLD'[id_country] = CountryID
+    )
+RETURN
+DIVIDE ( CeramicsExports, CountryExports, 0 )
+```
