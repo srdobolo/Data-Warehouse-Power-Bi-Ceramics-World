@@ -14,6 +14,8 @@ FACT_EXP(id_exp, id_country, id_date, value)
 
 CALC_EXP_2024(id_country,trade_balance_2024, Growth in exported value between 2020-2024 (%, p.a.), Growth in exported value between 2023-2024 (%, p.a.), Share in world exports (%), Average distance of importing countries (km), Concentration of importing countries)
 
+CALC_EXP_WORLD(id_country,value_2024_usd,trade_balance_2024_usd,Growth in exported value between 2020-2024 (%, p.a.),Growth in exported value between 2023-2024 (%, p.a.),Share in world exports (%),Average distance of importing countries (km),Concentration of importing countries)
+
 FACT_EXP_PROD_BY_PT(id_exp_prod_pt, id_product, id_date, value )
 
 CALC_EXP_PROD_BY_PT(id_product, Trade balance 2024 (USD thousand), Annual growth in value between 2020-2024 (%, p.a.), Annual growth in quantity between 2020-2024 (%, p.a.), Annual growth in value between 2023-2024 (%, p.a.), Annual growth of world imports between 2020-2024 (%, p.a.), Share in world exports (%), Ranking in world exports, Average distance of importing countries (km), Concentration of importing countries)
@@ -29,3 +31,11 @@ FACT_IMP_PROD_BY_PT(id_imp_prod_pt, id_product, id_date, value )
 CALC_IMP_PROD_BY_PT(id_product, Trade balance 2024 (USD thousand), Annual growth in value between 2020-2024 (%, p.a.), Annual growth in quantity between 2020-2024 (%, p.a.), Annual growth in value between 2023-2024 (%, p.a.), Annual growth of world exports between 2020-2024 (%, p.a.), Average distance of supplying countries (km), Concentration of supplying countries)
 
 FACT_IMP_SECTOR(id_imp_sector,id_date, value)
+
+FACT_PIB(id_pib, id_country, id_date, gdp_per_capita_usd)
+
+FACT_URBAN(id_urban, id_country, id_date, urban_population_total)
+
+FACT_IMP(id_imp, id_country, id_date, value)
+
+FACT_CONSTRUCTION(id_construction, id_country, id_date, value_added_growth_pct)

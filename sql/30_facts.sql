@@ -479,6 +479,22 @@ JOIN dbo.DIM_COUNTRY AS country
 GO
 
 /* ---------------------------------------------------------------------------
+   FACT_IMP (Trade Map importers snapshot)
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.FACT_IMP (id_country, id_date, value)
+SELECT
+    country.id_country,
+    date_map.id_date,
+    src.Value2024_USD
+FROM staging.vw_calc_imp_pt_2024 AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.ISO3
+JOIN dbo.DIM_DATE AS date_map
+    ON date_map.[year] = 2024
+   AND date_map.[quarter] = 'Q4';
+GO
+
+/* ---------------------------------------------------------------------------
    FACT_IMP_PROD_BY_PT
 --------------------------------------------------------------------------- */
 INSERT INTO dbo.FACT_IMP_PROD_BY_PT (id_product, id_date, value)
@@ -566,4 +582,55 @@ JOIN dbo.DIM_DATE AS date_map
     ON date_map.[year] = svc.Ano
    AND date_map.[quarter] = svc.Trimestre
 GROUP BY date_map.id_date;
+GO
+
+/* ---------------------------------------------------------------------------
+   FACT_PIB (GDP per capita)
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.FACT_PIB (id_country, id_date, gdp_per_capita_usd)
+SELECT
+    country.id_country,
+    date_map.id_date,
+    src.Valor_USD
+FROM staging.vw_gdp_per_capita_timeseries AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.CountryCode
+JOIN dbo.DIM_DATE AS date_map
+    ON date_map.[year] = src.Ano
+   AND date_map.[quarter] = 'Q4'
+WHERE src.Valor_USD IS NOT NULL;
+GO
+
+/* ---------------------------------------------------------------------------
+   FACT_URBAN (urban population)
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.FACT_URBAN (id_country, id_date, urban_population_total)
+SELECT
+    country.id_country,
+    date_map.id_date,
+    src.Total_Populacao
+FROM staging.vw_urban_population_timeseries AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.CountryCode
+JOIN dbo.DIM_DATE AS date_map
+    ON date_map.[year] = src.Ano
+   AND date_map.[quarter] = 'Q4'
+WHERE src.Total_Populacao IS NOT NULL;
+GO
+
+/* ---------------------------------------------------------------------------
+   FACT_CONSTRUCTION (industry incl. construction growth)
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.FACT_CONSTRUCTION (id_country, id_date, value_added_growth_pct)
+SELECT
+    country.id_country,
+    date_map.id_date,
+    src.GrowthPct
+FROM staging.vw_industry_construction_growth_timeseries AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.CountryCode
+JOIN dbo.DIM_DATE AS date_map
+    ON date_map.[year] = src.Ano
+   AND date_map.[quarter] = 'Q4'
+WHERE src.GrowthPct IS NOT NULL;
 GO

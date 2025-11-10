@@ -24,6 +24,8 @@ IF OBJECT_ID('staging.vw_gdp_per_capita_timeseries', 'V') IS NOT NULL
     DROP VIEW staging.vw_gdp_per_capita_timeseries;
 IF OBJECT_ID('staging.vw_urban_population_timeseries', 'V') IS NOT NULL
     DROP VIEW staging.vw_urban_population_timeseries;
+IF OBJECT_ID('staging.vw_industry_construction_growth_timeseries', 'V') IS NOT NULL
+    DROP VIEW staging.vw_industry_construction_growth_timeseries;
 IF OBJECT_ID('staging.vw_world_exports_timeseries', 'V') IS NOT NULL
     DROP VIEW staging.vw_world_exports_timeseries;
 IF OBJECT_ID('staging.vw_world_imports_timeseries', 'V') IS NOT NULL
@@ -729,6 +731,41 @@ SELECT
     UrbanPopulation             AS Total_Populacao
 FROM unpivoted
 WHERE UrbanPopulation IS NOT NULL;
+GO
+
+/* ---------------------------------------------------------------------------
+   Industry (including construction) value added growth (World Bank)
+--------------------------------------------------------------------------- */
+CREATE OR ALTER VIEW staging.vw_industry_construction_growth_timeseries AS
+WITH unpivoted AS (
+    SELECT
+        LTRIM(RTRIM([Country Name])) AS CountryName,
+        [Country Code]               AS CountryCode,
+        [Indicator Code]             AS IndicatorCode,
+        YearLabel,
+        TRY_CONVERT(DECIMAL(18, 4), Value) AS GrowthPct
+    FROM dbo.api_nv_ind_totl_kd_zg_ds2_en_csv_v2_6502
+    UNPIVOT (
+        Value FOR YearLabel IN (
+            [1960],[1961],[1962],[1963],[1964],[1965],[1966],[1967],[1968],[1969],
+            [1970],[1971],[1972],[1973],[1974],[1975],[1976],[1977],[1978],[1979],
+            [1980],[1981],[1982],[1983],[1984],[1985],[1986],[1987],[1988],[1989],
+            [1990],[1991],[1992],[1993],[1994],[1995],[1996],[1997],[1998],[1999],
+            [2000],[2001],[2002],[2003],[2004],[2005],[2006],[2007],[2008],[2009],
+            [2010],[2011],[2012],[2013],[2014],[2015],[2016],[2017],[2018],[2019],
+            [2020],[2021],[2022],[2023],[2024]
+        )
+    ) AS up
+)
+SELECT
+    CountryName,
+    CountryCode,
+    TRY_CONVERT(INT, YearLabel) AS Ano,
+    GrowthPct
+FROM unpivoted
+WHERE GrowthPct IS NOT NULL
+  AND CountryCode IS NOT NULL
+  AND IndicatorCode = 'NV.IND.TOTL.KD.ZG';
 GO
 
 /* ---------------------------------------------------------------------------

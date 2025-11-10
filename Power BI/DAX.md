@@ -24,7 +24,7 @@ IF (
 ```
 
 ```dax
-Total Exports 2024 = 
+Total Exports Ceramics 2024 = 
 IF (
     HASONEVALUE('DIM_COUNTRY'[id_country]),
     SUM('CALC_EXP_2024'[value_2024_usd]),
@@ -57,3 +57,16 @@ IF(
     RankValue
 )
 ```
+
+```dax
+Total Exports World 2024 = 
+IF (
+    HASONEVALUE('DIM_COUNTRY'[id_country]),
+    SUM('CALC_EXP_WORLD'[value_2024_usd]),
+    CALCULATE(
+        SUM('CALC_EXP_WORLD'[value_2024_usd]),
+        'CALC_EXP_WORLD'[id_country] = 262
+    )
+)
+```
+
