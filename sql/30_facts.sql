@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS dbo.FACT_EXP_PT;
 DROP TABLE IF EXISTS dbo.CALC_EXP_PT_2024;
 DROP TABLE IF EXISTS dbo.FACT_EXP;
 DROP TABLE IF EXISTS dbo.CALC_EXP_2024;
+DROP TABLE IF EXISTS dbo.CALC_EXP_WORLD;
 DROP TABLE IF EXISTS dbo.CALC_ALL_EXP_2024;
 DROP TABLE IF EXISTS dbo.FACT_EXP_PROD_BY_PT;
 DROP TABLE IF EXISTS dbo.CALC_EXP_PROD_BY_PT;
@@ -19,6 +20,10 @@ DROP TABLE IF EXISTS dbo.CALC_IMP_PT_2024;
 DROP TABLE IF EXISTS dbo.FACT_IMP_PROD_BY_PT;
 DROP TABLE IF EXISTS dbo.CALC_IMP_PROD_BY_PT;
 DROP TABLE IF EXISTS dbo.FACT_IMP_SECTOR;
+DROP TABLE IF EXISTS dbo.FACT_PIB;
+DROP TABLE IF EXISTS dbo.FACT_URBAN;
+DROP TABLE IF EXISTS dbo.FACT_IMP;
+DROP TABLE IF EXISTS dbo.FACT_CONSTRUCTION;
 GO
 
 /* ---------------------------------------------------------------------------
@@ -59,6 +64,18 @@ CREATE TABLE dbo.FACT_EXP (
 );
 
 CREATE TABLE dbo.CALC_EXP_2024 (
+    id_country INT PRIMARY KEY,
+    value_2024_usd DECIMAL(18,2) NULL,
+    trade_balance_2024_usd DECIMAL(18,2) NULL,
+    growth_value_2020_2024_pct DECIMAL(18,4) NULL,
+    growth_value_2023_2024_pct DECIMAL(18,4) NULL,
+    share_world_exports_pct DECIMAL(18,4) NULL,
+    avg_distance_km DECIMAL(18,2) NULL,
+    concentration_index DECIMAL(18,4) NULL,
+    CONSTRAINT FK_CALC_EXP_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country)
+);
+
+CREATE TABLE dbo.CALC_EXP_WORLD (
     id_country INT PRIMARY KEY,
     value_2024_usd DECIMAL(18,2) NULL,
     trade_balance_2024_usd DECIMAL(18,2) NULL,
@@ -163,6 +180,42 @@ CREATE TABLE dbo.FACT_IMP_SECTOR (
     value DECIMAL(18,2) NULL,
     CONSTRAINT FK_FACT_IMP_SECTOR_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
 );
+
+CREATE TABLE dbo.FACT_PIB (
+    id_pib INT IDENTITY(1,1) PRIMARY KEY,
+    id_country INT NOT NULL,
+    id_date INT NOT NULL,
+    gdp_per_capita_usd DECIMAL(18,2) NULL,
+    CONSTRAINT FK_FACT_PIB_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country),
+    CONSTRAINT FK_FACT_PIB_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
+);
+
+CREATE TABLE dbo.FACT_URBAN (
+    id_urban INT IDENTITY(1,1) PRIMARY KEY,
+    id_country INT NOT NULL,
+    id_date INT NOT NULL,
+    urban_population_total DECIMAL(18,2) NULL,
+    CONSTRAINT FK_FACT_URBAN_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country),
+    CONSTRAINT FK_FACT_URBAN_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
+);
+
+CREATE TABLE dbo.FACT_IMP (
+    id_imp INT IDENTITY(1,1) PRIMARY KEY,
+    id_country INT NOT NULL,
+    id_date INT NOT NULL,
+    value DECIMAL(18,2) NULL,
+    CONSTRAINT FK_FACT_IMP_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country),
+    CONSTRAINT FK_FACT_IMP_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
+);
+
+CREATE TABLE dbo.FACT_CONSTRUCTION (
+    id_construction INT IDENTITY(1,1) PRIMARY KEY,
+    id_country INT NOT NULL,
+    id_date INT NOT NULL,
+    value_added_growth_pct DECIMAL(18,4) NULL,
+    CONSTRAINT FK_FACT_CONSTRUCTION_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country),
+    CONSTRAINT FK_FACT_CONSTRUCTION_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
+);
 GO
 
 /* ---------------------------------------------------------------------------
@@ -265,6 +318,33 @@ GO
    CALC_ALL_EXP_2024 (all products)
 --------------------------------------------------------------------------- */
 INSERT INTO dbo.CALC_ALL_EXP_2024 (
+    id_country,
+    value_2024_usd,
+    trade_balance_2024_usd,
+    growth_value_2020_2024_pct,
+    growth_value_2023_2024_pct,
+    share_world_exports_pct,
+    avg_distance_km,
+    concentration_index
+)
+SELECT
+    country.id_country,
+    src.Value2024_USD,
+    src.TradeBalance2024_USD,
+    src.Growth2020_2024_Pct * 0.01,
+    src.Growth2023_2024_Pct * 0.01,
+    src.ShareWorldExportsPct * 0.01,
+    src.AvgDistanceKm,
+    src.ConcentrationIndex
+FROM staging.vw_calc_all_exp_2024 AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.ISO3;
+GO
+
+/* ---------------------------------------------------------------------------
+   CALC_EXP_WORLD (all products snapshot)
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.CALC_EXP_WORLD (
     id_country,
     value_2024_usd,
     trade_balance_2024_usd,

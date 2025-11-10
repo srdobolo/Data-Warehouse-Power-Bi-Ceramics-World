@@ -37,12 +37,23 @@ IF (
 
 ```dax
 Country Rank by Exports = 
-RANKX(
-    ALL('DIM_COUNTRY'[country_name]),
-    [Total Exports 2024],
-    ,
-    DESC,
-    Skip
+VAR CountryList =
+    FILTER(
+        ALLSELECTED('DIM_COUNTRY'[country_name]),
+        'DIM_COUNTRY'[country_name] <> "World"
+    )
+VAR RankValue =
+    RANKX(
+        CountryList,
+        [Total Exports 2024],
+        ,
+        DESC,
+        SKIP
+    )
+RETURN
+IF(
+    SELECTEDVALUE('DIM_COUNTRY'[country_name]) = "World",
+    BLANK(),
+    RankValue
 )
 ```
-
