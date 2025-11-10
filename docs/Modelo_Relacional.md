@@ -1,62 +1,91 @@
-﻿# Modelo Relacional – Ceramics World
+# Modelo Relacional – Ceramics World
 
-## Estrutura Geral
+Este documento descreve como as entidades se relacionam fisicamente na base de dados após a
+normalização aplicada pelo ETL.
 
-Arquitetura em estrela com dimensões `DIM_COUNTRY`, `DIM_PRODUCT`, `DIM_DATE` ligando fact tables (`FACT_*`) e tabelas de KPIs (`CALC_*`). As tabelas CALC guardam apenas o snapshot 2024 e referenciam `DIM_COUNTRY` ou `DIM_PRODUCT`.
+## Principais Relacionamentos
+| Origem | Destino | Tipo | Descrição |
+| --- | --- | --- | --- |
+| `DIM_COUNTRY` | `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP`, `FACT_IMP_PT`, `FACT_PIB`, `FACT_URBAN`, `FACT_CONSTRUCTION` | 1:N | Cada país pode possuir múltiplas medições ao longo do tempo. |
+| `DIM_COUNTRY` | `CALC_EXP_PT_2024`, `CALC_EXP_2024`, `CALC_EXP_WORLD`, `CALC_ALL_EXP_2024`, `CALC_IMP_2024`, `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024` | 1:N | KPIs 2024 por país. |
+| `DIM_PRODUCT` | `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD_BY_PT`, `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT` | 1:N | Séries e KPIs por HS code. |
+| `DIM_DATE` | Todas as `FACT_*` (exceto calc tables) | 1:N | Cada registo factual aponta para um ano/trimestre específico. |
+| `DIM_DATE` | `FACT_EXP_SECTOR_BY_PT`, `FACT_IMP_SECTOR` | 1:N | Séries trimestrais agregadas por data. |
 
-## Dimensões
-
-`DIM_COUNTRY (id_country, country_name, country_code)`  
-`DIM_PRODUCT (id_product, code, product_label)`  
-`DIM_DATE (id_date, year, quarter, decade)`
-
-## Fact tables
-
-| Tabela                   | Chaves estrangeiras                       | Descrição                                               |
-| ------------------------ | ----------------------------------------- | ------------------------------------------------------- |
-| `FACT_EXP_PT`            | `id_country → DIM_COUNTRY`, `id_date → DIM_DATE` | Exportações de Portugal por país / ano                 |
-| `FACT_EXP`               | `id_country → DIM_COUNTRY`, `id_date → DIM_DATE` | Exportações mundiais                                    |
-| `FACT_EXP_PROD_BY_PT`    | `id_product → DIM_PRODUCT`, `id_date → DIM_DATE` | Exportações de Portugal por HS                          |
-| `FACT_EXP_SECTOR_BY_PT`  | `id_date → DIM_DATE`                       | Serviços de construção exportados (Portugal)            |
-| `FACT_IMP_PT`            | `id_country → DIM_COUNTRY`, `id_date → DIM_DATE` | Importações mundiais por país                           |
-| `FACT_IMP_PROD_BY_PT`    | `id_product → DIM_PRODUCT`, `id_date → DIM_DATE` | Importações por HS                                      |
-| `FACT_IMP_SECTOR`        | `id_date → DIM_DATE`                       | Serviços de construção importados (linha “World”)       |
-
-Modelo simplificado (Mermaid):
-
+## Diagrama Lógico-Relacional
 ```mermaid
-erDiagram
-    DIM_COUNTRY ||--o{ FACT_EXP_PT : destino
-    DIM_COUNTRY ||--o{ FACT_EXP : exportador
-    DIM_COUNTRY ||--o{ FACT_IMP_PT : importador
-    DIM_COUNTRY ||--o{ CALC_EXP_PT_2024 : destino
-    DIM_COUNTRY ||--o{ CALC_EXP_2024 : exportador
-    DIM_COUNTRY ||--o{ CALC_ALL_EXP_2024 : exportador_total
-    DIM_COUNTRY ||--o{ CALC_IMP_PT_2024 : importador
+graph LR
+    subgraph Dimensões
+        dc[DIM_COUNTRY]
+        dp[DIM_PRODUCT]
+        dd[DIM_DATE]
+    end
 
-    DIM_PRODUCT ||--o{ FACT_EXP_PROD_BY_PT : produto
-    DIM_PRODUCT ||--o{ FACT_IMP_PROD_BY_PT : produto
-    DIM_PRODUCT ||--o{ CALC_EXP_PROD_BY_PT : produto
-    DIM_PRODUCT ||--o{ CALC_IMP_PROD_BY_PT : produto
+    subgraph Fatos Comércio
+        fexppt[FACT_EXP_PT]
+        fexp[FACT_EXP]
+        fimpt[FACT_IMP_PT]
+        fimp[FACT_IMP]
+        fexpprod[FACT_EXP_PROD_BY_PT]
+        fimpprod[FACT_IMP_PROD_BY_PT]
+        fexpsec[FACT_EXP_SECTOR_BY_PT]
+        fimpsec[FACT_IMP_SECTOR]
+    end
 
-    DIM_DATE ||--o{ FACT_EXP_PT : ocorre
-    DIM_DATE ||--o{ FACT_EXP : ocorre
-    DIM_DATE ||--o{ FACT_EXP_PROD_BY_PT : ocorre
-    DIM_DATE ||--o{ FACT_EXP_SECTOR_BY_PT : ocorre
-    DIM_DATE ||--o{ FACT_IMP_PT : ocorre
-    DIM_DATE ||--o{ FACT_IMP_PROD_BY_PT : ocorre
-    DIM_DATE ||--o{ FACT_IMP_SECTOR : ocorre
+    subgraph Macro
+        fpib[FACT_PIB]
+        furban[FACT_URBAN]
+        fconst[FACT_CONSTRUCTION]
+    end
+
+    subgraph Calc
+        cexpp[CALC_EXP_PT_2024]
+        cexp[CALC_EXP_2024]
+        cexpw[CALC_EXP_WORLD]
+        call[CALC_ALL_EXP_2024]
+        cexp_prod[CALC_EXP_PROD_BY_PT]
+        cimp_prod[CALC_IMP_PROD_BY_PT]
+        cimppt[CALC_IMP_PT_2024]
+        cimpcer[CALC_IMP_CER_2024]
+        cimpa[CALC_IMP_2024]
+    end
+
+    dc --> fexppt
+    dc --> fexp
+    dc --> fimpt
+    dc --> fimp
+    dc --> fpib
+    dc --> furban
+    dc --> fconst
+    dc --> cexpp
+    dc --> cexp
+    dc --> cexpw
+    dc --> call
+    dc --> cimppt
+    dc --> cimpcer
+    dc --> cimpa
+
+    dp --> fexpprod
+    dp --> fimpprod
+    dp --> cexp_prod
+    dp --> cimp_prod
+
+    dd --> fexppt
+    dd --> fexp
+    dd --> fexpprod
+    dd --> fexpsec
+    dd --> fimp
+    dd --> fimpt
+    dd --> fimpprod
+    dd --> fimpsec
+    dd --> fpib
+    dd --> furban
+    dd --> fconst
 ```
 
-## Tabelas de KPIs 2024
-
-| Tabela                   | FK                     | Campos principais                                                                                 |
-| ------------------------ | ---------------------- | -------------------------------------------------------------------------------------------------- |
-| `CALC_EXP_PT_2024`       | `id_country`           | `value_2024_usd`, `trade_balance_2024_usd`, `% share`, `growth_20_24`, `average distance`, `tariff` |
-| `CALC_EXP_2024`          | `id_country`           | KPIs globais (share mundial, crescimento, distância, concentração)                                 |
-| `CALC_ALL_EXP_2024`      | `id_country`           | KPIs globais considerando todos os produtos (Total Trade Map)                                      |
-| `CALC_EXP_PROD_BY_PT`    | `id_product`           | KPIs 2024 por produto exportado (crescimentos, ranking, share, distância)                          |
-| `CALC_IMP_PT_2024`       | `id_country`           | KPIs 2024 por país importador (crescimentos, share, tarifa)                                       |
-| `CALC_IMP_PROD_BY_PT`    | `id_product`           | KPIs 2024 por produto importado (crescimentos, distâncias)                                        |
-
-Essas tabelas mantêm uma linha por país/produto e não utilizam `id_date`, pois representam apenas o snapshot 2024.
+## Notas
+- Todas as FKs usam `ON DELETE NO ACTION` para impedir remoção acidental de dimensões.
+- `FACT_IMP` e `CALC_IMP_CER_2024` são povoados diretamente do ficheiro
+  `Trade_Map_-_List_of_importers_for_the_selected_product_in_2024_(Ceramic_products)`.
+- `CALC_IMP_2024` reutiliza o ficheiro “all products” para espelhar o lado importador com os mesmos
+  campos das tabelas de exportação.

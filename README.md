@@ -1,90 +1,70 @@
-# Data-Warehouse-Power-Bi-Ceramics-World
+# Data-Warehouse-Power-BI – Ceramics World
 
-## Contexto do Projeto
+## Contexto
+Uma empresa portuguesa de cerâmica quer identificar mercados prioritários para exportação,
+acompanhando a realidade competitiva (exportadores/importadores), bem como os principais
+drivers macroeconómicos (PIB per capita, urbanização e crescimento da construção). Todo o processo
+foi modelado num data warehouse em SQL Server e exposto em Power BI.
 
-Uma empresa portuguesa de cerâmica (pavimentos, revestimentos e louça sanitária) procura expandir a sua exportação para mercados internacionais com crescimento no setor da construção e renovação urbana.
-
-O objetivo principal é utilizar análises de dados e visualizações em Power BI para identificar oportunidades de mercado e clusters de países com características semelhantes, suportando decisões estratégicas de internacionalização
-
-## Objetivos do Projeto
-
-### 1. Analisar o mercado global de produtos cerâmicos, com foco em
-
-- Importações e exportações (Trade Map, HS Codes: 6907, 6908, 6910)
-- Crescimento do setor da construção (Eurostat)
-- Urbanização e indicadores demográficos (World Bank)
-
-### 2. Aplicar técnicas de Data Warehousing e Data Analytics, incluindo
-
-- ETL (Extract, Transform, Load) de múltiplas fontes de dados
-- Normalização e integração num modelo dimensional
-- Criação de medidas e KPIs relevantes (PIB per capita, crescimento urbano, quota de mercado, etc.)
-
-### 3. Desenvolver dashboards interativos em Power BI, que permitam
-
-- Visualizar clusters de países
-- Avaliar a evolução setorial da construção nos últimos 5 anos
-- Analisar quota de mercado por origem
-- Realizar análise competitiva (preço vs. qualidade)
+## Objetivos
+1. Consolidar dados do Trade Map, World Bank e outras fontes públicas num modelo dimensional único.
+2. Calcular KPIs 2024 (balances, rankings, quotas, distâncias, tarifas) para países e produtos.
+3. Disponibilizar séries históricas de comércio, PIB, urbanização e construção para análise temporal.
+4. Alimentar dashboards Power BI com medidas DAX reutilizáveis.
 
 ## Estrutura do Repositório
+```
+├── data/                         # CSVs/Excels ingestidos pelo ETL
+├── docker/                       # Variáveis de ambiente / compose (quando aplicável)
+├── docs/                         # Modelos conceptual, lógico, físico e relacional
+├── etl/                          # Scripts Python de ingestão (pandas + SQLAlchemy)
+├── Power BI/                     # Medidas DAX e assets do relatório
+└── sql/                          # Scripts de staging, dimensões, fatos e cálculos
+```
 
-```kotlin
-📦 produtos-ceramicos
- ┣ 📂 data
- ┃ ┣ trade_map.csv
- ┃ ┣ eurostat_construction.csv
- ┃ ┗ worldbank_urbanization.csv
- ┣ 📂 scripts
- ┃ ┣ etl_process.py
- ┃ ┗ clustering_analysis.ipynb
- ┣ 📂 powerbi
- ┃ ┗ dashboard.pbix
- ┣ 📄 README.md
- ┗ 📄 data_model.sql
- ```
+## Fontes de Dados
+| Fonte | Dataset | Utilização |
+| --- | --- | --- |
+| Trade Map | `Trade_Map_-_List_of_exporters_for_the_selected_product_in_2024_(Ceramic_products)` | KPIs para `CALC_EXP_2024`. |
+| Trade Map | `Trade_Map_-_List_of_exporters_for_the_selected_product_in_2024_(All_products)` | KPIs globais (`CALC_EXP_WORLD`, `CALC_ALL_EXP_2024`, `CALC_IMP_2024`). |
+| Trade Map | `Trade_Map_-_List_of_importers_for_the_selected_product_in_2024_(Ceramic_products)` | `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024`, `FACT_IMP`. |
+| Trade Map | Séries históricas (export/import country/product) | `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP_PT`, `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD_BY_PT`. |
+| Trade Map | Serviços de construção (exports/imports) | `FACT_EXP_SECTOR_BY_PT`, `FACT_IMP_SECTOR`. |
+| World Bank | `GDP per capita (NY.GDP.PCAP.CD)` | `FACT_PIB`. |
+| World Bank | `Urban population (SP.URB.TOTL)` | `FACT_URBAN`. |
+| World Bank | `NV.IND.TOTL.KD.ZG` (Industry incl. construction, value added growth) | `FACT_CONSTRUCTION`. |
 
-## Stack Tecnológico
+## Scripts SQL
+- `sql/10_staging.sql`: criação das views de staging, incluindo unpivot e normalização de países/HS codes.
+- `sql/20_dimensions.sql`: carga das dimensões (`DIM_COUNTRY`, `DIM_PRODUCT`, `DIM_DATE`).
+- `sql/30_facts.sql`: recria e popula todas as fact tables e tabelas de cálculo, incluindo as novas
+  `CALC_EXP_WORLD`, `CALC_IMP_2024`, `CALC_IMP_CER_2024`, `FACT_IMP`, `FACT_PIB`, `FACT_URBAN`,
+  `FACT_CONSTRUCTION`.
 
-| Tecnologia                            | Utilização                          |
-| ------------------------------------- | ----------------------------------- |
-| **SQL Server / Azure Data Warehouse** | Armazenamento e modelagem de dados  |
-| **Power BI Desktop / Service**        | Criação e publicação dos dashboards |
-| **Python (Pandas, Scikit-learn)**     | Pré-processamento e clustering      |
-| **Excel / CSV / API Connectors**      | Fontes de dados externas            |
+## Documentação Atualizada
+- `docs/Modelo_Conceptual.md`: visão de alto nível com as novas entidades.
+- `docs/Modelo_Logico.md`: grão, cardinalidades e regras das tabelas.
+- `docs/Modelo_Fisico.md`: DDL consolidado (inclui novas tabelas).
+- `docs/Modelo_Relacional.md`: relacionamentos e diagrama Mermaid.
 
-## Estrutura Analítica
+## Power BI
+O ficheiro `Power BI/DAX.md` contém as medidas principais usadas no relatório. Com a introdução das
+novas tabelas (`CALC_IMP_CER_2024`, `CALC_IMP_2024`, `FACT_PIB`, etc.) é possível:
+- Calcular shares cerâmica vs. exportações totais.
+- Relacionar crescimento da construção e PIB per capita com o desempenho comercial.
+- Diferenciar métricas de exportação (origem) e importação (destino).
 
-| Fonte           | Descrição                                             | Tipo de Dados          |
-| --------------- | ----------------------------------------------------- | ---------------------- |
-| **Trade Map**   | Importações e exportações (HS 6907, 6908, 6910)       | Comércio Internacional |
-| **World Bank**  | Urbanização, PIB per capita, crescimento populacional | Macroeconômico         |
+## Como Executar
+1. Configure o `.env` (ou `docker/.env`) com as credenciais do SQL Server.
+2. Execute `etl/ingest_csv.py` para carregar/atualizar todas as tabelas staging.
+3. Corra `sqlcmd -d CeramicsWorldDB -i sql/10_staging.sql`, depois `20_dimensions.sql` e `30_facts.sql`.
+4. Atualize o relatório Power BI apontando para a base `CeramicsWorldDB`.
 
-## Modelo Conceptual
+## Referências
+- https://www.trademap.org/
+- https://data.worldbank.org/indicator/SP.URB.TOTL
+- https://data.worldbank.org/indicator/NV.IND.TOTL.KD.ZG
+- https://data.worldbank.org/indicator/NY.GDP.PCAP.CD
 
-[Modelo Conceptual]('https://github.com/srdobolo/Data-Warehouse-Power-Bi-Ceramics-World/blob/main/docs/Modelo_Conceptual.md')
-
-## Modelo Lógico
-
-[Modelo Lógico]('https://github.com/srdobolo/Data-Warehouse-Power-Bi-Ceramics-World/blob/42a5820d779a75e8285f5d3949c0b53080c2bd4e/docs/Modelo_Conceptual.md')
-
-## Modelo Físico
-
-[Modelo Físico]('https://github.com/srdobolo/Data-Warehouse-Power-Bi-Ceramics-World/blob/42a5820d779a75e8285f5d3949c0b53080c2bd4e/docs/Modelo_Conceptual.md')
-
-## Modelo Relacional
-
-[Modelo Relacional]('https://github.com/srdobolo/Data-Warehouse-Power-Bi-Ceramics-World/blob/42a5820d779a75e8285f5d3949c0b53080c2bd4e/docs/Modelo_Conceptual.md')
-
-## References
-
-> https://data.worldbank.org/indicator/SP.URB.TOTL?end=2024&start=2024&view=map
-
-> https://www.trademap.org/Country_SelService_TS.aspx
-
-> https://tradingeconomics.com/country-list/construction-output ?????????????
-
-## licença
-
-Este projeto é apenas para fins educativos e não contém dados confidenciais.
-Licenciado sob a MIT License.
+## Licença
+Projeto apenas para fins educativos – licenciado sob MIT.

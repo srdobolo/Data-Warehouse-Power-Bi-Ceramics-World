@@ -16,6 +16,8 @@ CALC_EXP_2024(id_country,trade_balance_2024, Growth in exported value between 20
 
 CALC_EXP_WORLD(id_country,value_2024_usd,trade_balance_2024_usd,Growth in exported value between 2020-2024 (%, p.a.),Growth in exported value between 2023-2024 (%, p.a.),Share in world exports (%),Average distance of importing countries (km),Concentration of importing countries)
 
+CALC_IMP_2024(id_country,value_2024_usd,trade_balance_2024_usd,Growth in traded value between 2020-2024 (%, p.a.),Growth in traded value between 2023-2024 (%, p.a.),Share in world imports (%),Average distance of trading partners (km),Concentration of trading partners)
+
 FACT_EXP_PROD_BY_PT(id_exp_prod_pt, id_product, id_date, value )
 
 CALC_EXP_PROD_BY_PT(id_product, Trade balance 2024 (USD thousand), Annual growth in value between 2020-2024 (%, p.a.), Annual growth in quantity between 2020-2024 (%, p.a.), Annual growth in value between 2023-2024 (%, p.a.), Annual growth of world imports between 2020-2024 (%, p.a.), Share in world exports (%), Ranking in world exports, Average distance of importing countries (km), Concentration of importing countries)
@@ -25,6 +27,8 @@ FACT_EXP_SECTOR_BY_PT(id_exp_sector,id_date, value)
 FACT_IMP_PT(id_imp_pt, id_country, id_date, value)
 
 CALC_IMP_PT_2024(id_country,trade_balance_2024, Annual growth in value between 2020-2024 (%, p.a.), Annual growth in value between 2023-2024 (%, p.a.), Share in world imports (%), Average distance of supplying countries (km), Concentration of supplying countries, Average tariff (estimated) applied by the country (%))
+
+CALC_IMP_CER_2024(id_country,trade_balance_2024, Annual growth in value between 2020-2024 (%, p.a.), Annual growth in value between 2023-2024 (%, p.a.), Share in world imports (%), Average distance of supplying countries (km), Concentration of supplying countries, Average tariff (estimated) applied by the country (%))
 
 FACT_IMP_PROD_BY_PT(id_imp_prod_pt, id_product, id_date, value )
 

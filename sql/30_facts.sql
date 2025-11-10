@@ -11,6 +11,8 @@ DROP TABLE IF EXISTS dbo.CALC_EXP_PT_2024;
 DROP TABLE IF EXISTS dbo.FACT_EXP;
 DROP TABLE IF EXISTS dbo.CALC_EXP_2024;
 DROP TABLE IF EXISTS dbo.CALC_EXP_WORLD;
+DROP TABLE IF EXISTS dbo.CALC_IMP_CER_2024;
+DROP TABLE IF EXISTS dbo.CALC_IMP_2024;
 DROP TABLE IF EXISTS dbo.CALC_ALL_EXP_2024;
 DROP TABLE IF EXISTS dbo.FACT_EXP_PROD_BY_PT;
 DROP TABLE IF EXISTS dbo.CALC_EXP_PROD_BY_PT;
@@ -87,6 +89,18 @@ CREATE TABLE dbo.CALC_EXP_WORLD (
     CONSTRAINT FK_CALC_EXP_WORLD_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country)
 );
 
+CREATE TABLE dbo.CALC_IMP_2024 (
+    id_country INT PRIMARY KEY,
+    value_2024_usd DECIMAL(18,2) NULL,
+    trade_balance_2024_usd DECIMAL(18,2) NULL,
+    growth_value_2020_2024_pct DECIMAL(18,4) NULL,
+    growth_value_2023_2024_pct DECIMAL(18,4) NULL,
+    share_world_imports_pct DECIMAL(18,4) NULL,
+    avg_distance_km DECIMAL(18,2) NULL,
+    concentration_index DECIMAL(18,4) NULL,
+    CONSTRAINT FK_CALC_IMP_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country)
+);
+
 CREATE TABLE dbo.CALC_ALL_EXP_2024 (
     id_country INT PRIMARY KEY,
     value_2024_usd DECIMAL(18,2) NULL,
@@ -150,6 +164,19 @@ CREATE TABLE dbo.CALC_IMP_PT_2024 (
     concentration_index DECIMAL(18,4) NULL,
     avg_tariff_pct DECIMAL(18,4) NULL,
     CONSTRAINT FK_CALC_IMP_PT_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country)
+);
+
+CREATE TABLE dbo.CALC_IMP_CER_2024 (
+    id_country INT PRIMARY KEY,
+    value_2024_usd DECIMAL(18,2) NULL,
+    trade_balance_2024_usd DECIMAL(18,2) NULL,
+    growth_value_2020_2024_pct DECIMAL(18,4) NULL,
+    growth_value_2023_2024_pct DECIMAL(18,4) NULL,
+    share_world_imports_pct DECIMAL(18,4) NULL,
+    avg_distance_km DECIMAL(18,2) NULL,
+    concentration_index DECIMAL(18,4) NULL,
+    avg_tariff_pct DECIMAL(18,4) NULL,
+    CONSTRAINT FK_CALC_IMP_CER_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country)
 );
 
 CREATE TABLE dbo.FACT_IMP_PROD_BY_PT (
@@ -369,6 +396,33 @@ JOIN dbo.DIM_COUNTRY AS country
 GO
 
 /* ---------------------------------------------------------------------------
+   CALC_IMP_2024 (all products snapshot mirrored as import metrics)
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.CALC_IMP_2024 (
+    id_country,
+    value_2024_usd,
+    trade_balance_2024_usd,
+    growth_value_2020_2024_pct,
+    growth_value_2023_2024_pct,
+    share_world_imports_pct,
+    avg_distance_km,
+    concentration_index
+)
+SELECT
+    country.id_country,
+    src.Value2024_USD,
+    src.TradeBalance2024_USD,
+    src.Growth2020_2024_Pct * 0.01,
+    src.Growth2023_2024_Pct * 0.01,
+    src.ShareWorldExportsPct * 0.01,
+    src.AvgDistanceKm,
+    src.ConcentrationIndex
+FROM staging.vw_calc_all_exp_2024 AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.ISO3;
+GO
+
+/* ---------------------------------------------------------------------------
    FACT_EXP_PROD_BY_PT
 --------------------------------------------------------------------------- */
 INSERT INTO dbo.FACT_EXP_PROD_BY_PT (id_product, id_date, value)
@@ -453,6 +507,35 @@ GO
    CALC_IMP_PT_2024
 --------------------------------------------------------------------------- */
 INSERT INTO dbo.CALC_IMP_PT_2024 (
+    id_country,
+    value_2024_usd,
+    trade_balance_2024_usd,
+    growth_value_2020_2024_pct,
+    growth_value_2023_2024_pct,
+    share_world_imports_pct,
+    avg_distance_km,
+    concentration_index,
+    avg_tariff_pct
+)
+SELECT
+    country.id_country,
+    src.Value2024_USD,
+    src.TradeBalance2024_USD,
+    src.Growth2020_2024_Pct * 0.01,
+    src.Growth2023_2024_Pct * 0.01,
+    src.ShareWorldImportsPct * 0.01,
+    src.AvgDistanceKm,
+    src.ConcentrationIndex,
+    src.AvgTariffPct * 0.01
+FROM staging.vw_calc_imp_pt_2024 AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.ISO3;
+GO
+
+/* ---------------------------------------------------------------------------
+   CALC_IMP_CER_2024 (ceramics importers snapshot)
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.CALC_IMP_CER_2024 (
     id_country,
     value_2024_usd,
     trade_balance_2024_usd,
