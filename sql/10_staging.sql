@@ -775,18 +775,32 @@ CREATE OR ALTER VIEW staging.vw_calc_exp_pt_2024 AS
 SELECT
     LTRIM(RTRIM(src.Importers))                                AS CountryName,
     ref.ISO3,
-    TRY_CONVERT(DECIMAL(18, 2), src.[Value exported in 2024 (USD thousand)])       AS Value2024_USD,
-    TRY_CONVERT(DECIMAL(18, 2), src.[Trade balance 2024 (USD thousand)])           AS TradeBalance2024_USD,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Share in Portugal's exports (%)])             AS SharePortugalExportsPct,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Growth in exported value between 2020-2024 (%, p.a.)]) AS Growth2020_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Growth in exported value between 2023-2024 (%, p.a.)]) AS Growth2023_2024_Pct,
-    TRY_CONVERT(INT, src.[Ranking of partner countries in world imports])          AS RankingWorldImports,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Share of partner countries in world imports (%)]) AS ShareWorldImportsPct,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Total imports growth in value of partner countries between 2020-2024 (%, p.a.)]) AS PartnerGrowth2020_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 2), src.[Average distance between partner countries and all their supplying markets (km)]) AS AvgDistanceKm,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Concentration of all supplying countries of partner countries]) AS ConcentrationIndex,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Average tariff (estimated) faced by Portugal (%)]) AS AvgTariffPct
+    TRY_CONVERT(DECIMAL(18, 2), fmt.Value2024Txt)       AS Value2024_USD,
+    TRY_CONVERT(DECIMAL(18, 2), fmt.TradeBalanceTxt)    AS TradeBalance2024_USD,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.SharePortugalTxt)   AS SharePortugalExportsPct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.Growth2020Txt)      AS Growth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.Growth2023Txt)      AS Growth2023_2024_Pct,
+    TRY_CONVERT(INT, fmt.RankingTxt)                    AS RankingWorldImports,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.ShareWorldTxt)      AS ShareWorldImportsPct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.PartnerGrowthTxt)   AS PartnerGrowth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 2), fmt.AvgDistanceTxt)     AS AvgDistanceKm,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.ConcentrationTxt)   AS ConcentrationIndex,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.AvgTariffTxt)       AS AvgTariffPct
 FROM dbo.exports_country_csv_trade_map_list_of_importing_markets_for_the_product_exported_by_portugal_in_2024_xls AS src
+CROSS APPLY (
+    SELECT
+        REPLACE(REPLACE(REPLACE(src.[Value exported in 2024 (USD thousand)], ',', ''), '(', '-'), ')', '') AS Value2024Txt,
+        REPLACE(REPLACE(REPLACE(src.[Trade balance 2024 (USD thousand)], ',', ''), '(', '-'), ')', '') AS TradeBalanceTxt,
+        REPLACE(REPLACE(REPLACE(src.[Share in Portugal's exports (%)], ',', ''), '(', '-'), ')', '') AS SharePortugalTxt,
+        REPLACE(REPLACE(REPLACE(src.[Growth in exported value between 2020-2024 (%, p.a.)], ',', ''), '(', '-'), ')', '') AS Growth2020Txt,
+        REPLACE(REPLACE(REPLACE(src.[Growth in exported value between 2023-2024 (%, p.a.)], ',', ''), '(', '-'), ')', '') AS Growth2023Txt,
+        REPLACE(REPLACE(REPLACE(src.[Ranking of partner countries in world imports], ',', ''), '(', '-'), ')', '') AS RankingTxt,
+        REPLACE(REPLACE(REPLACE(src.[Share of partner countries in world imports (%)], ',', ''), '(', '-'), ')', '') AS ShareWorldTxt,
+        REPLACE(REPLACE(REPLACE(src.[Total imports growth in value of partner countries between 2020-2024 (%, p.a.)], ',', ''), '(', '-'), ')', '') AS PartnerGrowthTxt,
+        REPLACE(REPLACE(REPLACE(src.[Average distance between partner countries and all their supplying markets (km)], ',', ''), '(', '-'), ')', '') AS AvgDistanceTxt,
+        REPLACE(REPLACE(REPLACE(src.[Concentration of all supplying countries of partner countries], ',', ''), '(', '-'), ')', '') AS ConcentrationTxt,
+        REPLACE(REPLACE(REPLACE(src.[Average tariff (estimated) faced by Portugal (%)], ',', ''), '(', '-'), ')', '') AS AvgTariffTxt
+) AS fmt
 LEFT JOIN staging.ref_country_lookup AS ref
     ON ref.CountryLabel = LTRIM(RTRIM(src.Importers))
 WHERE ref.ISO3 IS NOT NULL;
@@ -796,14 +810,24 @@ CREATE OR ALTER VIEW staging.vw_calc_exp_world_2024 AS
 SELECT
     LTRIM(RTRIM(src.Exporters))                                AS CountryName,
     ref.ISO3,
-    TRY_CONVERT(DECIMAL(18, 2), src.[Value exported in 2024 (USD thousand)])            AS Value2024_USD,
-    TRY_CONVERT(DECIMAL(18, 2), src.[Trade balance in 2024 (USD thousand)])             AS TradeBalance2024_USD,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Annual growth in value between 2020-2024 (%)])     AS Growth2020_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Annual growth in value between 2023-2024 (%)])     AS Growth2023_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Share in world exports (%)])                       AS ShareWorldExportsPct,
-    TRY_CONVERT(DECIMAL(18, 2), src.[Average distance of importing countries (km)])     AS AvgDistanceKm,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Concentration of importing countries])             AS ConcentrationIndex
+    TRY_CONVERT(DECIMAL(18, 2), fmt.Value2024Txt)            AS Value2024_USD,
+    TRY_CONVERT(DECIMAL(18, 2), fmt.TradeBalanceTxt)         AS TradeBalance2024_USD,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.Growth2020Txt)           AS Growth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.Growth2023Txt)           AS Growth2023_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.ShareWorldTxt)           AS ShareWorldExportsPct,
+    TRY_CONVERT(DECIMAL(18, 2), fmt.AvgDistanceTxt)          AS AvgDistanceKm,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.ConcentrationTxt)        AS ConcentrationIndex
 FROM dbo.exports_csv_trade_map_list_of_exporters_for_the_selected_product_in_2024_ceramic_products_xls AS src
+CROSS APPLY (
+    SELECT
+        REPLACE(REPLACE(REPLACE(src.[Value exported in 2024 (USD thousand)], ',', ''), '(', '-'), ')', '') AS Value2024Txt,
+        REPLACE(REPLACE(REPLACE(src.[Trade balance in 2024 (USD thousand)], ',', ''), '(', '-'), ')', '') AS TradeBalanceTxt,
+        REPLACE(REPLACE(REPLACE(src.[Annual growth in value between 2020-2024 (%)], ',', ''), '(', '-'), ')', '') AS Growth2020Txt,
+        REPLACE(REPLACE(REPLACE(src.[Annual growth in value between 2023-2024 (%)], ',', ''), '(', '-'), ')', '') AS Growth2023Txt,
+        REPLACE(REPLACE(REPLACE(src.[Share in world exports (%)], ',', ''), '(', '-'), ')', '') AS ShareWorldTxt,
+        REPLACE(REPLACE(REPLACE(src.[Average distance of importing countries (km)], ',', ''), '(', '-'), ')', '') AS AvgDistanceTxt,
+        REPLACE(REPLACE(REPLACE(src.[Concentration of importing countries], ',', ''), '(', '-'), ')', '') AS ConcentrationTxt
+) AS fmt
 LEFT JOIN staging.ref_country_lookup AS ref
     ON ref.CountryLabel = LTRIM(RTRIM(src.Exporters))
 WHERE ref.ISO3 IS NOT NULL;
@@ -816,14 +840,24 @@ CREATE OR ALTER VIEW staging.vw_calc_all_exp_2024 AS
 SELECT
     LTRIM(RTRIM(src.[Exporters]))                              AS CountryName,
     ref.ISO3,
-    TRY_CONVERT(DECIMAL(18, 2), src.[Value exported in 2024 (USD thousand)])            AS Value2024_USD,
-    TRY_CONVERT(DECIMAL(18, 2), src.[Trade balance in 2024 (USD thousand)])             AS TradeBalance2024_USD,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Annual growth in value between 2020-2024 (%)])     AS Growth2020_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Annual growth in value between 2023-2024 (%)])     AS Growth2023_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Share in world exports (%)])                       AS ShareWorldExportsPct,
-    TRY_CONVERT(DECIMAL(18, 2), src.[Average distance of importing countries (km)])     AS AvgDistanceKm,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Concentration of importing countries])             AS ConcentrationIndex
+    TRY_CONVERT(DECIMAL(18, 2), fmt.Value2024Txt)            AS Value2024_USD,
+    TRY_CONVERT(DECIMAL(18, 2), fmt.TradeBalanceTxt)         AS TradeBalance2024_USD,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.Growth2020Txt)           AS Growth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.Growth2023Txt)           AS Growth2023_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.ShareWorldTxt)           AS ShareWorldExportsPct,
+    TRY_CONVERT(DECIMAL(18, 2), fmt.AvgDistanceTxt)          AS AvgDistanceKm,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.ConcentrationTxt)        AS ConcentrationIndex
 FROM dbo.trade_map_list_of_exporters_for_the_selected_product_in_2024_all_products_xls AS src
+CROSS APPLY (
+    SELECT
+        REPLACE(REPLACE(REPLACE(src.[Value exported in 2024 (USD thousand)], ',', ''), '(', '-'), ')', '') AS Value2024Txt,
+        REPLACE(REPLACE(REPLACE(src.[Trade balance in 2024 (USD thousand)], ',', ''), '(', '-'), ')', '') AS TradeBalanceTxt,
+        REPLACE(REPLACE(REPLACE(src.[Annual growth in value between 2020-2024 (%)], ',', ''), '(', '-'), ')', '') AS Growth2020Txt,
+        REPLACE(REPLACE(REPLACE(src.[Annual growth in value between 2023-2024 (%)], ',', ''), '(', '-'), ')', '') AS Growth2023Txt,
+        REPLACE(REPLACE(REPLACE(src.[Share in world exports (%)], ',', ''), '(', '-'), ')', '') AS ShareWorldTxt,
+        REPLACE(REPLACE(REPLACE(src.[Average distance of importing countries (km)], ',', ''), '(', '-'), ')', '') AS AvgDistanceTxt,
+        REPLACE(REPLACE(REPLACE(src.[Concentration of importing countries], ',', ''), '(', '-'), ')', '') AS ConcentrationTxt
+) AS fmt
 LEFT JOIN staging.ref_country_lookup AS ref
     ON ref.CountryLabel = LTRIM(RTRIM(src.[Exporters]))
 WHERE ref.ISO3 IS NOT NULL;
@@ -833,32 +867,56 @@ CREATE OR ALTER VIEW staging.vw_calc_exp_prod_pt_2024 AS
 SELECT
     LTRIM(RTRIM(REPLACE([Code], '''', '')))                   AS HSCode,
     LTRIM(RTRIM([Product label]))                             AS ProductLabel,
-    TRY_CONVERT(DECIMAL(18, 2), [Value exported in 2024 (USD thousand)])           AS Value2024_USD,
-    TRY_CONVERT(DECIMAL(18, 2), [Trade balance 2024 (USD thousand)])               AS TradeBalance2024_USD,
-    TRY_CONVERT(DECIMAL(18, 4), [Annual growth in value between 2020-2024 (%, p.a.)])        AS GrowthValue2020_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), [Annual growth in quantity between 2020-2024 (%, p.a.)])     AS GrowthQty2020_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), [Annual growth in value between 2023-2024 (%, p.a.)])        AS GrowthValue2023_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), [Annual growth of world imports between 2020-2024 (%, p.a.)]) AS WorldImportGrowth2020_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), [Share in world exports (%)])                         AS ShareWorldExportsPct,
-    TRY_CONVERT(INT, [Ranking in world exports])                                      AS RankingWorldExports,
-    TRY_CONVERT(DECIMAL(18, 2), [Average distance of importing countries (km)])       AS AvgDistanceKm,
-    TRY_CONVERT(DECIMAL(18, 4), [Concentration of importing countries])               AS ConcentrationIndex
-FROM dbo.exports_products_csv_trade_map_list_of_products_at_4_digits_level_exported_by_portugal_in_2024_xls;
+    TRY_CONVERT(DECIMAL(18, 2), fmt.Value2024Txt)           AS Value2024_USD,
+    TRY_CONVERT(DECIMAL(18, 2), fmt.TradeBalanceTxt)        AS TradeBalance2024_USD,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.GrowthValue2020Txt)     AS GrowthValue2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.GrowthQty2020Txt)       AS GrowthQty2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.GrowthValue2023Txt)     AS GrowthValue2023_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.WorldImportGrowthTxt)   AS WorldImportGrowth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.ShareWorldTxt)          AS ShareWorldExportsPct,
+    TRY_CONVERT(INT, fmt.RankingTxt)                        AS RankingWorldExports,
+    TRY_CONVERT(DECIMAL(18, 2), fmt.AvgDistanceTxt)         AS AvgDistanceKm,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.ConcentrationTxt)       AS ConcentrationIndex
+FROM dbo.exports_products_csv_trade_map_list_of_products_at_4_digits_level_exported_by_portugal_in_2024_xls
+CROSS APPLY (
+    SELECT
+        REPLACE(REPLACE(REPLACE([Value exported in 2024 (USD thousand)], ',', ''), '(', '-'), ')', '') AS Value2024Txt,
+        REPLACE(REPLACE(REPLACE([Trade balance 2024 (USD thousand)], ',', ''), '(', '-'), ')', '') AS TradeBalanceTxt,
+        REPLACE(REPLACE(REPLACE([Annual growth in value between 2020-2024 (%, p.a.)], ',', ''), '(', '-'), ')', '') AS GrowthValue2020Txt,
+        REPLACE(REPLACE(REPLACE([Annual growth in quantity between 2020-2024 (%, p.a.)], ',', ''), '(', '-'), ')', '') AS GrowthQty2020Txt,
+        REPLACE(REPLACE(REPLACE([Annual growth in value between 2023-2024 (%, p.a.)], ',', ''), '(', '-'), ')', '') AS GrowthValue2023Txt,
+        REPLACE(REPLACE(REPLACE([Annual growth of world imports between 2020-2024 (%, p.a.)], ',', ''), '(', '-'), ')', '') AS WorldImportGrowthTxt,
+        REPLACE(REPLACE(REPLACE([Share in world exports (%)], ',', ''), '(', '-'), ')', '') AS ShareWorldTxt,
+        REPLACE(REPLACE(REPLACE([Ranking in world exports], ',', ''), '(', '-'), ')', '') AS RankingTxt,
+        REPLACE(REPLACE(REPLACE([Average distance of importing countries (km)], ',', ''), '(', '-'), ')', '') AS AvgDistanceTxt,
+        REPLACE(REPLACE(REPLACE([Concentration of importing countries], ',', ''), '(', '-'), ')', '') AS ConcentrationTxt
+) AS fmt;
 GO
 
 CREATE OR ALTER VIEW staging.vw_calc_imp_pt_2024 AS
 SELECT
     LTRIM(RTRIM(src.Importers))                                AS CountryName,
     ref.ISO3,
-    TRY_CONVERT(DECIMAL(18, 2), src.[Value imported in 2024 (USD thousand)])            AS Value2024_USD,
-    TRY_CONVERT(DECIMAL(18, 2), src.[Trade balance in 2024 (USD thousand)])             AS TradeBalance2024_USD,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Annual growth in value between 2020-2024 (%)])     AS Growth2020_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Annual growth in value between 2023-2024 (%)])     AS Growth2023_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Share in world imports (%)])                       AS ShareWorldImportsPct,
-    TRY_CONVERT(DECIMAL(18, 2), src.[Average distance of supplying countries (km)])     AS AvgDistanceKm,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Concentration of supplying countries])             AS ConcentrationIndex,
-    TRY_CONVERT(DECIMAL(18, 4), src.[Average tariff (estimated) applied by the country (%)]) AS AvgTariffPct
+    TRY_CONVERT(DECIMAL(18, 2), fmt.Value2024Txt)            AS Value2024_USD,
+    TRY_CONVERT(DECIMAL(18, 2), fmt.TradeBalanceTxt)         AS TradeBalance2024_USD,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.Growth2020Txt)           AS Growth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.Growth2023Txt)           AS Growth2023_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.ShareWorldTxt)           AS ShareWorldImportsPct,
+    TRY_CONVERT(DECIMAL(18, 2), fmt.AvgDistanceTxt)          AS AvgDistanceKm,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.ConcentrationTxt)        AS ConcentrationIndex,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.AvgTariffTxt)            AS AvgTariffPct
 FROM dbo.imports_country_csv_trade_map_list_of_importers_for_the_selected_product_in_2024_ceramic_products_xls AS src
+CROSS APPLY (
+    SELECT
+        REPLACE(REPLACE(REPLACE(src.[Value imported in 2024 (USD thousand)], ',', ''), '(', '-'), ')', '') AS Value2024Txt,
+        REPLACE(REPLACE(REPLACE(src.[Trade balance in 2024 (USD thousand)], ',', ''), '(', '-'), ')', '') AS TradeBalanceTxt,
+        REPLACE(REPLACE(REPLACE(src.[Annual growth in value between 2020-2024 (%)], ',', ''), '(', '-'), ')', '') AS Growth2020Txt,
+        REPLACE(REPLACE(REPLACE(src.[Annual growth in value between 2023-2024 (%)], ',', ''), '(', '-'), ')', '') AS Growth2023Txt,
+        REPLACE(REPLACE(REPLACE(src.[Share in world imports (%)], ',', ''), '(', '-'), ')', '') AS ShareWorldTxt,
+        REPLACE(REPLACE(REPLACE(src.[Average distance of supplying countries (km)], ',', ''), '(', '-'), ')', '') AS AvgDistanceTxt,
+        REPLACE(REPLACE(REPLACE(src.[Concentration of supplying countries], ',', ''), '(', '-'), ')', '') AS ConcentrationTxt,
+        REPLACE(REPLACE(REPLACE(src.[Average tariff (estimated) applied by the country (%)], ',', ''), '(', '-'), ')', '') AS AvgTariffTxt
+) AS fmt
 LEFT JOIN staging.ref_country_lookup AS ref
     ON ref.CountryLabel = LTRIM(RTRIM(src.Importers))
 WHERE ref.ISO3 IS NOT NULL;
@@ -868,13 +926,24 @@ CREATE OR ALTER VIEW staging.vw_calc_imp_prod_pt_2024 AS
 SELECT
     LTRIM(RTRIM(REPLACE([Code], '''', '')))                   AS HSCode,
     LTRIM(RTRIM([Product label]))                             AS ProductLabel,
-    TRY_CONVERT(DECIMAL(18, 2), [Value imported in 2024 (USD thousand)])             AS Value2024_USD,
-    TRY_CONVERT(DECIMAL(18, 2), [Trade balance 2024 (USD thousand)])                 AS TradeBalance2024_USD,
-    TRY_CONVERT(DECIMAL(18, 4), [Annual growth in value between 2020-2024 (%, p.a.)])        AS GrowthValue2020_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), [Annual growth in quantity between 2020-2024 (%, p.a.)])     AS GrowthQty2020_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), [Annual growth in value between 2023-2024 (%, p.a.)])        AS GrowthValue2023_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 4), [Annual growth of world exports between 2020-2024 (%, p.a.)]) AS WorldExportGrowth2020_2024_Pct,
-    TRY_CONVERT(DECIMAL(18, 2), [Average distance of supplying countries (km)])       AS AvgDistanceKm,
-    TRY_CONVERT(DECIMAL(18, 4), [Concentration of supplying countries])               AS ConcentrationIndex
-FROM dbo.imports_products_csv_trade_map_list_of_products_at_4_digits_level_imported_in_2024_xls;
+    TRY_CONVERT(DECIMAL(18, 2), fmt.Value2024Txt)             AS Value2024_USD,
+    TRY_CONVERT(DECIMAL(18, 2), fmt.TradeBalanceTxt)          AS TradeBalance2024_USD,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.GrowthValue2020Txt)       AS GrowthValue2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.GrowthQty2020Txt)         AS GrowthQty2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.GrowthValue2023Txt)       AS GrowthValue2023_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.WorldExportGrowthTxt)     AS WorldExportGrowth2020_2024_Pct,
+    TRY_CONVERT(DECIMAL(18, 2), fmt.AvgDistanceTxt)           AS AvgDistanceKm,
+    TRY_CONVERT(DECIMAL(18, 4), fmt.ConcentrationTxt)         AS ConcentrationIndex
+FROM dbo.imports_products_csv_trade_map_list_of_products_at_4_digits_level_imported_in_2024_xls
+CROSS APPLY (
+    SELECT
+        REPLACE(REPLACE(REPLACE([Value imported in 2024 (USD thousand)], ',', ''), '(', '-'), ')', '') AS Value2024Txt,
+        REPLACE(REPLACE(REPLACE([Trade balance 2024 (USD thousand)], ',', ''), '(', '-'), ')', '') AS TradeBalanceTxt,
+        REPLACE(REPLACE(REPLACE([Annual growth in value between 2020-2024 (%, p.a.)], ',', ''), '(', '-'), ')', '') AS GrowthValue2020Txt,
+        REPLACE(REPLACE(REPLACE([Annual growth in quantity between 2020-2024 (%, p.a.)], ',', ''), '(', '-'), ')', '') AS GrowthQty2020Txt,
+        REPLACE(REPLACE(REPLACE([Annual growth in value between 2023-2024 (%, p.a.)], ',', ''), '(', '-'), ')', '') AS GrowthValue2023Txt,
+        REPLACE(REPLACE(REPLACE([Annual growth of world exports between 2020-2024 (%, p.a.)], ',', ''), '(', '-'), ')', '') AS WorldExportGrowthTxt,
+        REPLACE(REPLACE(REPLACE([Average distance of supplying countries (km)], ',', ''), '(', '-'), ')', '') AS AvgDistanceTxt,
+        REPLACE(REPLACE(REPLACE([Concentration of supplying countries], ',', ''), '(', '-'), ')', '') AS ConcentrationTxt
+) AS fmt;
 GO

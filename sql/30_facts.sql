@@ -396,7 +396,7 @@ JOIN dbo.DIM_COUNTRY AS country
 GO
 
 /* ---------------------------------------------------------------------------
-   CALC_IMP_2024 (all products snapshot mirrored as import metrics)
+   CALC_IMP_2024 (ceramic importers snapshot - Trade Map)
 --------------------------------------------------------------------------- */
 INSERT INTO dbo.CALC_IMP_2024 (
     id_country,
@@ -414,10 +414,10 @@ SELECT
     src.TradeBalance2024_USD,
     src.Growth2020_2024_Pct * 0.01,
     src.Growth2023_2024_Pct * 0.01,
-    src.ShareWorldExportsPct * 0.01,
+    src.ShareWorldImportsPct * 0.01,
     src.AvgDistanceKm,
     src.ConcentrationIndex
-FROM staging.vw_calc_all_exp_2024 AS src
+FROM staging.vw_calc_imp_pt_2024 AS src
 JOIN dbo.DIM_COUNTRY AS country
     ON country.country_code = src.ISO3;
 GO
