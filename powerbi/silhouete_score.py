@@ -65,7 +65,7 @@ plt.grid(True, linestyle='--', alpha=0.6, color='white')  # White gridlines
 plt.ticklabel_format(style='plain', axis='y')
 
 # 🔴 Highlight the optimal point
-plt.scatter(optimal_k, optimal_score, s=200, c='red', marker='o',
+plt.scatter(optimal_k, optimal_score, s=200, c='white', marker='o',
             label=f'k={optimal_k} (Score={optimal_score:.4f})')
 plt.legend(facecolor='none', edgecolor='white', labelcolor='white', loc='best')
 

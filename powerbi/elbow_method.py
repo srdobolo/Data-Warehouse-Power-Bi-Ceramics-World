@@ -49,7 +49,7 @@ plt.grid(True, linestyle='--', alpha=0.6, color='white')  # White gridlines
 
 # 🔴 Highlight the "elbow" (k=2)
 if len(k_values) > 1:
-    plt.scatter(2, inertias[1], s=200, c='red', marker='o', label='Elbow Point (k=2)')
+    plt.scatter(2, inertias[1], s=200, c='white', marker='o', label='Elbow Point (k=2)')
     plt.legend(facecolor='none', edgecolor='white', labelcolor='white', loc='best')
 
 plt.tight_layout()
