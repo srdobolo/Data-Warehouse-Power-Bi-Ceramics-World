@@ -15,8 +15,8 @@ drivers macroeconómicos relacionados (PIB, urbanização e construção).
 | `FACT_EXP` | Fato | Exportações globais por país exportador (Trade Map). | `id_country`, `id_date`, `value` |
 | `FACT_EXP_PROD_BY_PT` | Fato | Exportações portuguesas por HS code. | `id_product`, `id_date`, `value` |
 | `FACT_EXP_SECTOR_BY_PT` | Fato | Exportações portuguesas de serviços de construção (Q a Q). | `id_date`, `value` |
-| `FACT_IMP` | Fato | Snapshot 2024 de importadores do Trade Map (todos os países). | `id_country`, `id_date`, `value` |
-| `FACT_IMP_PT` | Fato | Séries históricas de importações mundiais por importador. | `id_country`, `id_date`, `value` |
+| `FACT_IMP` | Fato | Importações mundiais por importador (Trade Map, 2005‑2024). | `id_country`, `id_date`, `value` |
+| `FACT_IMP_PT` | Fato | Séries históricas alternativas obtidas do dataset “world imports” (Trade Map). | `id_country`, `id_date`, `value` |
 | `FACT_IMP_PROD_BY_PT` | Fato | Importações globais por HS code. | `id_product`, `id_date`, `value` |
 | `FACT_IMP_SECTOR` | Fato | Importações mundiais de serviços de construção (linha “World”). | `id_date`, `value` |
 | `FACT_PIB` | Fato | PIB per capita (World Bank – NY.GDP.PCAP.CD). | `id_country`, `id_date`, `gdp_per_capita_usd` |

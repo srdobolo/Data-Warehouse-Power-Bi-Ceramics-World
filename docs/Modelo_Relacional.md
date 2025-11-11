@@ -85,7 +85,9 @@ graph LR
 
 ## Notas
 - Todas as FKs usam `ON DELETE NO ACTION` para impedir remoção acidental de dimensões.
-- `FACT_IMP` e `CALC_IMP_CER_2024` são povoados diretamente do ficheiro
+- `FACT_IMP` é alimentada pelo ficheiro histórico
+  `Trade_Map_-_List_of_importers_for_the_selected_product_(Ceramic_products)` (2005‑2024),
+  enquanto `CALC_IMP_CER_2024` continua dependente do snapshot
   `Trade_Map_-_List_of_importers_for_the_selected_product_in_2024_(Ceramic_products)`.
 - `CALC_IMP_2024` reutiliza o ficheiro “all products” para espelhar o lado importador com os mesmos
   campos das tabelas de exportação.

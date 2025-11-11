@@ -86,3 +86,13 @@ VAR CountryExports =
 RETURN
 DIVIDE ( CeramicsExports, CountryExports, 0 )
 ```
+
+```dax
+Share in Ceramics Exports (%) = 
+DIVIDE(
+    [Total Exports Ceramics 2024],
+    CALCULATE([Total Exports Ceramics 2024], ALL('DIM_COUNTRY')),
+    0
+)
+```
+

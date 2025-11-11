@@ -219,6 +219,7 @@ CREATE TABLE dbo.CALC_IMP_PROD_BY_PT (
 - Todas as tabelas `CALC_*` são recriadas em cada execução do script `sql/30_facts.sql`, garantindo que
   o snapshot 2024 é consistente com o staging.
 - O ficheiro `Trade_Map_-_List_of_importers_for_the_selected_product_in_2024_(Ceramic_products)` alimenta
-  diretamente `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024` e `FACT_IMP`.
+  diretamente `CALC_IMP_PT_2024` e `CALC_IMP_CER_2024`, enquanto `FACT_IMP` usa a versão histórica
+  `Trade_Map_-_List_of_importers_for_the_selected_product_(Ceramic_products)`.
 - Os indicadores macroeconómicos (`FACT_PIB`, `FACT_URBAN`, `FACT_CONSTRUCTION`) utilizam `DIM_DATE`
   com o trimestre fixo em `Q4`, simplificando análises anuais no DW.

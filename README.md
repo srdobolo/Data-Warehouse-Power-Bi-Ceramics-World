@@ -27,8 +27,9 @@ foi modelado num data warehouse em SQL Server e exposto em Power BI.
 | --- | --- | --- |
 | Trade Map | `Trade_Map_-_List_of_exporters_for_the_selected_product_in_2024_(Ceramic_products)` | KPIs para `CALC_EXP_2024`. |
 | Trade Map | `Trade_Map_-_List_of_exporters_for_the_selected_product_in_2024_(All_products)` | KPIs globais (`CALC_EXP_WORLD`, `CALC_ALL_EXP_2024`, `CALC_IMP_2024`). |
-| Trade Map | `Trade_Map_-_List_of_importers_for_the_selected_product_in_2024_(Ceramic_products)` | `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024`, `FACT_IMP`. |
-| Trade Map | Séries históricas (export/import country/product) | `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP_PT`, `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD_BY_PT`. |
+| Trade Map | `Trade_Map_-_List_of_importers_for_the_selected_product_in_2024_(Ceramic_products)` | `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024`. |
+| Trade Map | `Trade_Map_-_List_of_importers_for_the_selected_product_(Ceramic_products)` | `FACT_IMP`. |
+| Trade Map | Séries históricas (export/import country/product) | `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP`, `FACT_IMP_PT`, `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD_BY_PT`. |
 | Trade Map | Serviços de construção (exports/imports) | `FACT_EXP_SECTOR_BY_PT`, `FACT_IMP_SECTOR`. |
 | World Bank | `GDP per capita (NY.GDP.PCAP.CD)` | `FACT_PIB`. |
 | World Bank | `Urban population (SP.URB.TOTL)` | `FACT_URBAN`. |

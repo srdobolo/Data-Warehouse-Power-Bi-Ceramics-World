@@ -562,19 +562,20 @@ JOIN dbo.DIM_COUNTRY AS country
 GO
 
 /* ---------------------------------------------------------------------------
-   FACT_IMP (Trade Map importers snapshot)
+   FACT_IMP (world imports by importer, annual)
 --------------------------------------------------------------------------- */
 INSERT INTO dbo.FACT_IMP (id_country, id_date, value)
 SELECT
     country.id_country,
     date_map.id_date,
-    src.Value2024_USD
-FROM staging.vw_calc_imp_pt_2024 AS src
+    src.Valor_USD
+FROM staging.vw_imports_country_timeseries AS src
 JOIN dbo.DIM_COUNTRY AS country
     ON country.country_code = src.ISO3
 JOIN dbo.DIM_DATE AS date_map
-    ON date_map.[year] = 2024
-   AND date_map.[quarter] = 'Q4';
+    ON date_map.[year] = src.Ano
+   AND date_map.[quarter] = 'Q4'
+WHERE src.Valor_USD IS NOT NULL;
 GO
 
 /* ---------------------------------------------------------------------------

@@ -18,7 +18,7 @@ enquanto as métricas são armazenadas em `DECIMAL(18,2)` ou `DECIMAL(18,4)` con
 | `FACT_EXP` | (`id_country`, `id_date`) | `value` |
 | `FACT_EXP_PROD_BY_PT` | (`id_product`, `id_date`) | `value` |
 | `FACT_EXP_SECTOR_BY_PT` | (`id_date`) trimestral | `value` |
-| `FACT_IMP` | (`id_country`, `id_date`) snapshot 2024 | `value` |
+| `FACT_IMP` | (`id_country`, `id_date`) | `value` |
 | `FACT_IMP_PT` | (`id_country`, `id_date`) | `value` |
 | `FACT_IMP_PROD_BY_PT` | (`id_product`, `id_date`) | `value` |
 | `FACT_IMP_SECTOR` | (`id_date`) trimestral | `value` |
@@ -28,8 +28,7 @@ enquanto as métricas são armazenadas em `DECIMAL(18,2)` ou `DECIMAL(18,4)` con
 
 Todas as fact tables possuem:
 - FK obrigatória para `DIM_COUNTRY` ou `DIM_PRODUCT` quando aplicável.
-- FK obrigatória para `DIM_DATE` (exceto fatos já agregados em snapshots como `FACT_IMP` e os que só
-  dependem de `DIM_DATE`, p.ex. `FACT_EXP_SECTOR_BY_PT`).
+- FK obrigatória para `DIM_DATE`, garantindo alinhamento temporal entre as séries.
 
 ## Tabelas de Cálculo (snapshot 2024)
 Estas tabelas concentram indicadores pré-calculados para acelerar o Power BI. O grão é sempre
