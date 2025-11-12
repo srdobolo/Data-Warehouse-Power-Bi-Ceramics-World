@@ -18,6 +18,7 @@ drivers macroeconómicos relacionados (PIB, urbanização e construção).
 | `FACT_IMP` | Fato | Importações mundiais por importador (Trade Map, 2005‑2024). | `id_country`, `id_date`, `value` |
 | `FACT_IMP_PT` | Fato | Séries históricas alternativas obtidas do dataset “world imports” (Trade Map). | `id_country`, `id_date`, `value` |
 | `FACT_IMP_PROD_BY_PT` | Fato | Importações globais por HS code. | `id_product`, `id_date`, `value` |
+| `FACT_IMP_SEGMENT` | Fato | Importações por importador para HS 6907/6908/6910 (tiles e sanitários). | `id_product`, `id_country`, `id_date`, `value` |
 | `FACT_IMP_SECTOR` | Fato | Importações mundiais de serviços de construção (linha “World”). | `id_date`, `value` |
 | `FACT_PIB` | Fato | PIB per capita (World Bank – NY.GDP.PCAP.CD). | `id_country`, `id_date`, `gdp_per_capita_usd` |
 | `FACT_URBAN` | Fato | População urbana total (World Bank – SP.URB.TOTL). | `id_country`, `id_date`, `urban_population_total` |
@@ -37,11 +38,11 @@ mantêm FKs para `DIM_COUNTRY` ou `DIM_PRODUCT`.
 
 ## Relações-Chave
 - `DIM_COUNTRY` possui relacionamento 1:N com todas as tabelas fact/calc baseadas em país:
-  `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP`, `FACT_IMP_PT`, `FACT_PIB`, `FACT_URBAN`, `FACT_CONSTRUCTION`,
-  `CALC_EXP_PT_2024`, `CALC_EXP_2024`, `CALC_EXP_WORLD`, `CALC_ALL_EXP_2024`, `CALC_IMP_2024`,
-  `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024`.
-- `DIM_PRODUCT` relaciona-se com `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD_BY_PT`, `CALC_EXP_PROD_BY_PT` e
-  `CALC_IMP_PROD_BY_PT`.
+  `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP`, `FACT_IMP_PT`, `FACT_IMP_SEGMENT`, `FACT_PIB`, `FACT_URBAN`,
+  `FACT_CONSTRUCTION`, `CALC_EXP_PT_2024`, `CALC_EXP_2024`, `CALC_EXP_WORLD`, `CALC_ALL_EXP_2024`,
+  `CALC_IMP_2024`, `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024`.
+- `DIM_PRODUCT` relaciona-se com `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD_BY_PT`, `FACT_IMP_SEGMENT`,
+  `CALC_EXP_PROD_BY_PT` e `CALC_IMP_PROD_BY_PT`.
 - `DIM_DATE` liga-se a todas as fact tables temporais (todas as `FACT_*`), exceto as tabelas `CALC_*`
   que representam snapshots anuais.
 - `FACT_EXP_SECTOR_BY_PT` e `FACT_IMP_SECTOR` ligam-se apenas a `DIM_DATE`, pois representam séries agregadas.
@@ -53,6 +54,7 @@ erDiagram
     DIM_COUNTRY ||--o{ FACT_EXP : exportador
     DIM_COUNTRY ||--o{ FACT_IMP : importador_snapshot
     DIM_COUNTRY ||--o{ FACT_IMP_PT : importador_hist
+    DIM_COUNTRY ||--o{ FACT_IMP_SEGMENT : importador_segmento
     DIM_COUNTRY ||--o{ FACT_PIB : pib
     DIM_COUNTRY ||--o{ FACT_URBAN : urban
     DIM_COUNTRY ||--o{ FACT_CONSTRUCTION : constr_growth
@@ -66,6 +68,7 @@ erDiagram
 
     DIM_PRODUCT ||--o{ FACT_EXP_PROD_BY_PT : produto_exp
     DIM_PRODUCT ||--o{ FACT_IMP_PROD_BY_PT : produto_imp
+    DIM_PRODUCT ||--o{ FACT_IMP_SEGMENT : produto_seg
     DIM_PRODUCT ||--o{ CALC_EXP_PROD_BY_PT : calc_prod_exp
     DIM_PRODUCT ||--o{ CALC_IMP_PROD_BY_PT : calc_prod_imp
 
@@ -76,6 +79,7 @@ erDiagram
     DIM_DATE ||--o{ FACT_IMP : ocorre
     DIM_DATE ||--o{ FACT_IMP_PT : ocorre
     DIM_DATE ||--o{ FACT_IMP_PROD_BY_PT : ocorre
+    DIM_DATE ||--o{ FACT_IMP_SEGMENT : ocorre
     DIM_DATE ||--o{ FACT_IMP_SECTOR : ocorre
     DIM_DATE ||--o{ FACT_PIB : ocorre
     DIM_DATE ||--o{ FACT_URBAN : ocorre

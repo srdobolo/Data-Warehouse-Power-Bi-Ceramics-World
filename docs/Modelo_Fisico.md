@@ -67,6 +67,14 @@ CREATE TABLE dbo.FACT_IMP (
     value DECIMAL(18,2) NULL
 );
 
+CREATE TABLE dbo.FACT_IMP_SEGMENT (
+    id_imp_segment INT IDENTITY(1,1) PRIMARY KEY,
+    id_product INT NOT NULL FOREIGN KEY REFERENCES dbo.DIM_PRODUCT(id_product),
+    id_country INT NOT NULL FOREIGN KEY REFERENCES dbo.DIM_COUNTRY(id_country),
+    id_date INT NOT NULL FOREIGN KEY REFERENCES dbo.DIM_DATE(id_date),
+    value DECIMAL(18,2) NULL
+);
+
 CREATE TABLE dbo.FACT_IMP_PT (
     id_imp_pt INT IDENTITY(1,1) PRIMARY KEY,
     id_country INT NOT NULL FOREIGN KEY REFERENCES dbo.DIM_COUNTRY(id_country),
@@ -221,5 +229,8 @@ CREATE TABLE dbo.CALC_IMP_PROD_BY_PT (
 - O ficheiro `Trade_Map_-_List_of_importers_for_the_selected_product_in_2024_(Ceramic_products)` alimenta
   diretamente `CALC_IMP_PT_2024` e `CALC_IMP_CER_2024`, enquanto `FACT_IMP` usa a versão histórica
   `Trade_Map_-_List_of_importers_for_the_selected_product_(Ceramic_products)`.
+- Os ficheiros específicos de segmentos (`Ceramic_flags_and_paving...`, `Glazed_ceramic_flags...`,
+  `Ceramic_sinks...`) alimentam `FACT_IMP_SEGMENT`, permitindo cruzar `DIM_PRODUCT` e `DIM_COUNTRY`
+  ao nível anual.
 - Os indicadores macroeconómicos (`FACT_PIB`, `FACT_URBAN`, `FACT_CONSTRUCTION`) utilizam `DIM_DATE`
   com o trimestre fixo em `Q4`, simplificando análises anuais no DW.

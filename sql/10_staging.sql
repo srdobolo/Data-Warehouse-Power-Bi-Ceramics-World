@@ -42,6 +42,8 @@ IF OBJECT_ID('staging.vw_calc_imp_pt_2024', 'V') IS NOT NULL
     DROP VIEW staging.vw_calc_imp_pt_2024;
 IF OBJECT_ID('staging.vw_calc_imp_prod_pt_2024', 'V') IS NOT NULL
     DROP VIEW staging.vw_calc_imp_prod_pt_2024;
+IF OBJECT_ID('staging.vw_imports_country_segment_timeseries', 'V') IS NOT NULL
+    DROP VIEW staging.vw_imports_country_segment_timeseries;
 GO
 
 IF OBJECT_ID('staging.ref_country_lookup', 'U') IS NOT NULL
@@ -532,8 +534,131 @@ CROSS APPLY (VALUES
     ('2024', TRY_CONVERT(DECIMAL(18, 2), [imported value in 2024, US Dollar thousand]))
 ) AS year_data(YearLabel, Amount)
 LEFT JOIN staging.ref_hs_product AS ref
-    ON ref.HSCode = base.HSCode
+        ON ref.HSCode = base.HSCode
 WHERE year_data.Amount IS NOT NULL;
+GO
+
+/* ---------------------------------------------------------------------------
+   Country-level imports for selected HS codes (tiles, glazed tiles, sanitaryware)
+--------------------------------------------------------------------------- */
+CREATE OR ALTER VIEW staging.vw_imports_country_segment_timeseries AS
+WITH segment_data AS (
+    SELECT
+        '6907' AS HSCode,
+        LTRIM(RTRIM(Importers)) AS RawCountry,
+        year_data.YearLabel,
+        year_data.Amount
+    FROM dbo.trade_map_list_of_importers_for_the_selected_product_ceramic_flags_and_paving_hearth_xls AS base
+    CROSS APPLY (VALUES
+        ('2005', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2005])),
+        ('2006', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2006])),
+        ('2007', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2007])),
+        ('2008', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2008])),
+        ('2009', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2009])),
+        ('2010', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2010])),
+        ('2011', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2011])),
+        ('2012', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2012])),
+        ('2013', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2013])),
+        ('2014', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2014])),
+        ('2015', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2015])),
+        ('2016', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2016])),
+        ('2017', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2017])),
+        ('2018', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2018])),
+        ('2019', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2019])),
+        ('2020', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2020])),
+        ('2021', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2021])),
+        ('2022', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2022])),
+        ('2023', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2023])),
+        ('2024', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2024]))
+    ) AS year_data(YearLabel, Amount)
+    WHERE year_data.Amount IS NOT NULL
+
+    UNION ALL
+
+    SELECT
+        '6908' AS HSCode,
+        LTRIM(RTRIM(Importers)) AS RawCountry,
+        year_data.YearLabel,
+        year_data.Amount
+    FROM dbo.trade_map_list_of_importers_for_the_selected_product_glazed_ceramic_flags_and_paving_hearth_xls AS base
+    CROSS APPLY (VALUES
+        ('2005', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2005])),
+        ('2006', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2006])),
+        ('2007', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2007])),
+        ('2008', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2008])),
+        ('2009', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2009])),
+        ('2010', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2010])),
+        ('2011', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2011])),
+        ('2012', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2012])),
+        ('2013', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2013])),
+        ('2014', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2014])),
+        ('2015', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2015])),
+        ('2016', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2016])),
+        ('2017', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2017])),
+        ('2018', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2018])),
+        ('2019', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2019])),
+        ('2020', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2020])),
+        ('2021', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2021])),
+        ('2022', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2022])),
+        ('2023', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2023])),
+        ('2024', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2024]))
+    ) AS year_data(YearLabel, Amount)
+    WHERE year_data.Amount IS NOT NULL
+
+    UNION ALL
+
+    SELECT
+        '6910' AS HSCode,
+        LTRIM(RTRIM(Importers)) AS RawCountry,
+        year_data.YearLabel,
+        year_data.Amount
+    FROM dbo.trade_map_list_of_importers_for_the_selected_product_ceramic_sinks_washbasins_xls AS base
+    CROSS APPLY (VALUES
+        ('2005', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2005])),
+        ('2006', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2006])),
+        ('2007', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2007])),
+        ('2008', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2008])),
+        ('2009', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2009])),
+        ('2010', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2010])),
+        ('2011', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2011])),
+        ('2012', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2012])),
+        ('2013', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2013])),
+        ('2014', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2014])),
+        ('2015', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2015])),
+        ('2016', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2016])),
+        ('2017', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2017])),
+        ('2018', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2018])),
+        ('2019', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2019])),
+        ('2020', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2020])),
+        ('2021', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2021])),
+        ('2022', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2022])),
+        ('2023', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2023])),
+        ('2024', TRY_CONVERT(DECIMAL(18, 2), [Imported value in 2024]))
+    ) AS year_data(YearLabel, Amount)
+    WHERE year_data.Amount IS NOT NULL
+)
+SELECT
+    segment_data.HSCode,
+    COALESCE(prod.ProductLabel, segment_data.HSCode) AS ProductLabel,
+    segment_data.RawCountry                              AS RawCountryLabel,
+    COALESCE(ref.StandardName, segment_data.RawCountry)  AS CountryName,
+    LOWER(
+        REPLACE(
+            REPLACE(
+                REPLACE(segment_data.RawCountry, ' ', '_'),
+            '-', '_'),
+        '&', 'and')
+    )                                                   AS CountrySlug,
+    ref.ISO3,
+    ref.Continent,
+    ref.Region,
+    TRY_CONVERT(INT, segment_data.YearLabel)            AS Ano,
+    segment_data.Amount                                 AS Valor_USD
+FROM segment_data
+LEFT JOIN staging.ref_country_lookup AS ref
+    ON ref.CountryLabel = segment_data.RawCountry
+LEFT JOIN staging.ref_hs_product AS prod
+    ON prod.HSCode = segment_data.HSCode;
 GO
 
 /* ---------------------------------------------------------------------------

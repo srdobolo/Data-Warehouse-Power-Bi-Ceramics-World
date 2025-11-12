@@ -20,6 +20,7 @@ DROP TABLE IF EXISTS dbo.FACT_EXP_SECTOR_BY_PT;
 DROP TABLE IF EXISTS dbo.FACT_IMP_PT;
 DROP TABLE IF EXISTS dbo.CALC_IMP_PT_2024;
 DROP TABLE IF EXISTS dbo.FACT_IMP_PROD_BY_PT;
+DROP TABLE IF EXISTS dbo.FACT_IMP_SEGMENT;
 DROP TABLE IF EXISTS dbo.CALC_IMP_PROD_BY_PT;
 DROP TABLE IF EXISTS dbo.FACT_IMP_SECTOR;
 DROP TABLE IF EXISTS dbo.FACT_PIB;
@@ -233,6 +234,17 @@ CREATE TABLE dbo.FACT_IMP (
     value DECIMAL(18,2) NULL,
     CONSTRAINT FK_FACT_IMP_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country),
     CONSTRAINT FK_FACT_IMP_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
+);
+
+CREATE TABLE dbo.FACT_IMP_SEGMENT (
+    id_imp_segment INT IDENTITY(1,1) PRIMARY KEY,
+    id_product INT NOT NULL,
+    id_country INT NOT NULL,
+    id_date INT NOT NULL,
+    value DECIMAL(18,2) NULL,
+    CONSTRAINT FK_FACT_IMP_SEGMENT_PRODUCT FOREIGN KEY (id_product) REFERENCES dbo.DIM_PRODUCT(id_product),
+    CONSTRAINT FK_FACT_IMP_SEGMENT_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country),
+    CONSTRAINT FK_FACT_IMP_SEGMENT_DATE FOREIGN KEY (id_date) REFERENCES dbo.DIM_DATE(id_date)
 );
 
 CREATE TABLE dbo.FACT_CONSTRUCTION (
@@ -570,6 +582,26 @@ SELECT
     date_map.id_date,
     src.Valor_USD
 FROM staging.vw_imports_country_timeseries AS src
+JOIN dbo.DIM_COUNTRY AS country
+    ON country.country_code = src.ISO3
+JOIN dbo.DIM_DATE AS date_map
+    ON date_map.[year] = src.Ano
+   AND date_map.[quarter] = 'Q4'
+WHERE src.Valor_USD IS NOT NULL;
+GO
+
+/* ---------------------------------------------------------------------------
+   FACT_IMP_SEGMENT (imports by importer for HS 6907/6908/6910, annual)
+--------------------------------------------------------------------------- */
+INSERT INTO dbo.FACT_IMP_SEGMENT (id_product, id_country, id_date, value)
+SELECT
+    prod.id_product,
+    country.id_country,
+    date_map.id_date,
+    src.Valor_USD
+FROM staging.vw_imports_country_segment_timeseries AS src
+JOIN dbo.DIM_PRODUCT AS prod
+    ON prod.code = src.HSCode
 JOIN dbo.DIM_COUNTRY AS country
     ON country.country_code = src.ISO3
 JOIN dbo.DIM_DATE AS date_map

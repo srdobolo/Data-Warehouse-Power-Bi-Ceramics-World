@@ -1,10 +1,14 @@
+import hashlib
 import os
 import re
 import sys
 from glob import glob
+
 import pandas as pd
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine
+
+MAX_IDENTIFIER_LENGTH = 128
 
 
 def build_connection_string(database: str | None = None) -> str:
@@ -43,6 +47,24 @@ def sanitize_table_name(name: str) -> str:
     return slug or "table"
 
 
+def clamp_identifier(name: str, max_length: int = MAX_IDENTIFIER_LENGTH) -> str:
+    """
+    Ensure an identifier complies with SQL Server's 128-char limit.
+    Long names are truncated and suffixed with an 8-char hash to avoid collisions.
+    """
+    if len(name) <= max_length:
+        return name
+
+    digest = hashlib.sha1(name.encode("utf-8")).hexdigest()[:8]
+    allowed = max_length - len(digest) - 1  # leave room for '_' separator
+
+    if allowed <= 0:
+        # Pathological case: fall back to hash only, truncated to max_length
+        return digest[:max_length]
+
+    return f"{name[:allowed]}_{digest}"
+
+
 def derive_table_name(file_path: str) -> str:
     """
     Derive a SQL-safe table name from nested CSV file paths.
@@ -52,7 +74,8 @@ def derive_table_name(file_path: str) -> str:
     """
     relative = os.path.relpath(file_path, os.environ.get("DATA_PATH", "data"))
     name, _ = os.path.splitext(relative)
-    return sanitize_table_name(name)
+    slug = sanitize_table_name(name)
+    return clamp_identifier(slug)
 
 
 def ensure_database_exists() -> None:

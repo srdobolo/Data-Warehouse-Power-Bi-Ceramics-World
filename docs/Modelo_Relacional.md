@@ -6,9 +6,9 @@ normalização aplicada pelo ETL.
 ## Principais Relacionamentos
 | Origem | Destino | Tipo | Descrição |
 | --- | --- | --- | --- |
-| `DIM_COUNTRY` | `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP`, `FACT_IMP_PT`, `FACT_PIB`, `FACT_URBAN`, `FACT_CONSTRUCTION` | 1:N | Cada país pode possuir múltiplas medições ao longo do tempo. |
+| `DIM_COUNTRY` | `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP`, `FACT_IMP_PT`, `FACT_IMP_SEGMENT`, `FACT_PIB`, `FACT_URBAN`, `FACT_CONSTRUCTION` | 1:N | Cada país pode possuir múltiplas medições ao longo do tempo. |
 | `DIM_COUNTRY` | `CALC_EXP_PT_2024`, `CALC_EXP_2024`, `CALC_EXP_WORLD`, `CALC_ALL_EXP_2024`, `CALC_IMP_2024`, `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024` | 1:N | KPIs 2024 por país. |
-| `DIM_PRODUCT` | `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD_BY_PT`, `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT` | 1:N | Séries e KPIs por HS code. |
+| `DIM_PRODUCT` | `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD_BY_PT`, `FACT_IMP_SEGMENT`, `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT` | 1:N | Séries e KPIs por HS code. |
 | `DIM_DATE` | Todas as `FACT_*` (exceto calc tables) | 1:N | Cada registo factual aponta para um ano/trimestre específico. |
 | `DIM_DATE` | `FACT_EXP_SECTOR_BY_PT`, `FACT_IMP_SECTOR` | 1:N | Séries trimestrais agregadas por data. |
 
@@ -28,6 +28,7 @@ graph LR
         fimp[FACT_IMP]
         fexpprod[FACT_EXP_PROD_BY_PT]
         fimpprod[FACT_IMP_PROD_BY_PT]
+        fimpseg[FACT_IMP_SEGMENT]
         fexpsec[FACT_EXP_SECTOR_BY_PT]
         fimpsec[FACT_IMP_SECTOR]
     end
@@ -54,6 +55,7 @@ graph LR
     dc --> fexp
     dc --> fimpt
     dc --> fimp
+    dc --> fimpseg
     dc --> fpib
     dc --> furban
     dc --> fconst
@@ -67,6 +69,7 @@ graph LR
 
     dp --> fexpprod
     dp --> fimpprod
+    dp --> fimpseg
     dp --> cexp_prod
     dp --> cimp_prod
 
@@ -77,6 +80,7 @@ graph LR
     dd --> fimp
     dd --> fimpt
     dd --> fimpprod
+    dd --> fimpseg
     dd --> fimpsec
     dd --> fpib
     dd --> furban
@@ -89,5 +93,8 @@ graph LR
   `Trade_Map_-_List_of_importers_for_the_selected_product_(Ceramic_products)` (2005‑2024),
   enquanto `CALC_IMP_CER_2024` continua dependente do snapshot
   `Trade_Map_-_List_of_importers_for_the_selected_product_in_2024_(Ceramic_products)`.
+- `FACT_IMP_SEGMENT` utiliza os ficheiros específicos de HS code
+  (`Ceramic_flags_and_paving...`, `Glazed_ceramic_flags...`, `Ceramic_sinks...`) para trazer o
+  cruzamento `país x produto`.
 - `CALC_IMP_2024` reutiliza o ficheiro “all products” para espelhar o lado importador com os mesmos
   campos das tabelas de exportação.

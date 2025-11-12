@@ -78,6 +78,8 @@ WITH country_sources AS (
     UNION
     SELECT CountryName, ISO3 FROM staging.vw_world_imports_timeseries
     UNION
+    SELECT CountryName, ISO3 FROM staging.vw_imports_country_segment_timeseries
+    UNION
     SELECT CountryName, CountryCode AS ISO3 FROM staging.vw_gdp_per_capita_timeseries
     UNION
     SELECT CountryName, CountryCode AS ISO3 FROM staging.vw_urban_population_timeseries
@@ -139,6 +141,8 @@ WITH product_sources AS (
     SELECT HSCode, ProductLabel FROM staging.vw_calc_exp_prod_pt_2024
     UNION
     SELECT HSCode, ProductLabel FROM staging.vw_calc_imp_prod_pt_2024
+    UNION
+    SELECT HSCode, ProductLabel FROM staging.vw_imports_country_segment_timeseries
 ),
 normalized AS (
     SELECT

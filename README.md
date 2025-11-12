@@ -29,6 +29,7 @@ foi modelado num data warehouse em SQL Server e exposto em Power BI.
 | Trade Map | `Trade_Map_-_List_of_exporters_for_the_selected_product_in_2024_(All_products)` | KPIs globais (`CALC_EXP_WORLD`, `CALC_ALL_EXP_2024`, `CALC_IMP_2024`). |
 | Trade Map | `Trade_Map_-_List_of_importers_for_the_selected_product_in_2024_(Ceramic_products)` | `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024`. |
 | Trade Map | `Trade_Map_-_List_of_importers_for_the_selected_product_(Ceramic_products)` | `FACT_IMP`. |
+| Trade Map | `Trade_Map_-_List_of_importers_for_the_selected_product_(Ceramic_flags_and_paving...)`<br>`Trade_Map_-_List_of_importers_for_the_selected_product_(Glazed_ceramic_flags...)`<br>`Trade_Map_-_List_of_importers_for_the_selected_product_(Ceramic_sinks...)` | `FACT_IMP_SEGMENT` (HS 6907/6908/6910). |
 | Trade Map | Séries históricas (export/import country/product) | `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP`, `FACT_IMP_PT`, `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD_BY_PT`. |
 | Trade Map | Serviços de construção (exports/imports) | `FACT_EXP_SECTOR_BY_PT`, `FACT_IMP_SECTOR`. |
 | World Bank | `GDP per capita (NY.GDP.PCAP.CD)` | `FACT_PIB`. |
@@ -39,7 +40,7 @@ foi modelado num data warehouse em SQL Server e exposto em Power BI.
 - `sql/10_staging.sql`: criação das views de staging, incluindo unpivot e normalização de países/HS codes.
 - `sql/20_dimensions.sql`: carga das dimensões (`DIM_COUNTRY`, `DIM_PRODUCT`, `DIM_DATE`).
 - `sql/30_facts.sql`: recria e popula todas as fact tables e tabelas de cálculo, incluindo as novas
-  `CALC_EXP_WORLD`, `CALC_IMP_2024`, `CALC_IMP_CER_2024`, `FACT_IMP`, `FACT_PIB`, `FACT_URBAN`,
+  `CALC_EXP_WORLD`, `CALC_IMP_2024`, `CALC_IMP_CER_2024`, `FACT_IMP`, `FACT_IMP_SEGMENT`, `FACT_PIB`, `FACT_URBAN`,
   `FACT_CONSTRUCTION`.
 
 ## Documentação Atualizada

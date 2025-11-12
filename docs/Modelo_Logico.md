@@ -21,6 +21,7 @@ enquanto as métricas são armazenadas em `DECIMAL(18,2)` ou `DECIMAL(18,4)` con
 | `FACT_IMP` | (`id_country`, `id_date`) | `value` |
 | `FACT_IMP_PT` | (`id_country`, `id_date`) | `value` |
 | `FACT_IMP_PROD_BY_PT` | (`id_product`, `id_date`) | `value` |
+| `FACT_IMP_SEGMENT` | (`id_product`, `id_country`, `id_date`) | `value` |
 | `FACT_IMP_SECTOR` | (`id_date`) trimestral | `value` |
 | `FACT_PIB` | (`id_country`, `id_date`) | `gdp_per_capita_usd` |
 | `FACT_URBAN` | (`id_country`, `id_date`) | `urban_population_total` |
