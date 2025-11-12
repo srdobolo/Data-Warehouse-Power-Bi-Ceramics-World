@@ -96,3 +96,39 @@ DIVIDE(
 )
 ```
 
+```dax
+OutlierFlag = 
+VAR CurrentCluster =
+    MAX('Elbow_Silhouette_Method'[pib_urb_imports])
+
+VAR CountryAgg =
+    SUMMARIZE(
+        FILTER(
+            ALL('Elbow_Silhouette_Method'),
+            'Elbow_Silhouette_Method'[pib_urb_imports] = CurrentCluster
+        ),
+        'Elbow_Silhouette_Method'[country_name],
+        "AggValue", SUM('Elbow_Silhouette_Method'[value_2024_usd])
+    )
+
+VAR Q1 = PERCENTILEX.INC(CountryAgg, [AggValue], 0.25)
+VAR Q3 = PERCENTILEX.INC(CountryAgg, [AggValue], 0.75)
+VAR IQR = Q3 - Q1
+
+VAR LowerBound = Q1 - 1.5 * IQR
+VAR UpperBound = Q3 + 1.5 * IQR
+
+VAR CurrentValue =
+    CALCULATE(
+        SUM('Elbow_Silhouette_Method'[value_2024_usd]),
+        'Elbow_Silhouette_Method'[pib_urb_imports] = CurrentCluster
+    )
+
+RETURN
+    IF(
+        NOT ISBLANK(CurrentValue) &&
+        (CurrentValue < LowerBound || CurrentValue > UpperBound),
+        1,
+        0
+    )
+```
