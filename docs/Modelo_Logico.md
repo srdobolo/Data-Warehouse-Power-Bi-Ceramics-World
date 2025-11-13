@@ -1,50 +1,50 @@
-﻿# Modelo Lógico – Ceramics World
+﻿# Logical Model – Ceramics World
 
-O modelo lógico descreve granulações, cardinalidades e regras de negócio antes da materialização física. Todas as chaves técnicas são inteiras (`INT`) e os valores monetários usam `DECIMAL(18,2)` (USD); percentagens são armazenadas em `DECIMAL(18,4)` após conversão para formato decimal no ETL.
+The logical view describes grain, cardinality, and business rules before physical implementation. All technical keys are integers and monetary values use `DECIMAL(18,2)` (USD); percentages are stored as `DECIMAL(18,4)` after converting to decimal form during the ETL.
 
-## Dimensões
-| Tabela | Descrição | Campos principais |
+## Dimensions
+| Table | Description | Key fields |
 | --- | --- | --- |
-| `DIM_COUNTRY` | Catálogo único de países enriquecido com ISO3, continente, região e slug normalizado. | `id_country` (PK), `country_name`, `country_code`, `continent`, `region`, `country_slug` |
-| `DIM_PRODUCT` | HS Codes a 4 dígitos relevantes para o portefólio cerâmico. | `id_product` (PK), `code`, `product_label`, `hs_section`, `hs_chapter` |
-| `DIM_DATE` | Calendário anual/trimestral com etiqueta de década (ex.: "2010s"). | `id_date` (PK), `year`, `quarter`, `decade` |
+| `DIM_COUNTRY` | Single source of countries with ISO3, continent, region, slug. | `id_country` (PK), `country_name`, `country_code`, `continent`, `region`, `country_slug` |
+| `DIM_PRODUCT` | HS 4-digit codes from the ceramic portfolio. | `id_product` (PK), `code`, `product_label`, `hs_section`, `hs_chapter` |
+| `DIM_DATE` | Annual/trimestral calendar with decade label (e.g., “2010s”). | `id_date` (PK), `year`, `quarter`, `decade` |
 
-## Fatos (séries temporais)
-| Tabela | Grão | Métricas |
+## Fact tables
+| Table | Grain | Metrics |
 | --- | --- | --- |
 | `FACT_EXP_PT` | (`id_country`, `id_date`) | `value` |
 | `FACT_EXP` | (`id_country`, `id_date`) | `value` |
 | `FACT_EXP_PROD_BY_PT` | (`id_product`, `id_date`) | `value` |
-| `FACT_EXP_SECTOR_BY_PT` | (`id_date`, trimestre) | `value` |
+| `FACT_EXP_SECTOR_BY_PT` | (`id_date`, quarter) | `value` |
 | `FACT_IMP` | (`id_country`, `id_date`) | `value` |
 | `FACT_IMP_PT` | (`id_country`, `id_date`) | `value` |
 | `FACT_IMP_PROD` | (`id_product`, `id_date`) | `value` |
 | `FACT_IMP_SEGMENT` | (`id_product`, `id_country`, `id_date`) | `value` |
-| `FACT_IMP_SECTOR` | (`id_date`, trimestre) | `value` |
+| `FACT_IMP_SECTOR` | (`id_date`, quarter) | `value` |
 | `FACT_PIB` | (`id_country`, `id_date`) | `gdp_per_capita_usd` |
 | `FACT_URBAN` | (`id_country`, `id_date`) | `urban_population_total` |
 | `FACT_CONSTRUCTION` | (`id_country`, `id_date`) | `value_added_growth_pct` |
 
-Regras comuns:
-1. Todas as tabelas factuais dependem de `DIM_DATE` (exceto snapshots).
-2. Países/produtos inexistentes são tratados no staging; o DW só recebe chaves válidas.
-3. Valores trimestrais (serviços) acumulam quatro registros por ano para análises sazonais.
+Common rules:
+1. Every fact table references `DIM_DATE` (snapshots excluded).
+2. Countries/products are cleansed in staging; only valid surrogate keys enter the DW.
+3. Quarterly services data store four records per year to support seasonality analysis.
 
-## Tabelas de Cálculo (snapshot 2024)
-| Tabela | Grão | Métricas principais |
+## Calculation tables (2024 snapshot)
+| Table | Grain | Key metrics |
 | --- | --- | --- |
 | `CALC_EXP_PT_2024` | `id_country` | `value_2024_usd`, `trade_balance_2024_usd`, `share_portugal_exports_pct`, `growth_value_*`, `ranking_world_imports`, `share_world_imports_pct`, `partner_growth_2020_2024_pct`, `avg_distance_km`, `concentration_index`, `avg_tariff_pct`. |
-| `CALC_EXP_2024` / `CALC_EXP_WORLD` / `CALC_ALL_EXP_2024` | `id_country` | Mesmo layout (variam apenas as fontes). |
-| `CALC_IMP_2024`, `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024` | `id_country` | Métricas de importação, incluindo tarifa média quando aplicável. |
-| `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT` | `id_product` | Crescimentos, quotas, ranking mundial, concentração e distâncias médias por HS code. |
+| `CALC_EXP_2024`, `CALC_EXP_WORLD`, `CALC_ALL_EXP_2024` | `id_country` | Same structure (different data sources). |
+| `CALC_IMP_2024`, `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024` | `id_country` | Import KPIs, including tariff averages when available. |
+| `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT` | `id_product` | Growth, share, ranking, distance, and concentration metrics by HS code. |
 
-## Cardinalidades
-- `DIM_COUNTRY` 1:N `FACT_*` e `CALC_*` orientadas a país.
-- `DIM_PRODUCT` 1:N `FACT_*`/`CALC_*` orientadas a produto.
-- `DIM_DATE` 1:N todos os factos temporais.
+## Cardinalities
+- `DIM_COUNTRY` 1:N all country-based facts and calc tables.
+- `DIM_PRODUCT` 1:N product-based facts/calc tables.
+- `DIM_DATE` 1:N all temporal facts.
 
-## Regras de Negócio
-1. Percentagens são convertidas para decimal (`pct * 0.01`) ainda no staging.
-2. `DIM_DATE` contém todos os anos disponíveis nas séries; novas fontes apenas acrescentam anos, sem reprocessos completos.
-3. Snapshots `CALC_*` são reconstruídos a cada execução do `sql/30_facts.sql`, garantindo alinhamento com o staging.
-4. O ETL assegura nomes de países e HS codes harmonizados antes da carga nas dimensões, evitando duplicidades.
+## Business rules
+1. Percentages are multiplied by 0.01 at the staging layer to keep consistent decimal storage.
+2. `DIM_DATE` is populated with every year present in the staging views, so new sources only append years.
+3. Snapshot tables are rebuilt on every run of `sql/30_facts.sql`, ensuring alignment with staging views.
+4. The ETL harmonises country names and HS codes before loading dimensions to avoid duplicates.

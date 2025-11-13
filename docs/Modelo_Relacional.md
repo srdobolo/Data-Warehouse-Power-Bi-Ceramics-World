@@ -1,26 +1,26 @@
-﻿# Modelo Relacional – Ceramics World
+﻿# Relational Model – Ceramics World
 
-Mapa de relacionamento implementado após a normalização aplicada pelo ETL. A combinação de três dimensões compactas (País, Produto, Data) permite ligar qualquer métrica de comércio ou macroeconomia.
+Relationship map implemented after the ETL normalisation. Three compact dimensions (Country, Product, Date) let us connect any trade or macro metric.
 
-## Principais Relacionamentos
-| Origem | Destino | Tipo | Descrição |
+## Key Relationships
+| Source | Target | Type | Description |
 | --- | --- | --- | --- |
-| `DIM_COUNTRY` | `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP`, `FACT_IMP_PT`, `FACT_IMP_SEGMENT`, `FACT_PIB`, `FACT_URBAN`, `FACT_CONSTRUCTION` | 1:N | Séries históricas por país. |
-| `DIM_COUNTRY` | `CALC_EXP_PT_2024`, `CALC_EXP_2024`, `CALC_EXP_WORLD`, `CALC_ALL_EXP_2024`, `CALC_IMP_2024`, `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024` | 1:N | KPIs 2024 por país. |
-| `DIM_PRODUCT` | `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD`, `FACT_IMP_SEGMENT`, `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT` | 1:N | Séries e KPIs por HS code. |
-| `DIM_DATE` | Todas as `FACT_*` (exceto snapshots) | 1:N | Referência temporal anual/trimestral. |
-| `DIM_DATE` | `FACT_EXP_SECTOR_BY_PT`, `FACT_IMP_SECTOR` | 1:N | Séries trimestrais agregadas. |
+| `DIM_COUNTRY` | `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP`, `FACT_IMP_PT`, `FACT_IMP_SEGMENT`, `FACT_PIB`, `FACT_URBAN`, `FACT_CONSTRUCTION` | 1:N | Historical series by country. |
+| `DIM_COUNTRY` | `CALC_EXP_PT_2024`, `CALC_EXP_2024`, `CALC_EXP_WORLD`, `CALC_ALL_EXP_2024`, `CALC_IMP_2024`, `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024` | 1:N | 2024 KPIs by country. |
+| `DIM_PRODUCT` | `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD`, `FACT_IMP_SEGMENT`, `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT` | 1:N | Series and KPIs by HS code. |
+| `DIM_DATE` | All `FACT_*` tables (snapshots excluded) | 1:N | Annual/quarterly temporal reference. |
+| `DIM_DATE` | `FACT_EXP_SECTOR_BY_PT`, `FACT_IMP_SECTOR` | 1:N | Quarterly service series. |
 
-## Diagrama
+## Diagram
 ```mermaid
 graph LR
-    subgraph Dimensões
+    subgraph Dimensions
         dc[DIM_COUNTRY]
         dp[DIM_PRODUCT]
         dd[DIM_DATE]
     end
 
-    subgraph Fatos de Comércio
+    subgraph Trade Facts
         fexppt[FACT_EXP_PT]
         fexp[FACT_EXP]
         fimp[FACT_IMP]
@@ -32,13 +32,13 @@ graph LR
         fimpsec[FACT_IMP_SECTOR]
     end
 
-    subgraph Macro
+    subgraph Macro Facts
         fpib[FACT_PIB]
         furban[FACT_URBAN]
         fconst[FACT_CONSTRUCTION]
     end
 
-    subgraph Calc
+    subgraph Calc Tables
         cexpp[CALC_EXP_PT_2024]
         cexp[CALC_EXP_2024]
         cexpw[CALC_EXP_WORLD]
@@ -86,8 +86,8 @@ graph LR
     dd --> fconst
 ```
 
-## Notas Operacionais
-1. **Integridade referencial rígida**: FKs com `ON DELETE NO ACTION`. Scripts `sql/20_dimensions.sql` e `sql/30_facts.sql` cuidam do drop ordenado antes de recriar estruturas.
-2. **Ficheiros Trade Map**: versões históricas alimentam factos (`FACT_IMP`, `FACT_EXP`, etc.), enquanto ficheiros “in 2024” alimentam as tabelas `CALC_*`.
-3. **Segmentação HS**: três ficheiros específicos (6907, 6908, 6910) permitem análises cruzadas `país x produto` sem sacrificar performance.
-4. **Macro indicators**: alinhados por `id_country` e `id_date` para permitir análises de correlação direta com as métricas de comércio no Power BI.
+## Operational Notes
+1. **Strict referential integrity**: every FK uses `ON DELETE NO ACTION`. Scripts `sql/20_dimensions.sql` and `sql/30_facts.sql` enforce the drop order before recreating objects.
+2. **Trade Map files**: historic datasets feed fact tables (`FACT_IMP`, `FACT_EXP`, etc.) while the “in 2024” files populate `CALC_*` snapshots.
+3. **HS segmentation**: the three dedicated files (6907, 6908, 6910) unlock `country × product` analysis without hurting performance.
+4. **Macro indicators**: aligned by `id_country` and `id_date`, enabling direct correlation with trade metrics in Power BI.

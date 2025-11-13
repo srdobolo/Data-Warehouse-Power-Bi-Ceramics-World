@@ -1,8 +1,8 @@
-﻿# Modelo Físico – Ceramics World
+﻿# Physical Model – Ceramics World
 
-Implementação em SQL Server (`CeramicsWorldDB`) com scripts versionados no diretório `sql/`. As tabelas são recriadas a cada ciclo de carga para garantir reprodutibilidade.
+Implementation runs on SQL Server (`CeramicsWorldDB`) using the scripts under `sql/`. Every load cycle drops and recreates the structures to keep the environment reproducible.
 
-## Dimensões
+## Dimensions
 ```sql
 CREATE TABLE dbo.DIM_COUNTRY (
     id_country   INT IDENTITY(1,1) PRIMARY KEY,
@@ -30,12 +30,12 @@ CREATE TABLE dbo.DIM_DATE (
 );
 ```
 
-## Fatos (padrão)
-- Chaves substitutas (`id_country`, `id_product`, `id_date`) com `FOREIGN KEY` explícitas.
-- Valores monetários em `DECIMAL(18,2)` e percentuais em `DECIMAL(18,4)`.
-- Todas as tabelas são criadas em `sql/30_facts.sql` após o drop completo das estruturas anteriores.
+## Fact tables
+- Surrogate keys (`id_country`, `id_product`, `id_date`) with explicit foreign keys.
+- Monetary values use `DECIMAL(18,2)`; percentages use `DECIMAL(18,4)`.
+- All fact tables are created in `sql/30_facts.sql` after the script drops previous versions.
 
-Exemplo (`FACT_IMP_PROD`):
+Example (`FACT_IMP_PROD`):
 ```sql
 CREATE TABLE dbo.FACT_IMP_PROD (
     id_imp_prod INT IDENTITY(1,1) PRIMARY KEY,
@@ -45,25 +45,25 @@ CREATE TABLE dbo.FACT_IMP_PROD (
 );
 ```
 
-## Tabelas de cálculo
-Estruturas homogéneas com PK alinhada à dimensão correspondente. Exemplo:
+## Calculation tables
+They share a consistent layout, where the primary key is the related dimension. Example:
 ```sql
 CREATE TABLE dbo.CALC_IMP_PT_2024 (
     id_country INT PRIMARY KEY REFERENCES dbo.DIM_COUNTRY(id_country),
-    value_2024_usd            DECIMAL(18,2),
-    trade_balance_2024_usd    DECIMAL(18,2),
+    value_2024_usd             DECIMAL(18,2),
+    trade_balance_2024_usd     DECIMAL(18,2),
     growth_value_2020_2024_pct DECIMAL(18,4),
     growth_value_2023_2024_pct DECIMAL(18,4),
-    share_world_imports_pct   DECIMAL(18,4),
-    avg_distance_km           DECIMAL(18,2),
-    concentration_index       DECIMAL(18,4),
-    avg_tariff_pct            DECIMAL(18,4)
+    share_world_imports_pct    DECIMAL(18,4),
+    avg_distance_km            DECIMAL(18,2),
+    concentration_index        DECIMAL(18,4),
+    avg_tariff_pct             DECIMAL(18,4)
 );
 ```
 
-## Considerações Técnicas
-1. **Conversão de percentagens**: realizada nas views de staging (`* * 0.01`) para manter consistência e facilitar cálculos no BI.
-2. **Q4 como proxy anual**: datas provenientes de séries anuais são armazenadas com `quarter = 'Q4'`, permitindo joins simples com dimensões temporais.
-3. **Snapshots idempotentes**: as tabelas `CALC_*` são recriadas em cada ciclo para assegurar que alterações de staging se propagam imediatamente.
-4. **Referential integrity**: todas as FKs usam `ON DELETE NO ACTION`; qualquer remoção exige limpeza prévia das tabelas dependentes (automatizado nos scripts).
-5. **Nomeação de tabelas de staging**: `etl/ingest_csv.py` gera nomes seguros como `imports_products_csv_trade_map_list_of_imported_products_for_the_selected_product_ceramic_products_xls`, garantindo rastreabilidade do ficheiro original.
+## Technical notes
+1. **Percentage conversion** happens in the staging views (`value * 0.01`) so all KPIs share the same decimal representation.
+2. **Q4 as yearly proxy**: annual series are stored with `quarter = 'Q4'`, simplifying joins with the date dimension.
+3. **Idempotent snapshots**: every `CALC_*` table is recreated on each run of `sql/30_facts.sql`, keeping snapshots aligned with staging data.
+4. **Referential integrity**: all foreign keys use `ON DELETE NO ACTION`; the scripts drop dependent tables explicitly before recreating the dimensions.
+5. **Staging table naming**: `etl/ingest_csv.py` generates deterministic, SQL-safe table names (e.g., `imports_products_csv_trade_map_list_of_imported_products_for_the_selected_product_ceramic_products_xls`) to maintain traceability back to the CSV file.

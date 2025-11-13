@@ -1,45 +1,45 @@
-﻿# Modelo Conceptual – Ceramics World
+﻿# Conceptual Model – Ceramics World
 
-## Objetivo
-Criar uma visão única do mercado global de produtos cerâmicos, conectando séries históricas de comércio com indicadores macroeconómicos que explicam a procura. O modelo conceptual guia todas as decisões de desenho do DW.
+## Objective
+Provide a unified view of the global ceramic products market, combining historical trade series with macro indicators that explain demand. The conceptual model drives every downstream design decision.
 
-## Entidades
-| Entidade | Tipo | Descrição | Principais atributos |
+## Entities
+| Entity | Type | Description | Key attributes |
 | --- | --- | --- | --- |
-| `DIM_COUNTRY` | Dimensão | Catálogo de países/territórios com ISO3, continente e região padronizados. | `id_country`, `country_name`, `country_code`, `continent`, `region` |
-| `DIM_PRODUCT` | Dimensão | HS Codes de 4 dígitos do portefólio cerâmico. | `id_product`, `code`, `product_label`, `hs_section`, `hs_chapter` |
-| `DIM_DATE` | Dimensão | Calendário anual + trimestre (Q1‑Q4) e etiqueta de década. | `id_date`, `year`, `quarter`, `decade` |
-| `FACT_EXP_PT` | Fato | Exportações portuguesas por país destino. | `id_country`, `id_date`, `value` |
-| `FACT_EXP` | Fato | Exportações mundiais por país exportador. | `id_country`, `id_date`, `value` |
-| `FACT_EXP_PROD_BY_PT` | Fato | Exportações portuguesas por HS code. | `id_product`, `id_date`, `value` |
-| `FACT_EXP_SECTOR_BY_PT` | Fato | Exportações de serviços de construção (quarterly). | `id_date`, `value` |
-| `FACT_IMP` | Fato | Importações mundiais por país importador. | `id_country`, `id_date`, `value` |
-| `FACT_IMP_PT` | Fato | Série alternativa do Trade Map “world imports”. | `id_country`, `id_date`, `value` |
-| `FACT_IMP_PROD` | Fato | Importações globais por produto (Trade Map imported products). | `id_product`, `id_date`, `value` |
-| `FACT_IMP_SEGMENT` | Fato | Importações por país para HS 6907/6908/6910. | `id_product`, `id_country`, `id_date`, `value` |
-| `FACT_IMP_SECTOR` | Fato | Importações de serviços de construção (linha World). | `id_date`, `value` |
-| `FACT_PIB` | Fato | PIB per capita (World Bank). | `id_country`, `id_date`, `gdp_per_capita_usd` |
-| `FACT_URBAN` | Fato | População urbana (World Bank). | `id_country`, `id_date`, `urban_population_total` |
-| `FACT_CONSTRUCTION` | Fato | Crescimento da indústria incl. construção. | `id_country`, `id_date`, `value_added_growth_pct` |
-| `CALC_*` | Calc | Snapshots 2024 com KPIs prontos para BI (`CALC_EXP_PT_2024`, `CALC_IMP_2024`, etc.). | `id_country` ou `id_product` + métricas específicas |
+| `DIM_COUNTRY` | Dimension | Catalogue of countries/territories with ISO3, continent, region, slug. | `id_country`, `country_name`, `country_code`, `continent`, `region`, `country_slug` |
+| `DIM_PRODUCT` | Dimension | HS four-digit codes that define the ceramic portfolio. | `id_product`, `code`, `product_label`, `hs_section`, `hs_chapter` |
+| `DIM_DATE` | Dimension | Annual calendar with quarter (Q1–Q4) and decade label. | `id_date`, `year`, `quarter`, `decade` |
+| `FACT_EXP_PT` | Fact | Portuguese exports by destination. | `id_country`, `id_date`, `value` |
+| `FACT_EXP` | Fact | World exports by exporter. | `id_country`, `id_date`, `value` |
+| `FACT_EXP_PROD_BY_PT` | Fact | Portuguese exports by HS code. | `id_product`, `id_date`, `value` |
+| `FACT_EXP_SECTOR_BY_PT` | Fact | Construction services exports (quarterly). | `id_date`, `value` |
+| `FACT_IMP` | Fact | Global imports by importer. | `id_country`, `id_date`, `value` |
+| `FACT_IMP_PT` | Fact | Alternative Trade Map “world imports” series. | `id_country`, `id_date`, `value` |
+| `FACT_IMP_PROD` | Fact | Global imports by HS code (Trade Map imported products). | `id_product`, `id_date`, `value` |
+| `FACT_IMP_SEGMENT` | Fact | Imports per country for HS 6907/6908/6910. | `id_product`, `id_country`, `id_date`, `value` |
+| `FACT_IMP_SECTOR` | Fact | Construction services imports (World line). | `id_date`, `value` |
+| `FACT_PIB` | Fact | GDP per capita (World Bank). | `id_country`, `id_date`, `gdp_per_capita_usd` |
+| `FACT_URBAN` | Fact | Urban population (World Bank). | `id_country`, `id_date`, `urban_population_total` |
+| `FACT_CONSTRUCTION` | Fact | Industry incl. construction growth. | `id_country`, `id_date`, `value_added_growth_pct` |
+| `CALC_*` | Calc | 2024 KPI snapshots for countries or products (`CALC_EXP_PT_2024`, `CALC_IMP_2024`, etc.). | `id_country` or `id_product` + metrics |
 
-## Relações-chave
-- `DIM_COUNTRY` relaciona-se 1:N com todas as tabelas factuais e de cálculo baseadas em países.
-- `DIM_PRODUCT` liga os factos orientados a HS code (`FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD`, `FACT_IMP_SEGMENT`, `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT`).
-- `DIM_DATE` garante consistência temporal de todas as séries (`FACT_*`), com exceção das tabelas `CALC_*`, que representam snapshots anuais.
-- `FACT_EXP_SECTOR_BY_PT` e `FACT_IMP_SECTOR` dependem apenas da dimensão de data, pois representam linhas globais.
+## Key Relationships
+- `DIM_COUNTRY` connects 1:N with all fact/calc tables that use countries.
+- `DIM_PRODUCT` links HS-driven facts (`FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD`, `FACT_IMP_SEGMENT`, `CALC_*_PROD_BY_PT`).
+- `DIM_DATE` ensures temporal consistency for every fact table (snapshots exclude `id_date`).
+- `FACT_EXP_SECTOR_BY_PT` and `FACT_IMP_SECTOR` only depend on date because they represent global lines.
 
-## Diagrama (Mermaid)
+## Diagram
 ```mermaid
 erDiagram
-    DIM_COUNTRY ||--o{ FACT_EXP_PT : destino
-    DIM_COUNTRY ||--o{ FACT_EXP : exportador
-    DIM_COUNTRY ||--o{ FACT_IMP : importador
-    DIM_COUNTRY ||--o{ FACT_IMP_PT : importador_hist
-    DIM_COUNTRY ||--o{ FACT_IMP_SEGMENT : importador_segmento
+    DIM_COUNTRY ||--o{ FACT_EXP_PT : destination
+    DIM_COUNTRY ||--o{ FACT_EXP : exporter
+    DIM_COUNTRY ||--o{ FACT_IMP : importer
+    DIM_COUNTRY ||--o{ FACT_IMP_PT : importer_hist
+    DIM_COUNTRY ||--o{ FACT_IMP_SEGMENT : importer_segment
     DIM_COUNTRY ||--o{ FACT_PIB : pib
     DIM_COUNTRY ||--o{ FACT_URBAN : urban
-    DIM_COUNTRY ||--o{ FACT_CONSTRUCTION : constr
+    DIM_COUNTRY ||--o{ FACT_CONSTRUCTION : construction
     DIM_COUNTRY ||--o{ CALC_EXP_PT_2024 : exp_pt_kpi
     DIM_COUNTRY ||--o{ CALC_EXP_2024 : exp_kpi
     DIM_COUNTRY ||--o{ CALC_EXP_WORLD : exp_world
@@ -54,22 +54,22 @@ erDiagram
     DIM_PRODUCT ||--o{ CALC_EXP_PROD_BY_PT : calc_prod_exp
     DIM_PRODUCT ||--o{ CALC_IMP_PROD_BY_PT : calc_prod_imp
 
-    DIM_DATE ||--o{ FACT_EXP_PT : ocorre
-    DIM_DATE ||--o{ FACT_EXP : ocorre
-    DIM_DATE ||--o{ FACT_EXP_PROD_BY_PT : ocorre
-    DIM_DATE ||--o{ FACT_EXP_SECTOR_BY_PT : ocorre
-    DIM_DATE ||--o{ FACT_IMP : ocorre
-    DIM_DATE ||--o{ FACT_IMP_PT : ocorre
-    DIM_DATE ||--o{ FACT_IMP_PROD : ocorre
-    DIM_DATE ||--o{ FACT_IMP_SEGMENT : ocorre
-    DIM_DATE ||--o{ FACT_IMP_SECTOR : ocorre
-    DIM_DATE ||--o{ FACT_PIB : ocorre
-    DIM_DATE ||--o{ FACT_URBAN : ocorre
-    DIM_DATE ||--o{ FACT_CONSTRUCTION : ocorre
+    DIM_DATE ||--o{ FACT_EXP_PT : occurs
+    DIM_DATE ||--o{ FACT_EXP : occurs
+    DIM_DATE ||--o{ FACT_EXP_PROD_BY_PT : occurs
+    DIM_DATE ||--o{ FACT_EXP_SECTOR_BY_PT : occurs
+    DIM_DATE ||--o{ FACT_IMP : occurs
+    DIM_DATE ||--o{ FACT_IMP_PT : occurs
+    DIM_DATE ||--o{ FACT_IMP_PROD : occurs
+    DIM_DATE ||--o{ FACT_IMP_SEGMENT : occurs
+    DIM_DATE ||--o{ FACT_IMP_SECTOR : occurs
+    DIM_DATE ||--o{ FACT_PIB : occurs
+    DIM_DATE ||--o{ FACT_URBAN : occurs
+    DIM_DATE ||--o{ FACT_CONSTRUCTION : occurs
 ```
 
-## Destaques do Modelo
-1. **Chaves consistentes** (`id_country`, `id_product`, `id_date`) garantem que qualquer combinação de KPIs pode ser cruzada no BI.
-2. **Snapshots 2024** aceleram dashboards ao evitar cálculos on-the-fly para métricas críticas (quota, ranking, distância média, tarifa).
-3. **Segmentação HS**: permite comparar azulejos, sanitários e mosaicos de forma granular, mantendo contexto macro na mesma base.
-4. **Drivers macroeconómicos**: PIB, urbanização e crescimento industrial estão alinhados temporalmente com o comércio para análises de correlação.
+## Highlights
+1. **Consistent surrogate keys** (`id_country`, `id_product`, `id_date`) enable frictionless joins in Power BI.
+2. **2024 snapshots** provide pre-aggregated KPIs (share, ranking, distance, tariff), keeping dashboards responsive.
+3. **HS segmentation** (tiles, sanitaryware, mosaics) coexists with macro indicators in the same model.
+4. **Macro drivers** (GDP, urbanisation, construction) are aligned temporally with trade to support correlation analyses.
