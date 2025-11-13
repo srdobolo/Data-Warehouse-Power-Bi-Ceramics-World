@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS dbo.CALC_EXP_PROD_BY_PT;
 DROP TABLE IF EXISTS dbo.FACT_EXP_SECTOR_BY_PT;
 DROP TABLE IF EXISTS dbo.FACT_IMP_PT;
 DROP TABLE IF EXISTS dbo.CALC_IMP_PT_2024;
-DROP TABLE IF EXISTS dbo.FACT_IMP_PROD_BY_PT;
+DROP TABLE IF EXISTS dbo.FACT_IMP_PROD;
 DROP TABLE IF EXISTS dbo.FACT_IMP_SEGMENT;
 DROP TABLE IF EXISTS dbo.CALC_IMP_PROD_BY_PT;
 DROP TABLE IF EXISTS dbo.FACT_IMP_SECTOR;
@@ -180,8 +180,8 @@ CREATE TABLE dbo.CALC_IMP_CER_2024 (
     CONSTRAINT FK_CALC_IMP_CER_COUNTRY FOREIGN KEY (id_country) REFERENCES dbo.DIM_COUNTRY(id_country)
 );
 
-CREATE TABLE dbo.FACT_IMP_PROD_BY_PT (
-    id_imp_prod_pt INT IDENTITY(1,1) PRIMARY KEY,
+CREATE TABLE dbo.FACT_IMP_PROD (
+    id_imp_prod INT IDENTITY(1,1) PRIMARY KEY,
     id_product INT NOT NULL,
     id_date INT NOT NULL,
     value DECIMAL(18,2) NULL,
@@ -611,9 +611,9 @@ WHERE src.Valor_USD IS NOT NULL;
 GO
 
 /* ---------------------------------------------------------------------------
-   FACT_IMP_PROD_BY_PT
+   FACT_IMP_PROD (global imports by HS code, annual)
 --------------------------------------------------------------------------- */
-INSERT INTO dbo.FACT_IMP_PROD_BY_PT (id_product, id_date, value)
+INSERT INTO dbo.FACT_IMP_PROD (id_product, id_date, value)
 SELECT
     prod.id_product,
     date_map.id_date,

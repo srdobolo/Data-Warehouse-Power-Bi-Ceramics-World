@@ -8,7 +8,7 @@ normalização aplicada pelo ETL.
 | --- | --- | --- | --- |
 | `DIM_COUNTRY` | `FACT_EXP_PT`, `FACT_EXP`, `FACT_IMP`, `FACT_IMP_PT`, `FACT_IMP_SEGMENT`, `FACT_PIB`, `FACT_URBAN`, `FACT_CONSTRUCTION` | 1:N | Cada país pode possuir múltiplas medições ao longo do tempo. |
 | `DIM_COUNTRY` | `CALC_EXP_PT_2024`, `CALC_EXP_2024`, `CALC_EXP_WORLD`, `CALC_ALL_EXP_2024`, `CALC_IMP_2024`, `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024` | 1:N | KPIs 2024 por país. |
-| `DIM_PRODUCT` | `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD_BY_PT`, `FACT_IMP_SEGMENT`, `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT` | 1:N | Séries e KPIs por HS code. |
+| `DIM_PRODUCT` | `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD`, `FACT_IMP_SEGMENT`, `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT` | 1:N | Séries e KPIs por HS code. |
 | `DIM_DATE` | Todas as `FACT_*` (exceto calc tables) | 1:N | Cada registo factual aponta para um ano/trimestre específico. |
 | `DIM_DATE` | `FACT_EXP_SECTOR_BY_PT`, `FACT_IMP_SECTOR` | 1:N | Séries trimestrais agregadas por data. |
 
@@ -27,7 +27,7 @@ graph LR
         fimpt[FACT_IMP_PT]
         fimp[FACT_IMP]
         fexpprod[FACT_EXP_PROD_BY_PT]
-        fimpprod[FACT_IMP_PROD_BY_PT]
+        fimpprod[FACT_IMP_PROD]
         fimpseg[FACT_IMP_SEGMENT]
         fexpsec[FACT_EXP_SECTOR_BY_PT]
         fimpsec[FACT_IMP_SECTOR]
