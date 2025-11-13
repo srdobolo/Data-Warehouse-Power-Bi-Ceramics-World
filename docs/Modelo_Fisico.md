@@ -34,6 +34,7 @@ CREATE TABLE dbo.DIM_DATE (
 - Surrogate keys (`id_country`, `id_product`, `id_date`) with explicit foreign keys.
 - Monetary values use `DECIMAL(18,2)`; percentages use `DECIMAL(18,4)`.
 - All fact tables are created in `sql/30_facts.sql` after the script drops previous versions.
+- `FACT_EXP_SECTOR_BY_PT` and `FACT_IMP_SECTOR` only carry `id_date` because they represent single Portuguese/world quarterly lines mapped through `DIM_DATE`.
 
 Example (`FACT_IMP_PROD`):
 ```sql

@@ -15,12 +15,12 @@ The logical view describes grain, cardinality, and business rules before physica
 | `FACT_EXP_PT` | (`id_country`, `id_date`) | `value` |
 | `FACT_EXP` | (`id_country`, `id_date`) | `value` |
 | `FACT_EXP_PROD_BY_PT` | (`id_product`, `id_date`) | `value` |
-| `FACT_EXP_SECTOR_BY_PT` | (`id_date`, quarter) | `value` |
+| `FACT_EXP_SECTOR_BY_PT` | (`id_date` – Portuguese quarterly line) | `value` |
 | `FACT_IMP` | (`id_country`, `id_date`) | `value` |
 | `FACT_IMP_PT` | (`id_country`, `id_date`) | `value` |
 | `FACT_IMP_PROD` | (`id_product`, `id_date`) | `value` |
 | `FACT_IMP_SEGMENT` | (`id_product`, `id_country`, `id_date`) | `value` |
-| `FACT_IMP_SECTOR` | (`id_date`, quarter) | `value` |
+| `FACT_IMP_SECTOR` | (`id_date` – world quarterly line) | `value` |
 | `FACT_PIB` | (`id_country`, `id_date`) | `gdp_per_capita_usd` |
 | `FACT_URBAN` | (`id_country`, `id_date`) | `urban_population_total` |
 | `FACT_CONSTRUCTION` | (`id_country`, `id_date`) | `value_added_growth_pct` |
@@ -28,7 +28,7 @@ The logical view describes grain, cardinality, and business rules before physica
 Common rules:
 1. Every fact table references `DIM_DATE` (snapshots excluded).
 2. Countries/products are cleansed in staging; only valid surrogate keys enter the DW.
-3. Quarterly services data store four records per year to support seasonality analysis.
+3. Quarterly services data store four records per year yet only reference `DIM_DATE`, because they represent single Portuguese (exports) and world (imports) lines.
 
 ## Calculation tables (2024 snapshot)
 | Table | Grain | Key metrics |

@@ -9,7 +9,7 @@ Relationship map implemented after the ETL normalisation. Three compact dimensio
 | `DIM_COUNTRY` | `CALC_EXP_PT_2024`, `CALC_EXP_2024`, `CALC_EXP_WORLD`, `CALC_ALL_EXP_2024`, `CALC_IMP_2024`, `CALC_IMP_PT_2024`, `CALC_IMP_CER_2024` | 1:N | 2024 KPIs by country. |
 | `DIM_PRODUCT` | `FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD`, `FACT_IMP_SEGMENT`, `CALC_EXP_PROD_BY_PT`, `CALC_IMP_PROD_BY_PT` | 1:N | Series and KPIs by HS code. |
 | `DIM_DATE` | All `FACT_*` tables (snapshots excluded) | 1:N | Annual/quarterly temporal reference. |
-| `DIM_DATE` | `FACT_EXP_SECTOR_BY_PT`, `FACT_IMP_SECTOR` | 1:N | Quarterly service series. |
+| `DIM_DATE` | `FACT_EXP_SECTOR_BY_PT`, `FACT_IMP_SECTOR` | 1:N | Quarterly service lines (Portugal exports, world imports). |
 
 ## Diagram
 ```mermaid
@@ -42,7 +42,7 @@ graph LR
         cexpp[CALC_EXP_PT_2024]
         cexp[CALC_EXP_2024]
         cexpw[CALC_EXP_WORLD]
-        call[CALC_ALL_EXP_2024]
+        calc_all[CALC_ALL_EXP_2024]
         cimp[CALC_IMP_2024]
         cimppt[CALC_IMP_PT_2024]
         cimpcer[CALC_IMP_CER_2024]
@@ -61,7 +61,7 @@ graph LR
     dc --> cexpp
     dc --> cexp
     dc --> cexpw
-    dc --> call
+    dc --> calc_all
     dc --> cimp
     dc --> cimppt
     dc --> cimpcer

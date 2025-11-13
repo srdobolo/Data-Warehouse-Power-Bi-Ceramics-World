@@ -8,16 +8,16 @@ Provide a unified view of the global ceramic products market, combining historic
 | --- | --- | --- | --- |
 | `DIM_COUNTRY` | Dimension | Catalogue of countries/territories with ISO3, continent, region, slug. | `id_country`, `country_name`, `country_code`, `continent`, `region`, `country_slug` |
 | `DIM_PRODUCT` | Dimension | HS four-digit codes that define the ceramic portfolio. | `id_product`, `code`, `product_label`, `hs_section`, `hs_chapter` |
-| `DIM_DATE` | Dimension | Annual calendar with quarter (Q1–Q4) and decade label. | `id_date`, `year`, `quarter`, `decade` |
+| `DIM_DATE` | Dimension | Annual+quarter calendar with decade label (annual facts use the Q4 row as the yearly representative). | `id_date`, `year`, `quarter`, `decade` |
 | `FACT_EXP_PT` | Fact | Portuguese exports by destination. | `id_country`, `id_date`, `value` |
 | `FACT_EXP` | Fact | World exports by exporter. | `id_country`, `id_date`, `value` |
 | `FACT_EXP_PROD_BY_PT` | Fact | Portuguese exports by HS code. | `id_product`, `id_date`, `value` |
-| `FACT_EXP_SECTOR_BY_PT` | Fact | Construction services exports (quarterly). | `id_date`, `value` |
+| `FACT_EXP_SECTOR_BY_PT` | Fact | Portuguese construction services exports, quarterly single-line series. | `id_date`, `value` |
 | `FACT_IMP` | Fact | Global imports by importer. | `id_country`, `id_date`, `value` |
 | `FACT_IMP_PT` | Fact | Alternative Trade Map “world imports” series. | `id_country`, `id_date`, `value` |
 | `FACT_IMP_PROD` | Fact | Global imports by HS code (Trade Map imported products). | `id_product`, `id_date`, `value` |
 | `FACT_IMP_SEGMENT` | Fact | Imports per country for HS 6907/6908/6910. | `id_product`, `id_country`, `id_date`, `value` |
-| `FACT_IMP_SECTOR` | Fact | Construction services imports (World line). | `id_date`, `value` |
+| `FACT_IMP_SECTOR` | Fact | Global construction services imports (world total line). | `id_date`, `value` |
 | `FACT_PIB` | Fact | GDP per capita (World Bank). | `id_country`, `id_date`, `gdp_per_capita_usd` |
 | `FACT_URBAN` | Fact | Urban population (World Bank). | `id_country`, `id_date`, `urban_population_total` |
 | `FACT_CONSTRUCTION` | Fact | Industry incl. construction growth. | `id_country`, `id_date`, `value_added_growth_pct` |
@@ -27,7 +27,7 @@ Provide a unified view of the global ceramic products market, combining historic
 - `DIM_COUNTRY` connects 1:N with all fact/calc tables that use countries.
 - `DIM_PRODUCT` links HS-driven facts (`FACT_EXP_PROD_BY_PT`, `FACT_IMP_PROD`, `FACT_IMP_SEGMENT`, `CALC_*_PROD_BY_PT`).
 - `DIM_DATE` ensures temporal consistency for every fact table (snapshots exclude `id_date`).
-- `FACT_EXP_SECTOR_BY_PT` and `FACT_IMP_SECTOR` only depend on date because they represent global lines.
+- `FACT_EXP_SECTOR_BY_PT` and `FACT_IMP_SECTOR` only depend on date because they are single-line series (Portugal exports and world imports, respectively).
 
 ## Diagram
 ```mermaid
@@ -71,5 +71,6 @@ erDiagram
 ## Highlights
 1. **Consistent surrogate keys** (`id_country`, `id_product`, `id_date`) enable frictionless joins in Power BI.
 2. **2024 snapshots** provide pre-aggregated KPIs (share, ranking, distance, tariff), keeping dashboards responsive.
-3. **HS segmentation** (tiles, sanitaryware, mosaics) coexists with macro indicators in the same model.
-4. **Macro drivers** (GDP, urbanisation, construction) are aligned temporally with trade to support correlation analyses.
+3. **Quarter handling**: annual facts store the year on the `Q4` row of `DIM_DATE`, so yearly, quarterly, and snapshot tables stay aligned across SQL scripts.
+4. **HS segmentation** (tiles, sanitaryware, mosaics) coexists with macro indicators in the same model.
+5. **Macro drivers** (GDP, urbanisation, construction) are aligned temporally with trade to support correlation analyses.
